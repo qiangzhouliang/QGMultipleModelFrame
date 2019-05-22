@@ -1,6 +1,5 @@
 package qzl.com.qgmultiplemodelframe
 import android.content.Intent
-import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import kotlinx.android.synthetic.main.activity_error.*
@@ -15,13 +14,13 @@ import utilclass.Tt
  * @class HzzErrorReportActivity
  */
 class HzzErrorReportActivity : BaseActivity() {
-
     private var exMsg: String? = null
+    override fun getLayoutId(): Int {
+        return R.layout.activity_error
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun initView() {
         Tt.init(this)
-        setContentView(R.layout.activity_error)
         init()
     }
 

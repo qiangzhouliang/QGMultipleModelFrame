@@ -1,6 +1,5 @@
 package qzl.com.basecommon.base
 
-import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -24,11 +23,13 @@ import qzl.com.tools.network.NetworkReceiver
 import qzl.com.tools.operate.CompleteQuit
 import qzl.com.tools.utils.SerializableMap
 
-
 /**
- * Created by 肖龙 on 2015/5/29.
+ * @author 强周亮(Qzl)
+ * @desc所有activity的基类
+ * @email 2538096489@qq.com
+ * @time 2019-05-22 16:25
  */
-open class BaseActivity : FragmentActivity(), AppBackHandledInterface {
+abstract class BaseActivity : FragmentActivity(), AppBackHandledInterface {
 
     lateinit var headPanel: HeadControlPanel//头部显示区域
     private val networkReceiver = NetworkReceiver()
@@ -39,24 +40,6 @@ open class BaseActivity : FragmentActivity(), AppBackHandledInterface {
         internal set
 
     var mErrorView: View? = null//错误页面view
-
-    /**
-     * 获取APP版本信息
-     * @return
-     */
-    //getPackageName()是你当前类的包名，0代表是获取版本信息
-    val versionName: String
-        get() {
-            return try {
-                val packageManager = packageManager
-                val packInfo = packageManager.getPackageInfo(packageName, 0)
-                packInfo.versionName
-            } catch (e: Exception) {
-                e.printStackTrace()
-                ""
-            }
-
-        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,15 +57,30 @@ open class BaseActivity : FragmentActivity(), AppBackHandledInterface {
         }
 
         CompleteQuit.getInstance()?.pushActivity(this)
+        setContentView(getLayoutId())
+        initView()
+        initListener()
+        initData()
         initErrorPage()
     }
+    /**
+     * 获取布局id
+     */
+    abstract fun getLayoutId(): Int
+    /**
+     * 初始化数据
+     */
+    protected open fun initData() {}
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    private fun highApiEffects() {
-        window.decorView.fitsSystemWindows = true
-        //透明状态栏 @顶部
-        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-    }
+    /**
+     * adapter listener相关的操作
+     */
+    protected open fun initListener() {}
+    /**
+     * 初始化试图的操作
+     */
+    protected open fun initView() {}
+
 
     override fun onDestroy() {
         super.onDestroy()
@@ -119,14 +117,6 @@ open class BaseActivity : FragmentActivity(), AppBackHandledInterface {
 
     protected fun unregisterNetWorkReceiver() {
         unregisterReceiver(networkReceiver)
-    }
-
-    fun setViewSize(view: View, width: Int, height: Int) {
-        val params = view.layoutParams
-        val scale = this.resources.displayMetrics.density
-        params.height = (height * scale + 0.5f).toInt()
-        params.width = (width * scale + 0.5f).toInt()
-        view.layoutParams = params
     }
 
     /**
