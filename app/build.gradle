@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+android {
+    compileSdkVersion deps.compile_sdk
+    defaultConfig {
+        applicationId "qzl.com.application"
+        minSdkVersion deps.min_sdk
+        targetSdkVersion deps.target_sdk
+        versionCode 1
+        versionName "1.0.0.1"
+        // Enabling multidex support.
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            //打包时过滤无用文件,有效时，打release包会出错
+            minifyEnabled true
+            //移出无用的resource文件
+            shrinkResources true
+            //Zipalign优化
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            //打包时过滤无用文件,有效时，打release包会出错
+            minifyEnabled false
+            //移出无用的resource文件
+            shrinkResources false
+            //Zipalign优化
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+    }
+    dataBinding{
+        enabled true
+    }
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation deps.appcompat
+    implementation deps.constraint
+    implementation deps.kotlin_stdlib
+    implementation deps.anko
+    implementation project(":basecommon")
+    if (!isRunAlone) {
+
+    }
+}
