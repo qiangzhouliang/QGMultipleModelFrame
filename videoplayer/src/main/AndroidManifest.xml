@@ -1,0 +1,16 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="qzl.com.videoplayer">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <application>
+        <!--视频播放-->
+        <activity android:name=".JiaoZiVideoPlayerActivity"
+                  android:configChanges="screenSize|orientation|keyboard">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>-->
+        </activity>
+    </application>
+</manifest>

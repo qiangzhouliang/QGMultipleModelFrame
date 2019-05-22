@@ -54,6 +54,6 @@ dependencies {
     implementation deps.anko
     implementation project(":basecommon")
     if (!isRunAlone) {
-
+        implementation project(":videoplayer")
     }
 }

@@ -9,7 +9,7 @@ import android.graphics.Color
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
+import android.support.v7.app.AppCompatActivity
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -25,14 +25,14 @@ import qzl.com.tools.utils.SerializableMap
 
 /**
  * @author 强周亮(Qzl)
- * @desc所有activity的基类
+ * @desc 所有activity的基类
  * @email 2538096489@qq.com
  * @time 2019-05-22 16:25
  */
-abstract class BaseActivity : FragmentActivity(), AppBackHandledInterface {
+abstract class BaseActivity : AppCompatActivity(), AppBackHandledInterface {
 
     lateinit var headPanel: HeadControlPanel//头部显示区域
-    private val networkReceiver = NetworkReceiver()
+    private val networkReceiver by lazy { NetworkReceiver() }
     private var imageButton: ImageView? = null
     private var mBackHandedFragment: AppBackHandledFragment? = null
 

@@ -1,5 +1,5 @@
 /**
- *  全局统一配置文件
+ *  全局统一配置文件，true时，单个调试
  */
 ext.isRunAlone = false
 
@@ -93,6 +93,8 @@ deps.android_async_http = 'com.loopj.android:android-async-http:1.4.9'
 
 /*图表组件*/
 deps.MPAndroidChart = 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+/*视频播放组件*/
+deps.jiecaovideoplayer = 'fm.jiecao:jiecaovideoplayer:5.8.1'
 
 
 ext.deps = deps
