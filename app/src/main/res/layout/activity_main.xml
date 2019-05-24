@@ -12,7 +12,13 @@
         android:id="@+id/video_player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp_20"
+        android:padding="@dimen/dp_10"
         android:text="视频播放"/>
+    <TextView
+            android:id="@+id/load_large_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10"
+            android:text="点击可看见大美女"/>
 
 </LinearLayout>

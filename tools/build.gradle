@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion deps.compile_sdk
     defaultConfig {
@@ -13,6 +14,11 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
     }
@@ -43,4 +49,8 @@ dependencies {
     api deps.android_async_http
     api deps.kotlin_stdlib
     api deps.anko
+    /*加载图片的插件*/
+    api deps.glide
+    kapt deps.glide_compiler
+    api deps.glide_transformations
 }
