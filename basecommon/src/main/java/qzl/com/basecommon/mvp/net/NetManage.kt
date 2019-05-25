@@ -34,12 +34,20 @@ class NetManage private constructor(){
 
             override fun onResponse(call: Call, response: Response) {
                 val result = response.body()?.string()
-                val parseResult = req.parseResult(result)
-                //刷新列表
-                ThreadUtil.runOnMainThread(Runnable {
-                    //将结果回调到view层
-                    req.handler.OnSuccess(req.type,parseResult)
-                })
+                try {
+                    val parseResult = req.parseResult(result)
+                    //刷新列表
+                    ThreadUtil.runOnMainThread(Runnable {
+                        //将结果回调到view层
+                        req.handler.OnSuccess(req.type,parseResult)
+                    })
+                }catch (e:Exception){
+                    //刷新列表
+                    ThreadUtil.runOnMainThread(Runnable {
+                        //将结果回调到view层
+                        req.handler.OnSuccess(req.type,result as RESPONSE)
+                    })
+                }
             }
         })
     }
