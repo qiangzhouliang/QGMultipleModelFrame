@@ -7,7 +7,7 @@ import android.content.Context
 import android.support.multidex.MultiDex
 import android.text.TextUtils
 import com.alibaba.android.arouter.launcher.ARouter
-import qzl.com.tools.operate.ReadProperties
+import qzl.com.tools.operate.java.ReadProperties
 import utilclass.Tt
 import java.util.*
 

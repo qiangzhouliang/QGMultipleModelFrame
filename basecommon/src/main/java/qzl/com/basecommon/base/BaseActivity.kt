@@ -15,6 +15,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
+import org.jetbrains.anko.startActivity
 import qzl.com.basecommon.R
 import qzl.com.basecommon.ui.HeadControlPanel
 import qzl.com.basecommon.ui.navigation.AppBackHandledFragment
@@ -260,7 +261,14 @@ abstract class BaseActivity : AppCompatActivity(), AppBackHandledInterface {
         view.getLocationInWindow(mLocation)
         popupWindow.showAtLocation(view, Gravity.TOP, 0, mLocation[1] + view.height + setHeight)
     }
-
+    /**
+     * 开启activity 并且finish当前界面
+     */
+    inline fun <reified T:BaseActivity>startActivityAndFFinish(){
+        //进入到主界面
+        startActivity<T>()
+        finishWithAnimation()
+    }
     companion object {
         /**
          * 获得状态栏的高度

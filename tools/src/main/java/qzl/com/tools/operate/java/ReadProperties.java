@@ -1,4 +1,4 @@
-package qzl.com.tools.operate;
+package qzl.com.tools.operate.java;
 
 
 import java.io.InputStream;

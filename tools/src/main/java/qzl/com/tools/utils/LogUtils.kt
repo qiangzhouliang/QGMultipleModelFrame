@@ -1,7 +1,7 @@
 package qzl.com.tools.utils
 
 import android.util.Log
-import qzl.com.tools.operate.ReadProperties
+import qzl.com.tools.operate.java.ReadProperties
 
 /**
  * @author 强周亮(Qzl)

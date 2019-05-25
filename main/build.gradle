@@ -1,0 +1,53 @@
+if (isRunAlone) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+android {
+    compileSdkVersion deps.compile_sdk
+    defaultConfig {
+        if (isRunAlone) {
+            applicationId "qzl.com.main"
+        }
+        minSdkVersion deps.min_sdk
+        targetSdkVersion deps.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+
+    }
+    sourceSets {
+        main {
+            // 单独调试与集成调试时使用不同的 AndroidManifest.xml 文件
+            if (isRunAlone) {
+                manifest.srcFile 'src/main/manifest/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.kotlin_stdlib
+    implementation deps.anko
+    kapt deps.arouter_compiler
+    implementation project(":basecommon")
+}

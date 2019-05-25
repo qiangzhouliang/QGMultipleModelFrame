@@ -6,6 +6,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
 import kotlinx.android.synthetic.main.activity_video_player_jiecao.*
 import qzl.com.basecommon.base.BaseActivity
 import qzl.com.basecommon.common.ARouterPath
+import qzl.com.basecommon.utils.GlideUtils
 import utilclass.StringHelper
 
 /**
@@ -29,11 +30,16 @@ class JiaoZiVideoPlayerActivity: BaseActivity() {
             //获取传递的数据
             var videoUrl = intent.getStringExtra("videoUrl")
             var videoTitle = intent.getStringExtra("videoTitle")
+            var thumbUrl = intent.getStringExtra("thumbUrl")
             if(StringHelper.isEmptyString(videoUrl)){
                 videoUrl = "http://hc.yinyuetai.com/uploads/videos/common/0FBB016ADECDDFF86FF7D6E8CE792DCC.mp4?sc=c19481d47147e188&br=785&rd=Android"
             }
 
             videoplayer.setUp(videoUrl, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL,videoTitle)
+            thumbUrl?.let {
+                GlideUtils.loadImgAnim(this,videoplayer.thumbImageView,thumbUrl,isShowAnim = false)
+            }
+
         }else{
             if (data.toString().startsWith("http:")){
                 //外部网络视频

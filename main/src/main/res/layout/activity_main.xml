@@ -20,5 +20,11 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_10"
             android:text="点击可看见大美女"/>
+    <TextView
+            android:id="@+id/mvp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10"
+            android:text="mvp使用"/>
 
 </LinearLayout>

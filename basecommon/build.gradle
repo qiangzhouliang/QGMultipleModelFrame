@@ -24,10 +24,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.appcompat
-    implementation deps.recyclerview
-    implementation deps.constraint
-    annotationProcessor deps.butterknife_compiler
     implementation deps.kotlin_stdlib
     implementation deps.anko
     api project(":tools")

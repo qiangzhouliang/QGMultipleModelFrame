@@ -31,8 +31,8 @@ deps.constraint = 'com.android.support.constraint:constraint-layout:1.1.3'
 //deps.converter_gson = "com.squareup.retrofit2:converter-gson:$retrofit2_version"
 //deps.adapter_rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_version"
 //deps.converter_scalars = "com.squareup.retrofit2:converter-scalars:$retrofit2_version"
-//deps.okhttp3 = 'com.squareup.okhttp3:logging-interceptor:3.8.0'
-//deps.gson = 'com.google.code.gson:gson:2.8.5'
+deps.okhttp3 = 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+deps.gson = 'com.google.code.gson:gson:2.8.5'
 deps.volley = 'eu.the4thfloor.volley:com.android.volley:2015.05.28'
 
 ///* 异步组件 */
@@ -61,8 +61,8 @@ deps.butterknife_compiler = "com.jakewharton:butterknife-compiler:$butter_knife_
 deps.butterknife_plugin = "com.jakewharton:butterknife-gradle-plugin:$butter_knife_version"
 
 /* 权限请求组件 */
-deps.easypermissions = 'pub.devrel:easypermissions:0.3.1'
-//deps.rxpermissions = 'com.github.tbruyelle:rxpermissions:0.10.2'
+deps.permissiongen = 'com.lovedise:permissiongen:0.0.6'
+//deps.easypermissions = 'pub.devrel:easypermissions:0.3.1'
 //* 下拉刷新组件 */
 deps.SmartRefreshLayout = 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-20'
 deps.SmartRefreshHeader = 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-20'

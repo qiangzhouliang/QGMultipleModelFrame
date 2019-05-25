@@ -39,8 +39,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation deps.appcompat
-    implementation deps.constraint
+    api deps.appcompat
+    api deps.constraint
     testImplementation deps.junit
     androidTestImplementation deps.runner
     androidTestImplementation deps.espresso_core
@@ -53,4 +53,11 @@ dependencies {
     api deps.glide
     kapt deps.glide_compiler
     api deps.glide_transformations
+    /*动态权限获取*/
+    api deps.permissiongen
+    api deps.gson
+    api deps.okhttp3
+    api deps.recyclerview
+    api deps.cardview
+
 }

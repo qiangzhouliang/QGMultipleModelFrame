@@ -31,9 +31,9 @@ object GlideUtils {
      * @author 强周亮
      * @time 2019-05-23 17:51
      */
-    fun loadImgAnim(mContext: Context, iv: ImageView, imgUrl: String, rotate: Int = R.drawable.common_rotate_pro,errorImg:Int = R.drawable.no_img_1) {
+    fun loadImgAnim(mContext: Context, iv: ImageView, imgUrl: String, rotate: Int = R.drawable.common_rotate_pro,errorImg:Int = R.drawable.no_img_1,isShowAnim:Boolean = true) {
         val options = RequestOptions().placeholder(rotate)
-        loadImgAnimCommom(mContext,iv,imgUrl,options,errorImg)
+        loadImgAnimCommom(mContext,iv,imgUrl,options,errorImg,isShowAnim)
     }
 
     /**
@@ -79,17 +79,21 @@ object GlideUtils {
      * @author 强周亮
      * @time 2019-05-23 17:51
      */
-    fun loadImgCropCircle(mContext: Context, iv: ImageView, imgUrl: String,errorImg:Int = R.drawable.no_img_1) {
+    fun loadImgCropCircle(mContext: Context, iv: ImageView, imgUrl: String,errorImg:Int = R.drawable.no_img_1,isShowAnim:Boolean = true) {
         val options = RequestOptions.circleCropTransform()
-        loadImgAnimCommom(mContext,iv,imgUrl,options,errorImg)
+        loadImgAnimCommom(mContext,iv,imgUrl,options,errorImg,isShowAnim)
     }
     /**
      * @desc 加载图片，带有加载中动画
      * @author 强周亮
      * @time 2019-05-23 17:51
      */
-    fun loadImgAnimCommom(mContext: Context, iv: ImageView, imgUrl: String, options: RequestOptions,errorImg:Int = R.drawable.no_img_1) {
+    fun loadImgAnimCommom(mContext: Context, iv: ImageView, imgUrl: String, options: RequestOptions,errorImg:Int = R.drawable.no_img_1,isShowAnim:Boolean = true) {
         val anim = objectAnimator(iv)
+        if (isShowAnim){
+            anim.start()
+        }
+
         options.error(errorImg)
         Glide.with(mContext).load(imgUrl).apply(options)
             .listener(object : RequestListener<Drawable> {
@@ -115,7 +119,6 @@ object GlideUtils {
         val anim = ObjectAnimator.ofInt(iv, "ImageLevel", 0, 10000)
         anim.duration = 800
         anim.repeatCount = ObjectAnimator.INFINITE
-        anim.start()
         return anim
     }
 }

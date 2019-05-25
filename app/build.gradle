@@ -48,12 +48,11 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation deps.appcompat
-    implementation deps.constraint
     implementation deps.kotlin_stdlib
     implementation deps.anko
     implementation project(":basecommon")
     if (!isRunAlone) {
+        implementation project(":main")
         implementation project(":videoplayer")
     }
 }
