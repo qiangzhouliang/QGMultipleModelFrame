@@ -25,8 +25,7 @@ class XListViewComm<ITEMBEAN,ITEMVIEW: View>(
     var loadError:AdapterParaErrorIntf? = null,//加载失败时的回调
     val type: Int = 0,//传递的类型区分
     var isShowErrorPage:Boolean = true //加载出错了是否显示错误页面
-    ) :
-    ResponseHandler<String> {
+    ) : ResponseHandler<String> {
 
     /**
      * 页面list封装工具

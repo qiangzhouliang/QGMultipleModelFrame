@@ -1,4 +1,6 @@
 package qzl.com.basecommon.base
+import okhttp3.FormBody
+import okhttp3.RequestBody
 import org.apache.http.NameValuePair
 import org.apache.http.client.utils.URLEncodedUtils
 import org.apache.http.message.BasicNameValuePair
@@ -42,5 +44,31 @@ class BaseRequest<RESPONSE>(val type:Int) {
         mRequest.url = requestUrl
 
         NetManage.manage.sendRequest(mRequest)
+    }
+    /**
+     * @desc get请求方法
+     * @author 强周亮
+     * @time 2019-05-26 12:37
+     */
+    fun postRequest(mRequest: MRequest<RESPONSE>){
+        var requestBody:RequestBody? = null
+        var requestUrl = mRequest.url
+        //判断是不是网络地址
+        if (!requestUrl.startsWith("http://") && !requestUrl.startsWith("https://")){
+            requestUrl = baseUrl + requestUrl
+        }
+
+        if (mRequest.reqMap != null && mRequest.reqMap.isNotEmpty()){
+            val builder = FormBody.Builder()
+            //添加请求验证
+//            NameValuePairs.buidNameValuePairList(params)
+            mRequest.reqMap.forEach {
+                builder.add(it.key,it.value)
+            }
+            requestBody = builder.build()
+        }
+        mRequest.url = requestUrl
+
+        NetManage.manage.sendRequestPost(mRequest,requestBody)
     }
 }
