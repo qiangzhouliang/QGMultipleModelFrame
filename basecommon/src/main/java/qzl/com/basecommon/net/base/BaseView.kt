@@ -1,4 +1,4 @@
-package qzl.com.basecommon.mvp.base
+package qzl.com.basecommon.net.base
 
 /**
  * @desc 所有下拉刷新和上拉加载更多列表界面的view

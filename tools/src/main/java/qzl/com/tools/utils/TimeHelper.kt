@@ -111,12 +111,12 @@ object TimeHelper {
      *
      * @return String
      */
-    val currentDate: String?
+    val currentDate: String
         get() {
             val nowDate = Date()
             val formatter = SimpleDateFormat("yyyy-MM-dd")
             CurrentDate = formatter.format(nowDate)
-            return CurrentDate
+            return CurrentDate?:""
         }
     /**
      * 得到当前的日期,共10位 返回格式：yyyy-MM-dd

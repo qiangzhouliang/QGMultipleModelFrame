@@ -1,9 +1,10 @@
 package qzl.com.main.mvp
 
+import android.content.Context
 import com.itheima.player.model.bean.HomeItemBean
 import qzl.com.basecommon.common.URLProviderUtils
-import qzl.com.basecommon.mvp.net.MRequest
-import qzl.com.basecommon.mvp.net.ResponseHandler
+import qzl.com.basecommon.net.net.MRequest
+import qzl.com.basecommon.net.net.ResponseHandler
 
 /**
  * @desc
@@ -13,6 +14,6 @@ import qzl.com.basecommon.mvp.net.ResponseHandler
  * @class QGMusicKotlin
  * @package qzl.com.qgmusickotlin.net
  */
-class HomeRequest(type:Int,offset:Int,handler: ResponseHandler<List<HomeItemBean>>): MRequest<List<HomeItemBean>>(type,
-    URLProviderUtils.getHomeUrl(offset,20),handler) {
+class HomeRequest(mContext:Context,type:Int,offset:Int,handler: ResponseHandler<List<HomeItemBean>>): MRequest<List<HomeItemBean>>(mContext,type,
+    URLProviderUtils.getHomeUrl(offset,20),handler,isShowProgress = false) {
 }

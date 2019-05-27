@@ -9,8 +9,6 @@ import qzl.com.basecommon.utils.GlideUtils
  * @author 强周亮（Qzl）
  * @email 2538096489@qq.com
  * @time 2018-09-06 17:37
- * @class ImgActivity
- * @package com.gsww.mapmodule.activity
  */
 class BaseLargeImgActivity : BaseActivity() {
     override fun getLayoutId(): Int {

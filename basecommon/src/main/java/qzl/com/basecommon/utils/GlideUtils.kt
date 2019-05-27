@@ -22,8 +22,6 @@ import qzl.com.basecommon.R
  * @desc 加载图片工具类
  * @email 2538096489@qq.com
  * @time 2019-05-23 17:44
- * @class hzz
- * @package com.gsww.hzz.tools.utils
  */
 object GlideUtils {
     /**

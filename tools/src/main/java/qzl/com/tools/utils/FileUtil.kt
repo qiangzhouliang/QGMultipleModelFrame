@@ -6,11 +6,10 @@ import android.net.Uri
 import android.webkit.MimeTypeMap
 import android.widget.Toast
 import cz.msebera.android.httpclient.util.EncodingUtils
-
 import java.io.File
 import java.io.InputStream
 import java.text.DecimalFormat
-import java.util.Locale
+import java.util.*
 import java.util.regex.Pattern
 
 /**
@@ -18,8 +17,6 @@ import java.util.regex.Pattern
  * @author Qzl
  * @email 2538096489@qq.com
  * @time 2018-08-16 12:05
- * @class hzz
- * @package com.gsww.hzz.tools.utils
  */
 object FileUtil {
     /**

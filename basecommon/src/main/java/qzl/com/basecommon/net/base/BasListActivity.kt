@@ -1,4 +1,4 @@
-package qzl.com.basecommon.mvp.base
+package qzl.com.basecommon.net.base
 
 import android.graphics.Color
 import android.support.v7.widget.LinearLayoutManager

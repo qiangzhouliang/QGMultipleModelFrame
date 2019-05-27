@@ -7,8 +7,6 @@ import java.util.*
  * @desc 行政区划相关的操作类
  * @email 2538096489@qq.com
  * @time 2019-01-17 16:14
- * @class hzz
- * @package com.gsww.hzz.tools.utils
  */
 object AreaCodeUtil {
     /**

@@ -1,5 +1,6 @@
-package qzl.com.basecommon.mvp.net
+package qzl.com.basecommon.net.net
 
+import android.content.Context
 import com.google.gson.Gson
 import java.lang.reflect.ParameterizedType
 
@@ -11,7 +12,9 @@ import java.lang.reflect.ParameterizedType
  * @class QGMusicKotlin
  * @package qzl.com.qgmusickotlin.net
  */
-open class MRequest<RESPONSE>(val type:Int,val url:String,val handler: ResponseHandler<RESPONSE>) {
+open class MRequest<RESPONSE>(
+    var mContext:Context, val type:Int, var url:String, val handler: ResponseHandler<RESPONSE>,
+    val reqMap: HashMap<String,String>? = null,var loadMessage:String = "正在加载数据。。。",var isShowProgress:Boolean = true) {
     /**
      * 解析网络请结果
      */

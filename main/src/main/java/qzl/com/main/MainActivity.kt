@@ -8,6 +8,7 @@ import qzl.com.basecommon.base.BaseActivity
 import qzl.com.basecommon.base.BaseLargeImgActivity
 import qzl.com.basecommon.common.ARouterPath
 import qzl.com.main.exampleactivity.MvpActivity
+import qzl.com.main.exampleactivity.Net2Activity
 
 class MainActivity : BaseActivity(), View.OnClickListener {
     override fun getLayoutId(): Int {
@@ -22,6 +23,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         video_player.setOnClickListener(this)
         load_large_image.setOnClickListener(this)
         mvp.setOnClickListener(this)
+        net2.setOnClickListener(this)
     }
     override fun onClick(v: View) {
         when(v.id){
@@ -39,6 +41,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }
             R.id.mvp ->{
                 startActivity<MvpActivity>()
+            }
+            /*网络请求封装二*/
+            R.id.net2 ->{
+                startActivity<Net2Activity>()
             }
         }
     }

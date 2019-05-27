@@ -1,4 +1,4 @@
-package qzl.com.basecommon.mvp.net
+package qzl.com.basecommon.net.net
 
 /**
  * @desc 把请求结果转交给需要的地方的回调

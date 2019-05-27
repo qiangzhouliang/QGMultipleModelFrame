@@ -1,6 +1,6 @@
 package qzl.com.main.mvp.presenter.interf
 
-import qzl.com.basecommon.mvp.base.BasListPresenter
+import qzl.com.basecommon.net.base.BasListPresenter
 
 
 /**

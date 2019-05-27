@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">BaseCommon</string>
+    <string name="xlistview_header_hint_normal">下拉加载上一页</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_footer_hint_normal">上拉加载第二页</string>
+    <string name="list_no_data">很抱歉，未找到结果</string>
 </resources>

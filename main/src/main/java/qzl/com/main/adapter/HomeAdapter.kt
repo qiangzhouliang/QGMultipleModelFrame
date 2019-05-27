@@ -2,7 +2,7 @@ package qzl.com.main.adapter
 
 import android.content.Context
 import com.itheima.player.model.bean.HomeItemBean
-import qzl.com.basecommon.mvp.base.BasListAdapter
+import qzl.com.basecommon.net.base.BasListAdapter
 import qzl.com.main.mvp.widget.HomeItemView
 
 /**

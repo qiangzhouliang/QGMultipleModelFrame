@@ -8,8 +8,6 @@ import java.text.DecimalFormat
  * @author Qzl
  * @email 2538096489@qq.com
  * @time 2018-06-07 14:51
- * @class hzz
- * @package gsww.com.riverckeckmodule.util
  */
 object FormatNum {
     /**

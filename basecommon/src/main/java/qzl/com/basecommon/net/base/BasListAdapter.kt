@@ -1,4 +1,4 @@
-package qzl.com.basecommon.mvp.base
+package qzl.com.basecommon.net.base
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -65,7 +65,7 @@ abstract class BasListAdapter <ITEMBEAN,ITEMVIEW:View>: RecyclerView.Adapter<Bas
         //如果是最后一条，就不需要刷新了
         if(position == list.size) return
         //条目数据
-        val data = list.get(position)
+        val data = list[position]
         //条目view
         val itemView = holder.itemView as ITEMVIEW
         //条目刷新
