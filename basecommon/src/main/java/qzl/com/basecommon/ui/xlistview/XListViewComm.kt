@@ -93,8 +93,8 @@ class XListViewComm<ITEMBEAN,ITEMVIEW: View>(
     //显示异常信息
     private fun showErrorLayout() {
         if (errorLayout != null) {
-            hideView?.setVisibility(View.GONE)
-            errorLayout?.setVisibility(View.VISIBLE)
+            hideView?.visibility = View.GONE
+            errorLayout?.visibility = View.VISIBLE
         }
     }
 
@@ -107,9 +107,9 @@ class XListViewComm<ITEMBEAN,ITEMVIEW: View>(
     }
     //初始化显示错误信息的布局
     private fun initErrorLayout(hideView: View?) {
-        if (hideView != null) {
-            this.hideView = hideView
-            this.errorParentView = hideView.parent as LinearLayout
+        hideView?.let {
+            this.hideView = it
+            this.errorParentView = it.parent as LinearLayout
             errorLayout = LayoutInflater.from(mActivity).inflate(R.layout.common_no_data, errorParentView, false) as LinearLayout
             errorParentView?.addView(errorLayout)
             hideErrorLayout()
@@ -127,12 +127,7 @@ class XListViewComm<ITEMBEAN,ITEMVIEW: View>(
             //展示暂无数据页面
             showErrorLayout()
         }else {
-            totalNum = if (isPaging) {
-                commonXListBean.data.totalRow
-            } else {
-                1
-            }
-
+            totalNum = if (isPaging) { commonXListBean.data.totalRow } else { 1 }
             if (mPageListUtil == null) {
                 //列表
                 mPageListUtil = PageListUtil()
