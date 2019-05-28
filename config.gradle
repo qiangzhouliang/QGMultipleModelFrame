@@ -101,5 +101,12 @@ deps.MPAndroidChart = 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 /*视频播放组件*/
 deps.jiecaovideoplayer = 'fm.jiecao:jiecaovideoplayer:5.8.1'
 
+/*APP优化*/
+def booster_version = '0.4.5'
+deps.booster_gradle_plugin = "com.didiglobal.booster:booster-gradle-plugin:$booster_version"
+deps.booster_task_all = "com.didiglobal.booster:booster-task-all:$booster_version"
+deps.booster_transform_all = "com.didiglobal.booster:booster-transform-all:$booster_version"
+
+
 
 ext.deps = deps

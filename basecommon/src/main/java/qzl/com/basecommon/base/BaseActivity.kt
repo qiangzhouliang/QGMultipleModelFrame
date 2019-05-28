@@ -17,9 +17,9 @@ import android.widget.PopupWindow
 import android.widget.RelativeLayout
 import org.jetbrains.anko.startActivity
 import qzl.com.basecommon.R
-import qzl.com.basecommon.ui.HeadControlPanel
-import qzl.com.basecommon.ui.navigation.AppBackHandledFragment
-import qzl.com.basecommon.ui.navigation.AppBackHandledInterface
+import qzl.com.basecommon.ui.kotlin.HeadControlPanel
+import qzl.com.basecommon.ui.kotlin.navigation.AppBackHandledFragment
+import qzl.com.basecommon.ui.kotlin.navigation.AppBackHandledInterface
 import qzl.com.tools.network.NetworkReceiver
 import qzl.com.tools.operate.CompleteQuit
 import qzl.com.tools.utils.SerializableMap
@@ -94,19 +94,16 @@ abstract class BaseActivity : AppCompatActivity(), AppBackHandledInterface {
         headPanel.initHeadPanel()
         headPanel.setMiddleTitle(title)
 
-        val headLayout = headPanel.getHeadLayoutBack()
+        val headLayout = headPanel.headLayoutBack
         imageButton = headPanel.getmLeftImage()
         imageButton?.setImageResource(R.drawable.back)
         //setViewSize(imageButton, 20, 20);
         val scale = this.resources.displayMetrics.density
-        headLayout.setOnClickListener(onClickListener)
+        headLayout?.setOnClickListener(onClickListener)
         windowScale = scale
     }
 
     fun getHeadPanel(panelId: Int): HeadControlPanel {
-        if (headPanel == null) {
-            headPanel = findViewById<View>(panelId) as HeadControlPanel
-        }
         return headPanel
     }
 

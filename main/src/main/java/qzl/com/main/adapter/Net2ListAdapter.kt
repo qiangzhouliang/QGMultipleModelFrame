@@ -1,7 +1,7 @@
 package qzl.com.main.adapter
 
 import android.content.Context
-import qzl.com.basecommon.ui.xlistview.CommonAdapter
+import qzl.com.basecommon.ui.kotlin.xlistview.CommonAdapter
 import qzl.com.main.domain.Result
 import qzl.com.main.mvp.widget.Net2ItemView
 

@@ -2,7 +2,7 @@ package qzl.com.basecommon.net.net
 
 import android.app.Dialog
 import okhttp3.*
-import qzl.com.basecommon.ui.LoadingDialog
+import qzl.com.basecommon.ui.java.LoadingDialog
 import qzl.com.tools.utils.ThreadUtil
 import java.io.IOException
 
@@ -23,11 +23,13 @@ class NetManage private constructor(){
      * 发送网络请求
      */
     fun <RESPONSE>sendRequest(req:MRequest<RESPONSE>){
-        //显示加载进度条
-        progressDialog = LoadingDialog.createLoadingDialog(req.mContext, req.loadMessage)
+
         if (req.isShowProgress){
+            //显示加载进度条
+            progressDialog = LoadingDialog.createLoadingDialog(req.mContext, req.loadMessage)
             progressDialog?.show()
         }
+
         val request = Request.Builder().url(req.url).get().build()
         client.newCall(request).enqueue(object : Callback {
             /**
@@ -66,11 +68,12 @@ class NetManage private constructor(){
      * 发送网络请求-post方式
      */
     fun <RESPONSE>sendRequestPost(req:MRequest<RESPONSE>,requestBody: RequestBody? = null){
-        //显示加载进度条
-        progressDialog = LoadingDialog.createLoadingDialog(req.mContext, req.loadMessage)
         if (req.isShowProgress){
+            //显示加载进度条
+            progressDialog = LoadingDialog.createLoadingDialog(req.mContext, req.loadMessage)
             progressDialog?.show()
         }
+
         val request = Request.Builder().url(req.url).post(requestBody).build()
         client.newCall(request).enqueue(object : Callback {
             /**

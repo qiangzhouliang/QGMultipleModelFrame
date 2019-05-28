@@ -41,9 +41,8 @@ class ScreenUtil private constructor() {
          * @param context
          * @return
          */
-        fun getScreenWidth(context: Context): Int {
-            val manager = context
-                .getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        fun getScreenWidth(context: Context?): Int {
+            val manager = context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
             val display = manager.defaultDisplay
             return display.width
         }

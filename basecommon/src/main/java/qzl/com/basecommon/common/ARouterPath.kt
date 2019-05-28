@@ -10,4 +10,6 @@ package qzl.com.basecommon.common
 object ARouterPath {
     //视频播放
     const val VIDEO_PLAYER = "/video/videoPlay"
+    //文件上传和下载
+    const val FILE = "/file/uploadAndDownload"
 }

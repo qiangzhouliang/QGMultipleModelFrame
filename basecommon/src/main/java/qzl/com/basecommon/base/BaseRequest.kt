@@ -1,10 +1,9 @@
 package qzl.com.basecommon.base
+import cz.msebera.android.httpclient.NameValuePair
+import cz.msebera.android.httpclient.client.utils.URLEncodedUtils
+import cz.msebera.android.httpclient.message.BasicNameValuePair
 import okhttp3.FormBody
 import okhttp3.RequestBody
-import org.apache.http.NameValuePair
-import org.apache.http.client.utils.URLEncodedUtils
-import org.apache.http.message.BasicNameValuePair
-import org.apache.http.protocol.HTTP
 import qzl.com.basecommon.common.Constant.baseUrl
 import qzl.com.basecommon.net.net.MRequest
 import qzl.com.basecommon.net.net.NetManage
@@ -38,7 +37,7 @@ class BaseRequest<RESPONSE>(val type:Int) {
                 params.add(BasicNameValuePair(it.key, it.value))
             }
             //对参数编码
-            val param = URLEncodedUtils.format(params, HTTP.UTF_8)
+            val param = URLEncodedUtils.format(params, "UTF-8")
             requestUrl = "$requestUrl?$param"
         }
         mRequest.url = requestUrl

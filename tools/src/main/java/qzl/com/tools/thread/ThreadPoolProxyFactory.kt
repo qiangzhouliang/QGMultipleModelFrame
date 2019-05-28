@@ -14,6 +14,7 @@ object ThreadPoolProxyFactory {
     /**
      * 得到普通线程池代理对象mNormalThreadPoolProxy
      */
+    @JvmStatic
     val normalThreadPoolProxy: ThreadPoolProxy?
         get() {
             if (mNormalThreadPoolProxy == null) {
@@ -29,6 +30,7 @@ object ThreadPoolProxyFactory {
     /**
      * 得到下载线程池代理对象mDownLoadThreadPoolProxy
      */
+    @JvmStatic
     val downLoadThreadPoolProxy: ThreadPoolProxy?
         get() {
             if (mDownLoadThreadPoolProxy == null) {

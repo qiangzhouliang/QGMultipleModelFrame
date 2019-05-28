@@ -44,7 +44,7 @@ class JiaoZiVideoPlayerActivity: BaseActivity() {
     <include
         android:id="@+id/head_layout"
         layout="@layout/head_control_panel"/>
-    <qzl.com.basecommon.ui.xlistview.XListView
+    <qzl.com.basecommon.ui.kotlin.xlistview.XListView
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -62,8 +62,8 @@ import android.view.View
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_net2.*
 import qzl.com.basecommon.base.BaseActivity
-import qzl.com.basecommon.ui.xlistview.CommonAdapter
-import qzl.com.basecommon.ui.xlistview.XListViewComm
+import qzl.com.basecommon.ui.kotlin.xlistview.CommonAdapter
+import qzl.com.basecommon.ui.kotlin.xlistview.XListViewComm
 import qzl.com.main.R
 import qzl.com.main.adapter.MainListAdapter
 import qzl.com.main.domain.Net2Bean
@@ -100,7 +100,7 @@ class Net2Activity: BaseActivity(), XListViewComm.AdapterParaIntf<Result,NetsIte
 ```
 ### 2.3.3 XListViewComm 封装代码
 ```
-package qzl.com.basecommon.ui.xlistview
+package qzl.com.basecommon.ui.kotlin.xlistview
 
 import android.app.Activity
 import android.view.LayoutInflater

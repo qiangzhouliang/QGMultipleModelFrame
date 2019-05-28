@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/black15"
     android:gravity="center">
-    <qzl.com.basecommon.ui.ZoomImageView
+    <qzl.com.basecommon.ui.java.ZoomImageView
         android:id="@+id/large_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

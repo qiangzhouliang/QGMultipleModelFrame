@@ -23,7 +23,8 @@ android {
                 arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
-
+        // Enabling multidex support.
+        multiDexEnabled true
     }
     sourceSets {
         main {

@@ -17,6 +17,7 @@ object AppInfoUtil {
      * @author 强周亮
      * @time 2019-05-22 16:30
      */
+    @JvmStatic
     fun getVersionName(context: Context):String{
         return try {
             val packInfo = context.packageManager.getPackageInfo(context.packageName, 0)

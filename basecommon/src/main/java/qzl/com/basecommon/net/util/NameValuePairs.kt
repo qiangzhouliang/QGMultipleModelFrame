@@ -1,7 +1,7 @@
 package qzl.com.basecommon.net.util
 
-import org.apache.http.NameValuePair
-import org.apache.http.message.BasicNameValuePair
+import cz.msebera.android.httpclient.NameValuePair
+import cz.msebera.android.httpclient.message.BasicNameValuePair
 import qzl.com.basecommon.common.Constant
 import java.io.UnsupportedEncodingException
 import java.security.MessageDigest

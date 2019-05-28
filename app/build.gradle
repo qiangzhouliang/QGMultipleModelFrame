@@ -54,5 +54,6 @@ dependencies {
     if (!isRunAlone) {
         implementation project(":main")
         implementation project(":videoplayer")
+        implementation project(":fileuploadanddownload")
     }
 }

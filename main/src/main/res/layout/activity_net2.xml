@@ -8,7 +8,7 @@
     <include
         android:id="@+id/head_layout"
         layout="@layout/head_control_panel"/>
-    <qzl.com.basecommon.ui.xlistview.XListView
+    <qzl.com.basecommon.ui.kotlin.xlistview.XListView
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

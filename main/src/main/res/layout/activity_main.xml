@@ -9,6 +9,12 @@
         android:id="@+id/head_layout"
         layout="@layout/head_control_panel"/>
     <TextView
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10"
+            android:text="首页"/>
+    <TextView
         android:id="@+id/video_player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,5 +38,11 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_10"
             android:text="网络请求封装二"/>
+    <TextView
+            android:id="@+id/fileuploadordownload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10"
+            android:text="文件上传和下载"/>
 
 </LinearLayout>

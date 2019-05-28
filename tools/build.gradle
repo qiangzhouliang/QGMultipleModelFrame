@@ -45,6 +45,7 @@ dependencies {
     androidTestImplementation deps.runner
     androidTestImplementation deps.espresso_core
     api files('libs/qzlUtil.jar')
+    api files('libs/nineoldandroids-2.4.0.jar')
     api deps.arouter_api
     api deps.android_async_http
     api deps.kotlin_stdlib
@@ -59,5 +60,4 @@ dependencies {
     api deps.okhttp3
     api deps.recyclerview
     api deps.cardview
-    api files('libs/iclient_android_7.1.1_12114_2020.jar')
 }

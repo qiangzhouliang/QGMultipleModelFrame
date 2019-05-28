@@ -12,6 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/TranslucentTheme">
+        <provider
+                android:name="android.support.v4.content.FileProvider"
+                android:authorities="qzl.com.qgmultiplemodelframe"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_paths" />
+        </provider>
         <activity android:name=".HzzErrorReportActivity"
                   android:label="信息提示页面"
                   android:screenOrientation="portrait"
