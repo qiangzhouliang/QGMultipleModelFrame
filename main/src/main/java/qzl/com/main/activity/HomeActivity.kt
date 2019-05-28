@@ -19,7 +19,6 @@ import qzl.com.tools.operate.CompleteQuit
 import qzl.com.tools.thread.ThreadPoolProxyFactory
 import qzl.com.tools.utils.AppInfoUtil
 import utilclass.Tt
-
 /**
  * @author 强周亮(Qzl)
  * @desc 首页
@@ -112,18 +111,4 @@ class HomeActivity : BaseActivity() {
         val cv = CheckVersion(this, true)
         ThreadPoolProxyFactory.downLoadThreadPoolProxy?.execute(cv)
     }
-    /*private void noNetWorkOperate() {
-        DialogPanel.dialogOperate(this,"暂无网络连接，请打开网络连接!","提示",
-        "",null,
-        "打开",new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (dialog != null) {
-                    dialog.dismiss();
-                }
-                Intent intent = new Intent(Settings.ACTION_SETTINGS);
-                startActivity(intent);
-            }
-        },"",null);
-    }*/
 }

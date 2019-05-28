@@ -5,7 +5,6 @@ import android.os.Handler
 import android.os.Message
 
 import java.lang.ref.WeakReference
-
 /**
  * @author 强周亮
  * @desc handler消息弱引用 handler正确的使用方式（弱引用）
@@ -13,20 +12,14 @@ import java.lang.ref.WeakReference
  * @time 2018-09-18 11:49
  */
 class MyHandler(activity: Activity) : Handler() {
-    internal var weakReference: WeakReference<Activity>
-
-    init {
-        weakReference = WeakReference(activity)
-    }
-
+    private var weakReference: WeakReference<Activity> = WeakReference(activity)
     override fun handleMessage(msg: Message) {
         super.handleMessage(msg)
         val activity = weakReference.get()
-        if (activity != null) {
+        activity?.let {
             MyHandlerIntfUtil.doHandleMessage(msg)
         }
     }
-
     /**
      * @desc  消息传送接口
      * @author 强周亮（Qzl）
@@ -36,7 +29,6 @@ class MyHandler(activity: Activity) : Handler() {
     interface MyHandlerIntf {
         fun setHandleMessage(msg: Message)
     }
-
     /**
      * @desc  消息传送接口工具类
      * @author 强周亮（Qzl）
@@ -57,8 +49,8 @@ class MyHandler(activity: Activity) : Handler() {
          * @param msg 需要传递的message
          */
         fun doHandleMessage(msg: Message) {
-            if (mMyHandlerIntf != null) {
-                mMyHandlerIntf!!.setHandleMessage(msg)
+            mMyHandlerIntf?.let {
+                it.setHandleMessage(msg)
             }
         }
     }
