@@ -14,6 +14,6 @@ import qzl.com.basecommon.net.net.ResponseHandler
  * @class QGMusicKotlin
  * @package qzl.com.qgmusickotlin.net
  */
-class HomeRequest(mContext:Context,type:Int,offset:Int,handler: ResponseHandler<List<HomeItemBean>>): MRequest<List<HomeItemBean>>(mContext,type,
+class HomeRequest(mContext:Context?,type:Int,offset:Int,handler: ResponseHandler<List<HomeItemBean>>): MRequest<List<HomeItemBean>>(mContext,type,
     URLProviderUtils.getHomeUrl(offset,20),handler,isShowProgress = false) {
 }

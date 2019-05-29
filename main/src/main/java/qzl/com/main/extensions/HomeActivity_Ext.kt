@@ -1,7 +1,9 @@
 package qzl.com.main.extensions
 
+import qzl.com.basecommon.common.CheckVersion
 import qzl.com.main.R
 import qzl.com.main.activity.HomeActivity
+import qzl.com.tools.thread.ThreadPoolProxyFactory
 import java.util.*
 
 /**
@@ -38,3 +40,11 @@ val HomeActivity.menuItems: List<Map<String, Any>>
         data.add(item)
         return data
     }
+
+/**
+ * 检查更新
+ */
+fun HomeActivity.checkVesion() {
+    val cv = CheckVersion(this, true)
+    ThreadPoolProxyFactory.downLoadThreadPoolProxy?.execute(cv)
+}

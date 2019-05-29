@@ -107,6 +107,7 @@ deps.booster_gradle_plugin = "com.didiglobal.booster:booster-gradle-plugin:$boos
 deps.booster_task_all = "com.didiglobal.booster:booster-task-all:$booster_version"
 deps.booster_transform_all = "com.didiglobal.booster:booster-transform-all:$booster_version"
 
-
+/*bottom-bar*/
+deps.bottom_bar = 'com.roughike:bottom-bar:2.3.1'
 
 ext.deps = deps

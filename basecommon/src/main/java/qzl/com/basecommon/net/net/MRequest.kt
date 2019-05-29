@@ -13,7 +13,7 @@ import java.lang.reflect.ParameterizedType
  * @package qzl.com.qgmusickotlin.net
  */
 open class MRequest<RESPONSE>(
-    var mContext:Context, val type:Int, var url:String, val handler: ResponseHandler<RESPONSE>,
+    var mContext:Context?, val type:Int, var url:String, val handler: ResponseHandler<RESPONSE>,
     val reqMap: HashMap<String,String>? = null,var loadMessage:String = "正在加载数据。。。",var isShowProgress:Boolean = true) {
     /**
      * 解析网络请结果

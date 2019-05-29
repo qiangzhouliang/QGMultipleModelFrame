@@ -18,7 +18,7 @@ import qzl.com.main.mvp.presenter.interf.HomePresenter
  * @class QGMusicKotlin
  * @package qzl.com.qgmusickotlin.presenter.impl
  */
-class HomePresenterImpl(var mContext:Context,var homeView: BaseView<List<HomeItemBean>>?) : HomePresenter,
+class HomePresenterImpl(var mContext:Context?,var homeView: BaseView<List<HomeItemBean>>?) : HomePresenter,
     ResponseHandler<List<HomeItemBean>> {
     /**
      * 解绑view和presenter

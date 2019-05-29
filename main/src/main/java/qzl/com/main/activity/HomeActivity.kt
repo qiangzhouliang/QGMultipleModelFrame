@@ -8,15 +8,16 @@ import android.widget.LinearLayout
 import android.widget.SimpleAdapter
 import kotlinx.android.synthetic.main.index.*
 import kotlinx.android.synthetic.main.left.*
+import kotlinx.android.synthetic.main.main.*
 import qzl.com.basecommon.base.BaseActivity
-import qzl.com.basecommon.common.CheckVersion
 import qzl.com.basecommon.ui.kotlin.DialogPanel
 import qzl.com.basecommon.ui.kotlin.HeadControlPanel
 import qzl.com.main.R
+import qzl.com.main.extensions.checkVesion
 import qzl.com.main.extensions.menuItems
+import qzl.com.main.util.FragmentUtil
 import qzl.com.main.view.java.DragLayout
 import qzl.com.tools.operate.CompleteQuit
-import qzl.com.tools.thread.ThreadPoolProxyFactory
 import qzl.com.tools.utils.AppInfoUtil
 import utilclass.Tt
 /**
@@ -46,9 +47,7 @@ class HomeActivity : BaseActivity() {
         })
         menu_listview.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             when (position) {
-                0 -> {
-                    Tt.showShort("我的信息")
-                }
+                0 -> { Tt.showShort("我的信息") }
                 1 -> {
                     //修改密码
                     Tt.showShort("修改密码")
@@ -86,7 +85,19 @@ class HomeActivity : BaseActivity() {
                 DialogInterface.OnClickListener { dialog, which -> dialog.dismiss() }
             )
         }
+        //底部导航栏选择
+        bottomBar.setOnTabSelectListener {
+            //it  代表tableid
+            val transaction = supportFragmentManager.beginTransaction()
+            when(it){
+                R.id.tab_home -> FragmentUtil.fragmentUtil.getFragment(0)?.let { it1 -> transaction.replace(R.id.container, it1,it.toString()) }
+                R.id.tab_mv -> FragmentUtil.fragmentUtil.getFragment(1)?.let { it1 -> transaction.replace(R.id.container, it1,it.toString()) }
+                R.id.tab_vbang -> FragmentUtil.fragmentUtil.getFragment(2)?.let { it1 -> transaction.replace(R.id.container, it1,it.toString()) }
+                R.id.tab_yuedan -> FragmentUtil.fragmentUtil.getFragment(3)?.let { it1 -> transaction.replace(R.id.container, it1,it.toString()) }
+            }
 
+            transaction.commit()
+        }
     }
 
     override fun initData() {
@@ -105,10 +116,5 @@ class HomeActivity : BaseActivity() {
             return true
         }
         return super.onKeyDown(keyCode, event)
-    }
-
-    private fun checkVesion() {
-        val cv = CheckVersion(this, true)
-        ThreadPoolProxyFactory.downLoadThreadPoolProxy?.execute(cv)
     }
 }
