@@ -1,4 +1,22 @@
 # 一 整体框架结构
+# 如何使用
+直接可以把整个工程直接作为一个开发框架，直接在里面开发，如果想用里面的lib库，可以先将项目跑起来，
+然后根据效果使用,建议下载源代码使用
+Step 1. Add the JitPack repository to your build file
+```
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+Step 2. Add the dependency
+```
+dependencies {
+	        implementation 'com.github.qiangzhouliang:MyApplication:V1.0.1'
+	}
+```
 ## 1.1 APP 模块
 负责整个APP的功能模块的调度，加载，装配的功能，也是主功能
 ## 1.2 basecommon 模块
