@@ -158,6 +158,7 @@ class ScreenUtil private constructor() {
          * @author Qzl
          * @time 2018-08-27 15:04
          */
+        @JvmStatic
         fun getVirtualBarHeight(context: Context): Int {
             var vh = 0
             val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
@@ -180,6 +181,7 @@ class ScreenUtil private constructor() {
          * @author 强周亮
          * @time 2018-12-11 14:52
          */
+        @JvmStatic
         fun backgroundAlpha(activity: Activity, alpha: Float) {
             try {
                 val lp = activity.window.attributes

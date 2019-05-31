@@ -11,7 +11,7 @@
             android:supportsRtl="true"
             android:theme="@style/TranslucentTheme">
         <!--文件上传和下载-->
-        <activity android:name=".FileActivity">
+        <activity android:name=".activity.FileActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

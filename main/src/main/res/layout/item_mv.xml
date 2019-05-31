@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+    <qzl.com.basecommon.ui.MyAutoLineFeedLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:auto_line_num = "3"
+            app:auto_line_top = "@dimen/dp_26">
+        <LinearLayout
+                style="@style/job_tv_parent">
+            <ImageView
+                    style="@style/job_img"
+                    android:src="@drawable/icon_job_one_pic" />
+            <TextView
+                    style="@style/job_tv"
+                    android:text="mv1"/>
+        </LinearLayout>
+        <LinearLayout
+                style="@style/job_tv_parent">
+            <ImageView
+                    style="@style/job_img"
+                    android:src="@drawable/icon_job_one_pic" />
+            <TextView
+                    style="@style/job_tv"
+                    android:text="mv2"/>
+        </LinearLayout>
+        <LinearLayout
+                style="@style/job_tv_parent">
+            <ImageView
+                    style="@style/job_img"
+                    android:src="@drawable/icon_job_one_pic" />
+            <TextView
+                    style="@style/job_tv"
+                    android:text="mv3"/>
+        </LinearLayout>
+        <LinearLayout
+                style="@style/job_tv_parent">
+            <ImageView
+                    style="@style/job_img"
+                    android:src="@drawable/icon_job_one_pic" />
+            <TextView
+                    style="@style/job_tv"
+                    android:text="mv4"/>
+        </LinearLayout>
+        <LinearLayout
+                style="@style/job_tv_parent">
+            <ImageView
+                    style="@style/job_img"
+                    android:src="@drawable/icon_job_one_pic" />
+            <TextView
+                    style="@style/job_tv"
+                    android:text="mv5"/>
+        </LinearLayout>
+        <LinearLayout
+                style="@style/job_tv_parent">
+            <ImageView
+                    style="@style/job_img"
+                    android:src="@drawable/icon_job_one_pic" />
+            <TextView
+                    style="@style/job_tv"
+                    android:text="mv6"/>
+        </LinearLayout>
+        <LinearLayout
+                style="@style/job_tv_parent">
+            <ImageView
+                    style="@style/job_img"
+                    android:src="@drawable/icon_job_one_pic" />
+            <TextView
+                    style="@style/job_tv"
+                    android:text="mv7"/>
+        </LinearLayout>
+
+    </qzl.com.basecommon.ui.MyAutoLineFeedLinearLayout>
+</LinearLayout>
