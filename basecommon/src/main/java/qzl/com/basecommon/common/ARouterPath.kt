@@ -12,4 +12,6 @@ object ARouterPath {
     const val VIDEO_PLAYER = "/video/videoPlay"
     //文件上传和下载
     const val FILE = "/file/uploadAndDownload"
+    //图表
+    const val CHART = "/chart/main"
 }

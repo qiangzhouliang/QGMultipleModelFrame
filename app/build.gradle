@@ -55,5 +55,6 @@ dependencies {
         implementation project(":main")
         implementation project(":videoplayer")
         implementation project(":fileuploadanddownload")
+        implementation project(":mpandroidchart")
     }
 }

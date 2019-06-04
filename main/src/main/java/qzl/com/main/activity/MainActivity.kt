@@ -25,6 +25,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         net2.setOnClickListener(this)
         fileuploadordownload.setOnClickListener(this)
         home.setOnClickListener(this)
+        chart.setOnClickListener(this)
     }
     override fun onClick(v: View) {
         when(v.id){
@@ -54,6 +55,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             /*首页*/
             R.id.home ->{
                 startActivity<HomeActivity>()
+            }
+            /*统计图表*/
+            R.id.chart ->{
+                ARouter.getInstance().build(ARouterPath.CHART).navigation()
             }
         }
     }
