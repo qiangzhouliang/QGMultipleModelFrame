@@ -9,7 +9,7 @@ import qzl.com.mpandroidchart.common.PieChart
 import java.util.*
 
 /**
- * @desc 用户行为分析
+ * @desc 饼图
  * @author Qzl
  * @email 2538096489@qq.com
  * @time 2019-05-10 14:14
