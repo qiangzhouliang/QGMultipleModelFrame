@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import qzl.com.fileuploadanddownload.Common.BitmapCache;
+import qzl.com.fileuploadanddownload.common.BitmapCache;
 import qzl.com.fileuploadanddownload.R;
 import qzl.com.fileuploadanddownload.bean.ImageBucket;
 

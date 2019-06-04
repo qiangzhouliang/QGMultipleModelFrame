@@ -8,7 +8,7 @@ import qzl.com.basecommon.base.BaseActivity
 import qzl.com.basecommon.common.ARouterPath
 import qzl.com.fileuploadanddownload.R
 import qzl.com.fileuploadanddownload.adapter.EventReportImageAdapter
-import utilclass.Tt
+import qzl.com.fileuploadanddownload.common.DownloadFile
 import java.util.*
 
 @Route(path = ARouterPath.FILE)
@@ -26,7 +26,8 @@ class FileActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun initListener() {
-        download.setOnClickListener(this)
+        download_img.setOnClickListener(this)
+        download_video.setOnClickListener(this)
     }
 
     protected override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -82,8 +83,11 @@ class FileActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         when(v.id){
             //下载
-            R.id.download -> {
-                Tt.showShort("下载")
+            R.id.download_img -> {
+                DownloadFile.downloadFile(this, "1-1Z120161S9.jpg", "https://img.gsdlcn.com/uploads/allimg/190120/1-1Z120161S9.jpg", parent_ll, "newsNotice")
+            }
+            R.id.download_video -> {
+                DownloadFile.downloadFile(this, "0FBB016ADECDDFF86FF7D6E8CE792DCC.mp4", "http://hc.yinyuetai.com/uploads/videos/common/0FBB016ADECDDFF86FF7D6E8CE792DCC.mp4?sc=c19481d47147e188&br=785&rd=Android", parent_ll, "video")
             }
         }
     }

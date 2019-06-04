@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import qzl.com.basecommon.base.BaseActivity;
-import qzl.com.fileuploadanddownload.Common.AlbumHelper;
+import qzl.com.fileuploadanddownload.common.AlbumHelper;
 import qzl.com.fileuploadanddownload.R;
 import qzl.com.fileuploadanddownload.adapter.ImageBucketAdapter;
 import qzl.com.fileuploadanddownload.bean.ImageBucket;

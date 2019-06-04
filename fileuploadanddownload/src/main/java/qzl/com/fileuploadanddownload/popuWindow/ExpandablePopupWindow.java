@@ -2,47 +2,50 @@ package qzl.com.fileuploadanddownload.popuWindow;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import qzl.com.basecommon.base.BasCommonPopuWindow;
 import qzl.com.basecommon.base.BasePopuWindow;
 import qzl.com.fileuploadanddownload.R;
+import qzl.com.tools.utils.ScreenUtil;
 
 import java.util.List;
 
-public class ExpandablePopupWindow extends BasePopuWindow {
-    private View popupView;
+public class ExpandablePopupWindow extends BasCommonPopuWindow {
     private ListView popupListView;
+    private Activity mActivity;
+    private List<String> list;
     private OnSelectedItemListener onSelectedItemListener;
+    private View mView;
+    public ExpandablePopupWindow(Activity activity,View view, List<String> list,OnSelectedItemListener onSelectedItemListener){
+        super(activity);
+        this.mActivity = activity;
+        this.list = list;
+        this.mView = view;
+        this.onSelectedItemListener = onSelectedItemListener;
+        setPopWindowContent(R.layout.pop_material);
+    }
+    @Override
+    protected void showPopuwindow(@NotNull BasePopuWindow popuWindow) {
+        popuWindow.showAtLocation(mView, Gravity.BOTTOM, 0, ScreenUtil.getVirtualBarHeight(mActivity));
+    }
+
+    @Override
+    protected void initComplate(@NotNull PopupWindow popupWindow, @Nullable View pupView) {
+        popupListView = pupView.findViewById(R.id.pop_item_list);
+        popupListView.setAdapter(new PopupWindowAdapter(mActivity, list));
+        popupListView.setOnItemClickListener(onItemClickListener);
+    }
 
     public interface OnSelectedItemListener{
         abstract void onSelectedValue(String str);
     }
 
-    public void setOnSelectedItemListener(OnSelectedItemListener onSelectedItemListener) {
-        this.onSelectedItemListener = onSelectedItemListener;
-    }
-
-    public ExpandablePopupWindow(Activity activity, List<String> list){
-        super(activity);
-        LayoutInflater inflater = (LayoutInflater) activity
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        popupView = inflater.inflate(R.layout.pop_material, null);
-        this.setContentView(popupView);
-        this.setTouchable(true);
-        this.setOutsideTouchable(true);
-        this.setFocusable(true);
-        this.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
-        this.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
-        popupView.setFocusableInTouchMode(true);
-        this.setBackgroundDrawable(new ColorDrawable(-00000));
-        this.setAnimationStyle(R.style.popupWindowAnimation);
-        popupListView = (ListView) popupView.findViewById(R.id.pop_item_list);
-        popupListView.setAdapter(new PopupWindowAdapter(activity, list));
-        popupListView.setOnItemClickListener(onItemClickListener);
-    }
     private AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

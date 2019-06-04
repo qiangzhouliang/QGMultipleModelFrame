@@ -46,6 +46,8 @@ dependencies {
     androidTestImplementation deps.espresso_core
     api files('libs/qzlUtil.jar')
     api files('libs/nineoldandroids-2.4.0.jar')
+    api files('libs/xUtils-2.6.14.jar')
+    api project(path: ':ffmpeg4android')
     api deps.arouter_api
     api deps.android_async_http
     api deps.kotlin_stdlib
@@ -62,5 +64,4 @@ dependencies {
     api deps.cardview
     /*底部导航栏*/
     api deps.bottom_bar
-    api 'com.github.qiangzhouliang:MyApplication:v1.1'
 }

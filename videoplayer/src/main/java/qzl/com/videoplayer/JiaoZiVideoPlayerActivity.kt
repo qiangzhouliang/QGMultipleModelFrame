@@ -35,7 +35,7 @@ class JiaoZiVideoPlayerActivity: BaseActivity() {
                 videoUrl = "http://hc.yinyuetai.com/uploads/videos/common/0FBB016ADECDDFF86FF7D6E8CE792DCC.mp4?sc=c19481d47147e188&br=785&rd=Android"
             }
 
-            videoplayer.setUp(videoUrl, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL,videoTitle)
+            videoplayer.setUp(videoUrl, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL,videoTitle?:"")
             thumbUrl?.let {
                 GlideUtils.loadImgAnim(this,videoplayer.thumbImageView,thumbUrl,isShowAnim = false)
             }

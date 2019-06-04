@@ -59,6 +59,7 @@ object LogUtils {
         }
     }
 
+    @JvmStatic
     fun e(msg: String) {
         if (mDebuggable >= 1) {
             Log.e(mTag, msg)

@@ -10,9 +10,7 @@ import qzl.com.basecommon.common.ARouterPath
 import qzl.com.main.R
 
 class MainActivity : BaseActivity(), View.OnClickListener {
-    override fun getLayoutId(): Int {
-        return R.layout.activity_main
-    }
+    override fun getLayoutId() = R.layout.activity_main
 
     override fun initView() {
         this.initHead(R.id.head_layout,"功能汇总", View.OnClickListener { finishWithAnimation()})

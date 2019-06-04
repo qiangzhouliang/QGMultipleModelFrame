@@ -25,6 +25,7 @@ object FileUtil {
      * @time 2018-08-16 12:05
      * @param filePath  文件绝对路径
      */
+    @JvmStatic
     fun openFile(activity: Activity, filePath: String) {
         val ext = filePath.substring(filePath.lastIndexOf('.')).toLowerCase(Locale.US)
         try {

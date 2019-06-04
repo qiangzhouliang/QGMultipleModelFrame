@@ -5,18 +5,16 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import qzl.com.fileuploadanddownload.Common.Bimp;
 import qzl.com.fileuploadanddownload.R;
 import qzl.com.fileuploadanddownload.activity.CommonPicActivity;
+import qzl.com.fileuploadanddownload.common.Bimp;
 import qzl.com.fileuploadanddownload.popuWindow.ExpandablePopupWindow;
-import qzl.com.tools.utils.ScreenUtil;
 import utilclass.Tt;
 
 import java.io.File;
@@ -115,29 +113,25 @@ public class EventReportImageAdapter extends BaseAdapter {
             holder.materialImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
-                    //清除前面选择的缓存
-                    Bimp.drr.clear();
-                    List<String> list = new ArrayList<>();
-                    list.add(mPhotograph);
-                    list.add("从相册中选择");
-                    list.add("取消");
-                    final ExpandablePopupWindow expandablePopupWindow = new ExpandablePopupWindow(activity, list);
-                    expandablePopupWindow.setOnSelectedItemListener(new ExpandablePopupWindow.OnSelectedItemListener() {
-                        @Override
-                        public void onSelectedValue(String str) {
-                            if (mPhotograph.equals(str)) {
-                                releaseResource();
-                            } else if (("从相册中选择").equals(str)){
-                                Intent intent = new Intent(activity, CommonPicActivity.class);
-                                intent.putExtra("maxNum", 9 - mDatas.size());
-                                activity.startActivityForResult(intent, 300);
-                            }else {
-                                expandablePopupWindow.dismiss();
-                            }
+                //清除前面选择的缓存
+                Bimp.drr.clear();
+                List<String> list = new ArrayList<>();
+                list.add(mPhotograph);
+                list.add("从相册中选择");
+                list.add("取消");
+                LinearLayout parentView = (LinearLayout) activity.findViewById(R.id.parent_ll);
+                new ExpandablePopupWindow(activity,parentView, list,new ExpandablePopupWindow.OnSelectedItemListener() {
+                    @Override
+                    public void onSelectedValue(String str) {
+                        if (mPhotograph.equals(str)) {
+                            releaseResource();
+                        } else if (("从相册中选择").equals(str)){
+                            Intent intent = new Intent(activity, CommonPicActivity.class);
+                            intent.putExtra("maxNum", 9 - mDatas.size());
+                            activity.startActivityForResult(intent, 300);
                         }
-                    });
-                    LinearLayout parentView = (LinearLayout) activity.findViewById(R.id.parent_ll);
-                    expandablePopupWindow.showAtLocation(parentView, Gravity.BOTTOM, 0, ScreenUtil.getVirtualBarHeight(activity));
+                    }
+                });
                 }
             });
         } else {
