@@ -1,5 +1,7 @@
 package qzl.com.main.domain
 
+import qzl.com.main.mvp.model.Data
+
 /**
  * @desc 网络请求二封装-实体
  * @author Qzl
