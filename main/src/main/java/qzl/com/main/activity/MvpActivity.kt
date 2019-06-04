@@ -8,12 +8,12 @@ import qzl.com.basecommon.net.base.BasListActivity
 import qzl.com.basecommon.net.base.BasListAdapter
 import qzl.com.basecommon.net.base.BasListPresenter
 import qzl.com.main.R
-import qzl.com.main.adapter.HomeAdapter
-import qzl.com.main.mvp.presenter.impl.HomePresenterImpl
-import qzl.com.main.mvp.widget.HomeItemView
+import qzl.com.main.adapter.MvpAdapter
+import qzl.com.main.mvp.presenter.impl.MvpPresenterImpl
+import qzl.com.main.mvp.widget.MvpItemView
 
 
-class MvpActivity: BasListActivity<List<HomeItemBean>,HomeItemBean,HomeItemView>() {
+class MvpActivity: BasListActivity<List<HomeItemBean>,HomeItemBean, MvpItemView>() {
     override fun initView() {
         initHead(R.id.head_layout_list,"mvp使用样例", View.OnClickListener { finishWithAnimation() })
     }
@@ -27,13 +27,13 @@ class MvpActivity: BasListActivity<List<HomeItemBean>,HomeItemBean,HomeItemView>
                 .navigation()
         }
     }
-    val adapterHome by lazy { HomeAdapter() }
-    override fun getSpecAdapter(): BasListAdapter<HomeItemBean, HomeItemView> {
-        return adapterHome
+    val adapterHome by lazy { MvpAdapter() }
+    override fun getSpecAdapter(): BasListAdapter<HomeItemBean, MvpItemView> {
+        return  adapterHome
     }
 
     override fun getSpecPresenter(): BasListPresenter {
-        return HomePresenterImpl(this,this)
+        return MvpPresenterImpl(this,this)
     }
 
     override fun getList(response: List<HomeItemBean>?): List<HomeItemBean>? {

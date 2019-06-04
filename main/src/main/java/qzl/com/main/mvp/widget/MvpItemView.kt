@@ -4,10 +4,10 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.RelativeLayout
+import com.itheima.player.model.bean.HomeItemBean
 import kotlinx.android.synthetic.main.item_home.view.*
 import qzl.com.basecommon.utils.GlideUtils
 import qzl.com.main.R
-import qzl.com.main.mvp.model.Data
 
 /**
  * @desc 首页条目view
@@ -17,7 +17,7 @@ import qzl.com.main.mvp.model.Data
  * @class QGMusicKotlin
  * @package qzl.com.qgmusickotlin.widget
  */
-class HomeItemView:RelativeLayout {
+class MvpItemView:RelativeLayout {
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
@@ -33,12 +33,12 @@ class HomeItemView:RelativeLayout {
     /**
      * 刷新条目view数据
      */
-    fun setData(data: Data) {
+    fun setData(data: HomeItemBean) {
         //歌曲名称
-        title.text = data.author_name
+        title.text = data.title
         //简介
-        desc.text = data.title
+        desc.text = data.description
         //背景图片
-        GlideUtils.loadImgAnim(context,bg,data.thumbnail_pic_s?:"")
+        GlideUtils.loadImgAnim(context,bg,data.thumbnailPic?:"")
     }
 }

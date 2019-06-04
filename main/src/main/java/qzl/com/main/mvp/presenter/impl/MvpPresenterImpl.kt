@@ -1,25 +1,24 @@
 package qzl.com.main.mvp.presenter.impl
 
 import android.content.Context
+import com.itheima.player.model.bean.HomeItemBean
 import qzl.com.basecommon.net.base.BasListPresenter.Companion.TYPE_INIT_OR_REFRESH
 import qzl.com.basecommon.net.base.BasListPresenter.Companion.TYPE_LOAD_MORE
 import qzl.com.basecommon.net.base.BaseView
 import qzl.com.basecommon.net.net.ResponseHandler
-import qzl.com.main.mvp.HomeRequest
-import qzl.com.main.mvp.model.HomeBean
-import qzl.com.main.mvp.presenter.interf.HomePresenter
-
+import qzl.com.main.mvp.MvpRequest
+import qzl.com.main.mvp.presenter.interf.MvpPresenter
 
 /**
- * @desc 首页业务逻辑处理类
+ * @desc mvp请求示例
  * @author Qzl
  * @email 2538096489@qq.com
  * @time 2019-02-21 13:51
  * @class QGMusicKotlin
  * @package qzl.com.qgmusickotlin.presenter.impl
  */
-class HomePresenterImpl(var mContext:Context?,var homeView: BaseView<HomeBean>?) : HomePresenter,
-    ResponseHandler<HomeBean> {
+class MvpPresenterImpl(var mContext:Context?, var homeView: BaseView<List<HomeItemBean>>?) : MvpPresenter,
+    ResponseHandler<List<HomeItemBean>> {
     /**
      * 解绑view和presenter
      */
@@ -33,12 +32,12 @@ class HomePresenterImpl(var mContext:Context?,var homeView: BaseView<HomeBean>?)
      */
     override fun loadDatas() {
         //1定义一个request+执行
-        HomeRequest(mContext,TYPE_INIT_OR_REFRESH,0,this).execute()
+        MvpRequest(mContext,TYPE_INIT_OR_REFRESH,0,this).execute()
     }
 
     override fun loadMore(offset: Int) {
         //1定义一个request
-        HomeRequest(mContext,TYPE_LOAD_MORE,offset,this).execute()
+        MvpRequest(mContext,TYPE_LOAD_MORE,offset,this).execute()
     }
 
     /**
@@ -50,12 +49,11 @@ class HomePresenterImpl(var mContext:Context?,var homeView: BaseView<HomeBean>?)
     /**
      * 加载数据成功
      */
-    override fun OnSuccess(type:Int,result: HomeBean) {
+    override fun OnSuccess(type:Int,result: List<HomeItemBean>) {
         //区分 初始化数据和加载更多数据
         when(type){
             TYPE_INIT_OR_REFRESH -> homeView?.loadSuccess(result)
             TYPE_LOAD_MORE -> homeView?.loadMoreSuccess(result)
         }
-
     }
 }

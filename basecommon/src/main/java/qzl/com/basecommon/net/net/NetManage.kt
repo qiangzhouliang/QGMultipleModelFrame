@@ -57,8 +57,17 @@ class NetManage private constructor(){
                     e.printStackTrace()
                     //刷新列表
                     ThreadUtil.runOnMainThread(Runnable {
-                        //将结果回调到view层
-                        req.handler.OnSuccess(req.type,result as RESPONSE)
+                        try {
+                            //将结果回调到view层
+                            req.handler.OnSuccess(req.type,result as RESPONSE)
+                        }catch (e:Exception){
+                            e.printStackTrace()
+                            ThreadUtil.runOnMainThread(Runnable {
+                                progressDialog?.dismiss()
+                                //回调到view层进行处理
+                                req.handler.onError(req.type,e.message)
+                            })
+                        }
                     })
                 }
             }
