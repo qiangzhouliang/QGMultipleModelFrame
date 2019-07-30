@@ -12,7 +12,6 @@ package qzl.com.main.domain
 data class Net2Bean(
     val `data`: Data
 )
-
 data class Data(
     val result: List<Result>,
     val sql: String,
