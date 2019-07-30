@@ -10,7 +10,7 @@ deps.target_sdk = 19
 deps.compile_sdk = 28
 
 /* Gradle 插件 */
-deps.gradle_plugin = 'com.android.tools.build:gradle:3.4.1'
+deps.gradle_plugin = 'com.android.tools.build:gradle:3.4.2'
 
 /* 测试组件 */
 deps.junit = 'junit:junit:4.12'
