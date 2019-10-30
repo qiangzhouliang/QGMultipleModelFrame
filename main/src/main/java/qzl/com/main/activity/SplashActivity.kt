@@ -1,8 +1,8 @@
 package qzl.com.main.activity
 
 import android.Manifest
-import android.support.v4.view.ViewCompat
-import android.support.v4.view.ViewPropertyAnimatorListener
+import androidx.core.view.ViewCompat
+import androidx.core.view.ViewPropertyAnimatorListener
 import android.view.View
 import kotlinx.android.synthetic.main.p_splach.*
 import kr.co.namee.permissiongen.PermissionFail

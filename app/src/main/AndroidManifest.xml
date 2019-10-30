@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/TranslucentTheme">
         <provider
-                android:name="android.support.v4.content.FileProvider"
+                android:name="androidx.core.content.FileProvider"
                 android:authorities="qzl.com.qgmultiplemodelframe"
                 android:exported="false"
                 android:grantUriPermissions="true">

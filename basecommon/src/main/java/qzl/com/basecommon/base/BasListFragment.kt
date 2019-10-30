@@ -1,8 +1,8 @@
 package qzl.com.basecommon.base
 
 import android.graphics.Color
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import kotlinx.android.synthetic.main.p_list.*
 import qzl.com.basecommon.R
@@ -51,7 +51,7 @@ abstract class BasListFragment<RESPONSE,ITEMBEAN,ITEMVIEW:View> : BaseFragment()
 
     override fun initListener() {
         //初始化Recycleview
-        recycleView.layoutManager = LinearLayoutManager(context)
+        recycleView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         recycleView.adapter = adapter
 
         //初始化刷新控件
@@ -64,8 +64,8 @@ abstract class BasListFragment<RESPONSE,ITEMBEAN,ITEMVIEW:View> : BaseFragment()
         }
 
         //监听列表的滑动
-        recycleView.setOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        recycleView.setOnScrollListener(object : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: androidx.recyclerview.widget.RecyclerView, newState: Int) {
                 //滑动状态的改变
                 /*when(newState){
                     RecyclerView.SCROLL_STATE_IDLE ->{
@@ -78,10 +78,10 @@ abstract class BasListFragment<RESPONSE,ITEMBEAN,ITEMVIEW:View> : BaseFragment()
                         println(" SETTLING 状态")
                     }
                 }*/
-                if (newState == RecyclerView.SCROLL_STATE_IDLE){
+                if (newState == androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE){
                     //空闲状态，是否是最后一条已经显示
                     val layoutManager = recyclerView.layoutManager
-                    if(!(layoutManager is LinearLayoutManager)) return
+                    if(!(layoutManager is androidx.recyclerview.widget.LinearLayoutManager)) return
                     val lastPosition = layoutManager.findLastVisibleItemPosition()
                     if (lastPosition == adapter.itemCount - 1){
                         //最后一条已经显示了
@@ -90,7 +90,7 @@ abstract class BasListFragment<RESPONSE,ITEMBEAN,ITEMVIEW:View> : BaseFragment()
                 }
             }
 
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
                 println("onScrolled dx = $dx dy = $dy")
             }
         })

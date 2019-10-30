@@ -1,7 +1,7 @@
 package qzl.com.basecommon.net.base
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import qzl.com.basecommon.ui.kotlin.LoadMoreView
@@ -16,7 +16,7 @@ import qzl.com.basecommon.ui.kotlin.LoadMoreView
  * @class QGMusicKotlin
  * @package qzl.com.qgmusickotlin.base
  */
-abstract class BasListAdapter <ITEMBEAN,ITEMVIEW:View>: RecyclerView.Adapter<BasListAdapter.BasListHolder>() {
+abstract class BasListAdapter <ITEMBEAN,ITEMVIEW:View>: androidx.recyclerview.widget.RecyclerView.Adapter<BasListAdapter.BasListHolder>() {
     private var list = ArrayList<ITEMBEAN>()
     /**
      * 更新数据
@@ -104,5 +104,5 @@ abstract class BasListAdapter <ITEMBEAN,ITEMVIEW:View>: RecyclerView.Adapter<Bas
      */
     abstract fun refreshView(itemView: ITEMVIEW, data: ITEMBEAN)
 
-    class BasListHolder(itemView: View): RecyclerView.ViewHolder(itemView){}
+    class BasListHolder(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView){}
 }

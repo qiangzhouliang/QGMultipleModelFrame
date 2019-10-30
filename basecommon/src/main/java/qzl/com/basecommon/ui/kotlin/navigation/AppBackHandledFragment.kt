@@ -1,10 +1,10 @@
 package qzl.com.basecommon.ui.kotlin.navigation
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 
 
-class AppBackHandledFragment : Fragment() {
+class AppBackHandledFragment : androidx.fragment.app.Fragment() {
 
     protected lateinit var mBackHandledInterface: AppBackHandledInterface
 

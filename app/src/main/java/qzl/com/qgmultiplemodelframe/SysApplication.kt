@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.ActivityManager
 import android.app.Application
 import android.content.Context
-import android.support.multidex.MultiDex
+import androidx.multidex.MultiDex
 import android.text.TextUtils
 import com.alibaba.android.arouter.launcher.ARouter
 import qzl.com.tools.operate.java.ReadProperties

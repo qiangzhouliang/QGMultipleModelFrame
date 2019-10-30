@@ -1,7 +1,7 @@
 package qzl.com.basecommon.base
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import org.jetbrains.anko.AnkoLogger
  * @email 2538096489@qq.com
  * @time 2019-02-01 10:19
  */
-abstract class BaseFragment: Fragment(),AnkoLogger {
+abstract class BaseFragment: androidx.fragment.app.Fragment(),AnkoLogger {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()

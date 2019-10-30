@@ -6,13 +6,13 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Rect
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.util.DisplayMetrics
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 
 /**
  * https://github.com/guoyoujin/MySnackBar
@@ -123,14 +123,14 @@ class ScreenUtil private constructor() {
             if (actionBarHeight != 0)
                 return actionBarHeight
             val tv = TypedValue()
-            if (context.theme.resolveAttribute(android.support.v7.appcompat.R.attr.actionBarSize, tv, true)) {
-                if (context.theme.resolveAttribute(android.support.v7.appcompat.R.attr.actionBarSize, tv, true))
+            if (context.theme.resolveAttribute(androidx.appcompat.R.attr.actionBarSize, tv, true)) {
+                if (context.theme.resolveAttribute(androidx.appcompat.R.attr.actionBarSize, tv, true))
                     actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, context.resources.displayMetrics)
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                 if (context.theme.resolveAttribute(android.R.attr.actionBarSize, tv, true))
                     actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, context.resources.displayMetrics)
             } else {
-                if (context.theme.resolveAttribute(android.support.v7.appcompat.R.attr.actionBarSize, tv, true))
+                if (context.theme.resolveAttribute(androidx.appcompat.R.attr.actionBarSize, tv, true))
                     actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, context.resources.displayMetrics)
             }
             Log.d("actionBarHeight", "====$actionBarHeight")

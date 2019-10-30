@@ -1,7 +1,7 @@
 package qzl.com.mpandroidchart.common
 
 import android.graphics.Color
-import android.support.annotation.ColorRes
+import androidx.annotation.ColorRes
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
