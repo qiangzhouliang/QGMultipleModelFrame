@@ -2,7 +2,7 @@ package qzl.com.main.adapter
 
 import android.content.Context
 import qzl.com.basecommon.net.base.BasListAdapter
-import qzl.com.main.mvp.model.Data
+import qzl.com.model.test.Data
 import qzl.com.main.mvp.widget.HomeItemView
 
 /**
@@ -13,12 +13,12 @@ import qzl.com.main.mvp.widget.HomeItemView
  * @class QGMusicKotlin
  * @package qzl.com.qgmusickotlin.adapter
  */
-class HomeAdapter : BasListAdapter<Data, HomeItemView>() {
+class HomeAdapter : BasListAdapter<qzl.com.model.test.Data, HomeItemView>() {
     override fun getItemView(context: Context?): HomeItemView {
         return HomeItemView(context)
     }
 
-    override fun refreshView(itemView: HomeItemView, data: Data) {
+    override fun refreshView(itemView: HomeItemView, data: qzl.com.model.test.Data) {
         itemView.setData(data)
     }
 

@@ -180,5 +180,5 @@
 -keep class mapsdkvi.com.** {*;}
 -dontwarn com.baidu.**
 #不混淆所有的model
--keep class com.zdww.basemodel.** {*;}
+-keep class qzl.com.model.** {*;}
 

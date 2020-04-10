@@ -1,4 +1,4 @@
-package qzl.com.main.mvp.model
+package qzl.com.model.test
 
 /**
  * @desc

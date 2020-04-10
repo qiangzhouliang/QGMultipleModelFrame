@@ -1,4 +1,4 @@
-package qzl.com.main.domain
+package qzl.com.model.test
 
 
 /**

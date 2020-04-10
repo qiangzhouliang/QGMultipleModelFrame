@@ -1,1 +1,2 @@
 include ':app', ':tools', ':basecommon', ':videoplayer', ':main', ':fileuploadanddownload', ':mpandroidchart', ':ffmpeg4android'
+include ':model'

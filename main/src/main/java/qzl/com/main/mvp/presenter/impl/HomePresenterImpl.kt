@@ -6,7 +6,7 @@ import qzl.com.basecommon.net.base.BasListPresenter.Companion.TYPE_LOAD_MORE
 import qzl.com.basecommon.net.base.BaseView
 import qzl.com.basecommon.net.net.ResponseHandler
 import qzl.com.main.mvp.HomeRequest
-import qzl.com.main.mvp.model.HomeBean
+import qzl.com.model.test.HomeBean
 import qzl.com.main.mvp.presenter.interf.HomePresenter
 
 
@@ -18,8 +18,8 @@ import qzl.com.main.mvp.presenter.interf.HomePresenter
  * @class QGMusicKotlin
  * @package qzl.com.qgmusickotlin.presenter.impl
  */
-class HomePresenterImpl(var mContext:Context?,var homeView: BaseView<HomeBean>?) : HomePresenter,
-    ResponseHandler<HomeBean> {
+class HomePresenterImpl(var mContext:Context?,var homeView: BaseView<qzl.com.model.test.HomeBean>?) : HomePresenter,
+    ResponseHandler<qzl.com.model.test.HomeBean> {
     /**
      * 解绑view和presenter
      */
@@ -50,7 +50,7 @@ class HomePresenterImpl(var mContext:Context?,var homeView: BaseView<HomeBean>?)
     /**
      * 加载数据成功
      */
-    override fun OnSuccess(type:Int,result: HomeBean) {
+    override fun OnSuccess(type:Int,result: qzl.com.model.test.HomeBean) {
         //区分 初始化数据和加载更多数据
         when(type){
             TYPE_INIT_OR_REFRESH -> homeView?.loadSuccess(result)

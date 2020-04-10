@@ -7,7 +7,7 @@ import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.item_home.view.*
 import qzl.com.basecommon.utils.GlideUtils
 import qzl.com.main.R
-import qzl.com.main.mvp.model.Data
+import qzl.com.model.test.Data
 
 /**
  * @desc 首页条目view
@@ -33,7 +33,7 @@ class HomeItemView:RelativeLayout {
     /**
      * 刷新条目view数据
      */
-    fun setData(data: Data) {
+    fun setData(data: qzl.com.model.test.Data) {
         //歌曲名称
         title.text = data.author_name
         //简介
