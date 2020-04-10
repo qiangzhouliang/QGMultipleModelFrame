@@ -4,14 +4,25 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion deps.compile_sdk
     defaultConfig {
-        applicationId "qzl.com.application"
+        applicationId "qzl.com.qgmultiplemodelframe"
         minSdkVersion deps.min_sdk
         targetSdkVersion deps.target_sdk
         versionCode 1
         versionName "1.0.0.1"
         // Enabling multidex support.
         multiDexEnabled true
+
+        ndk {
+            //选择要添加的对应 cpu 类型的 .so 库。
+            abiFilters 'armeabi'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64' , 'armeabi-v7a', 'arm64-v8a'
+        }
     }
+
+    androidExtensions {
+        experimental = true
+    }
+
     buildTypes {
         release {
             //打包时过滤无用文件,有效时，打release包会出错
@@ -40,12 +51,19 @@ android {
     packagingOptions {
         exclude 'META-INF/services/javax.annotation.processing.Processor'
     }
-    /*compileOptions {
+    compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }*/
+    }
 }
-
+android.applicationVariants.all { variant ->
+    if (variant.buildType.name == 'release') {//release版本
+        variant.mergeAssets.doLast {
+            //删除assets文件夹下的debug.properties
+            delete(fileTree(dir: variant.mergeAssets.outputDir, includes: ['debug.properties']))
+        }
+    }
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation deps.kotlin_stdlib

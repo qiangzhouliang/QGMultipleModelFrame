@@ -1,10 +1,13 @@
 buildscript {
+    //引入配置gradle
     apply from: 'config.gradle'
     repositories {
+        maven { url "https://jitpack.io" }
         jcenter()
         google()
     }
     dependencies {
+        //编译插件
         classpath deps.gradle_plugin
         classpath deps.maven_gradle_plugin
         classpath deps.kotlin_gradle_plugin
@@ -12,17 +15,20 @@ buildscript {
 }
 
 allprojects {
+    //引入下载地址仓库
     repositories {
+        maven { url "https://jitpack.io" }
         jcenter()
         google()
-        maven { url "https://jitpack.io" }
+
     }
 }
 subprojects {
     project.configurations.all {
+        //解决第三方插件冲突的问题
         resolutionStrategy.eachDependency { details ->
             if (details.requested.group == 'com.android.support'
-                    && !details.requested.name.contains('multidex') ) {
+                    && !details.requested.name.contains('multidex')) {
                 details.useVersion deps.support_version//改这个版本号到你想要的版本
             }
         }

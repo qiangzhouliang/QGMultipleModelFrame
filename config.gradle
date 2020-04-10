@@ -10,7 +10,7 @@ deps.target_sdk = 19
 deps.compile_sdk = 28
 
 /* Gradle 插件 */
-deps.gradle_plugin = 'com.android.tools.build:gradle:3.5.1'
+deps.gradle_plugin = 'com.android.tools.build:gradle:3.6.1'
 
 /* 测试组件 */
 deps.junit = 'junit:junit:4.12'
@@ -27,18 +27,21 @@ deps.design = "com.android.support:design:$support_version"
 deps.constraint = 'androidx.constraintlayout:constraintlayout:1.1.3'
 
 /* 网络组件 */
-//def retrofit2_version = '2.4.0'
-//deps.retrofit = "com.squareup.retrofit2:retrofit:$retrofit2_version"
-//deps.converter_gson = "com.squareup.retrofit2:converter-gson:$retrofit2_version"
-//deps.adapter_rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_version"
-//deps.converter_scalars = "com.squareup.retrofit2:converter-scalars:$retrofit2_version"
+def retrofit2_version = '2.4.0'
+deps.retrofit = "com.squareup.retrofit2:retrofit:$retrofit2_version"
+///* 异步组件 */
+deps.rxandroid = 'io.reactivex.rxjava2:rxandroid:2.0.2'
+deps.rxjava = 'io.reactivex.rxjava2:rxjava:2.2.0'
+deps.converter_gson = "com.squareup.retrofit2:converter-gson:$retrofit2_version"
+deps.adapter_rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_version"
+deps.converter_scalars = "com.squareup.retrofit2:converter-scalars:$retrofit2_version"
+deps.LoggingInterceptor = "com.github.ihsanbal:LoggingInterceptor:3.0.0"
+
 deps.okhttp3 = 'com.squareup.okhttp3:logging-interceptor:3.8.1'
 deps.gson = 'com.google.code.gson:gson:2.8.5'
 deps.volley = 'eu.the4thfloor.volley:com.android.volley:2015.05.28'
 
-///* 异步组件 */
-//deps.rxandroid = 'io.reactivex.rxjava2:rxandroid:2.0.2'
-//deps.rxjava = 'io.reactivex.rxjava2:rxjava:2.2.0'
+
 //
 /* 图片加载组件 */
 def glide_version = '4.8.0'
@@ -54,13 +57,6 @@ deps.picasso = 'com.squareup.picasso:picasso:2.5.2'
 deps.arouter_api = 'com.alibaba:arouter-api:1.4.1'
 deps.arouter_compiler = 'com.alibaba:arouter-compiler:1.2.2'
 
-
-/* 注解组件 */
-def butter_knife_version = '9.0.0-rc2'
-deps.butterknife = "com.jakewharton:butterknife:$butter_knife_version"
-deps.butterknife_compiler = "com.jakewharton:butterknife-compiler:$butter_knife_version"
-deps.butterknife_plugin = "com.jakewharton:butterknife-gradle-plugin:$butter_knife_version"
-
 /* 权限请求组件 */
 deps.permissiongen = 'com.lovedise:permissiongen:0.0.6'
 //deps.easypermissions = 'pub.devrel:easypermissions:0.3.1'
@@ -69,7 +65,7 @@ deps.SmartRefreshLayout = 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alph
 deps.SmartRefreshHeader = 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-20'
 
 /*kotlin 组件*/
-def kotlin_version = '1.3.31'
+def kotlin_version = '1.3.70'
 deps.kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 deps.kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 

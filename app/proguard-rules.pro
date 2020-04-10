@@ -1,55 +1,19 @@
-#Specifies the number of optimization passes to be performed
--optimizationpasses 0
-
-#Specifies not to generate mixed-case class names while obfuscating. By default, obfuscated class names can contain a mix of upper-case characters and lower-case characters
--dontusemixedcaseclassnames
-
-#Specifies not to ignore non-public library classes. As of version 4.5, this is the default setting.
--dontskipnonpubliclibraryclasses
-
-#Specifies not to preverify the processed class files. By default, class files are preverified if they are targeted at Java Micro Edition or at Java 6 or higher
--dontpreverify
-
-#Specifies to print any warnings about unresolved references and other important problems, but to continue processing in any case
--ignorewarnings
-
-#Specifies not to ignore package visible library class members (fields and methods).
--dontskipnonpubliclibraryclassmembers
-
--optimizations !code/simplification/arithmetic,!class/merging/*,!code/allocation/variable,!class/unboxing/enum
-
--printusage usage.txt
--printmapping mapping.txt
--printseeds seeds.txt
-
--keepattributes *Annotation*,SourceFile,LineNumberTable,InnerClasses
--keepattributes *JavascriptInterface*
-
-#members of public
--keepclasseswithmembers class * {
-    native <methods>;
-}
-
--keepclasseswithmembers class * {
-    public <init>(android.content.Context, android.util.AttributeSet);
-}
-
--keepclasseswithmembers class * {
-    public <init>(android.content.Context, android.util.AttributeSet, int);
-}
-
--keepclassmembers enum * {
-    public static **[] values();
-    public static ** valueOf(java.lang.String);
-}
-
--keep class * implements android.os.Parcelable {*;}
-
--keep class * implements java.io.Serializable {*;}
-
--keep class * implements CharSequence {*;}
-
-#class kept by android and java
+#-------------------------------------------基本不用动区域--------------------------------------------
+#---------------------------------基本指令区----------------------------------
+-optimizationpasses 5       # 指定代码的压缩级别
+-dontusemixedcaseclassnames     # 是否使用大小写混合
+-dontskipnonpubliclibraryclasses        # 指定不去忽略非公共的库类
+-dontskipnonpubliclibraryclassmembers       # 指定不去忽略包可见的库类的成员
+-dontpreverify      # 混淆时是否做预校验
+-verbose        # 混淆时是否记录日志
+-printmapping proguardMapping.txt
+-optimizations !code/simplification/cast,!field/*,!class/merging/*      # 混淆时所采用的算法
+-keepattributes *Annotation*,InnerClasses
+-keepattributes Signature
+-keepattributes SourceFile,LineNumberTable
+#----------------------------------------------------------------------------
+-ignorewarnings     # 是否忽略检测，（是）
+#---------------------------------默认保留区---------------------------------
 -keep public class * extends android.app.Activity
 -keep public class * extends android.view.ViewGroup
 -keep public class * extends android.app.ActivityGroup{
@@ -61,59 +25,95 @@
 -keep public class * extends android.content.ContentProvider
 -keep public class * extends android.app.backup.BackupAgentHelper
 -keep public class * extends android.preference.Preference
-
-
+-keep public class * extends android.view.View
+-keep public class com.android.vending.licensing.ILicensingService
+-keep class android.support.** {*;}
 -keep class android.content.ServiceConnection
+#-ignorewarnings -keep class * { public private *; }
 
--keep public class * extends android.view.** {
-    *;
+#如果有引用v4包可以添加下面这行
+-keep class android.support.v4.** { *; }
+-keep public class * extends android.support.v4.**
+-keep public class * extends android.app.Fragment
+
+-keep public class * extends android.view.** {*;}
+-keep public class * implements android.view.** {*;}
+
+-keep public class * implements java.util.Observer { *;}
+-keep public class * extends android.widget.**{*;}
+
+-keep public class * implements android.widget.** {*;}
+
+-keep class * extends android.content.ServiceConnection {*;}
+
+-keepclasseswithmembernames class * {
+    native <methods>;
 }
--keep public class * implements android.view.** {
-    *;
+-keepclassmembers class * extends android.app.Activity{
+    public void *(android.view.View);
+}
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+-keep public class * extends android.view.View{
+    *** get*();
+    void set*(***);
+    public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+-keep class * implements CharSequence {*;}
+#表示不混淆R文件中的所有静态字段
+-keep class **.R$* {
+    public static <fields>;
+}
+-keepclassmembers class * {
+    void *(**On*Event);
+}
+#----------------------------------------------------------------------------
+
+#---------------------------------webview------------------------------------
+-keepclassmembers class fqcn.of.javascript.interface.for.Webview {
+   public *;
+}
+-keepclassmembers class * extends android.webkit.WebViewClient {
+    public void *(android.webkit.WebView, java.lang.String, android.graphics.Bitmap);
+    public boolean *(android.webkit.WebView, java.lang.String);
+}
+-keepclassmembers class * extends android.webkit.WebViewClient {
+    public void *(android.webkit.WebView, jav.lang.String);
 }
 
--keep public class * implements java.util.Observer {
-    *;
+#---------------------------------2.第三方库---------------------------------
+#kotlin
+-keep class kotlin.** { *; }
+-keep class kotlin.Metadata { *; }
+-dontwarn kotlin.**
+-keepclassmembers class **$WhenMappings {
+    <fields>;
 }
--keep public class * extends android.widget.**{
-   *;
+-keepclassmembers class kotlin.Metadata {
+    public <methods>;
 }
-
--keep public class * implements android.widget.** {
-    *;
+-assumenosideeffects class kotlin.jvm.internal.Intrinsics {
+    static void checkParameterIsNotNull(java.lang.Object, java.lang.String);
 }
-
--keep class * extends android.content.ServiceConnection {
-    *;
-}
-
-
-##---------------Begin: proguard configuration for Gson  ----------
-# Gson uses generic type information stored in a class file when working with fields. Proguard
-# removes such information by default, so configure it to keep all of it.
--keepattributes Signature
-
-
-# Application classes that will be serialized/deserialized over Gson
--keep class com.google.gson.**{*;}
-
--keep class android.support.v4.**{*;}
-
-
--keep class org.apache.** {*;}
--dontwarn org.apache.**
-
-#WebChromeClient openFileChooser
--keepclassmembers class * extends android.webkit.WebChromeClient{
-   public void openFileChooser(...);
-}
-
-
-# If you do not use SQLCipher:
--dontwarn org.greenrobot.greendao.database.**
-# If you do not use Rx:
--dontwarn rx.**
-
 # glide 的混淆代码
 #com.bumptech.glide
 -keep class com.bumptech.glide.** {*;}
@@ -123,16 +123,34 @@
   public *;
 }
 
--keep class kotlin.** { *; }
--keep class org.jetbrains.** { *; }
+#-------------- okhttp3 start-------------
+-dontwarn com.squareup.okhttp.**
+-keep class com.squareup.okhttp.**{*;}
 
-#okhttp
+# okhttp
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
 -dontwarn okhttp3.**
--keep class okhttp3.**{*;}
 
-#okio
--dontwarn okio.**
+# okio
+-keep class sun.misc.Unsafe { *; }
+-dontwarn java.nio.file.*
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 -keep class okio.**{*;}
+-dontwarn okio.**
+#----------okhttp end--------------
+
+# volley
+-keep class com.android.volley.** {*;}
+-keep class com.android.volley.toolbox.** {*;}
+-keep class com.android.volley.Response$* {*;}
+-keep class com.android.volley.Request$* {*;}
+-keep class com.android.volley.RequestQueue$* {*;}
+-keep class com.android.volley.toolbox.HurlStack$* {*;}
+-keep class com.android.volley.toolbox.ImageLoader$* {*;}
+-keep class org.apache.http.** {*;}
+
+
 #testin sdk
 -keep class cn.testin.analysis.** {*;}
 -keep class android.support.v4.view.** {*;}
@@ -152,23 +170,15 @@
 -assumenosideeffects class android.util.Log {
    public static *** d(...);
    public static *** v(...);
+   public static *** e(...);
+   public static *** i(...);
+   public static *** w(...);
    public static *** println(...);
 }
+#百度地图混淆
+-keep class com.baidu.** {*;}
+-keep class mapsdkvi.com.** {*;}
+-dontwarn com.baidu.**
+#不混淆所有的model
+-keep class com.zdww.basemodel.** {*;}
 
--assumenosideeffects class android.util.Log {
-    public static *** e(...);
-    public static *** v(...);
-    public static *** println(...);
-}
-
--assumenosideeffects class android.util.Log {
-    public static *** i(...);
-    public static *** v(...);
-    public static *** println(...);
-}
-
--assumenosideeffects class android.util.Log {
-    public static *** w(...);
-    public static *** v(...);
-    public static *** println(...);
-}

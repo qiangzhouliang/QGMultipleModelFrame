@@ -65,4 +65,14 @@ dependencies {
     api deps.cardview
     /*底部导航栏*/
     api deps.bottom_bar
+
+    //retrofit2 网络请求
+    api deps.retrofit
+    api deps.rxandroid
+    api deps.rxjava
+    api deps.converter_gson
+    api deps.adapter_rxjava2
+    api(deps.LoggingInterceptor){
+        exclude group: 'org.json', module: 'json'
+    }
 }

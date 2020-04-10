@@ -6,3 +6,9 @@
 /build
 /captures
 .externalNativeBuild
+gradle/
+gradlew
+gradlew.bat
+/*/.settings/
+/app/debug/
+/app/proguardMapping.txt
