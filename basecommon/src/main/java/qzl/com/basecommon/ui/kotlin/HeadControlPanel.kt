@@ -60,6 +60,7 @@ class HeadControlPanel(context: Context, attrs: AttributeSet) : RelativeLayout(c
     }
 
     fun getmRightImg(): ImageView? {
+        right_btn_img.visibility = View.VISIBLE
         return right_btn_img
     }
 

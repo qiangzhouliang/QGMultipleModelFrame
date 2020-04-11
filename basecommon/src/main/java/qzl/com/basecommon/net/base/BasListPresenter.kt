@@ -25,12 +25,12 @@ interface BasListPresenter {
     /**
      * 加载数据
      */
-    fun loadDatas()
+    fun loadDatas(map:HashMap<String,String?>? = null,isShowProgress:Boolean = true)
 
     /**
      * 加载更多数据
      */
-    fun loadMore(offset: Int)
+    fun loadMore(map:HashMap<String,String?>? = null)
 
     /**
      * 解绑presenter和view层

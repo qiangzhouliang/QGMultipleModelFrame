@@ -6,7 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.p_chart_main.*
 import org.jetbrains.anko.startActivity
 import qzl.com.basecommon.base.BaseActivity
-import qzl.com.basecommon.common.ARouterPath
+import qzl.com.basecommon.arouter.ARouterPath
 import qzl.com.mpandroidchart.R
 
 /**

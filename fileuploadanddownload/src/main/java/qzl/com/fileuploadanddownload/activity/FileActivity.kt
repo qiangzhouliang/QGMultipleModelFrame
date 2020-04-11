@@ -5,7 +5,7 @@ import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.activity_file.*
 import qzl.com.basecommon.base.BaseActivity
-import qzl.com.basecommon.common.ARouterPath
+import qzl.com.basecommon.arouter.ARouterPath
 import qzl.com.fileuploadanddownload.R
 import qzl.com.fileuploadanddownload.adapter.EventReportImageAdapter
 import qzl.com.fileuploadanddownload.common.DownloadFile

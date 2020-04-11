@@ -16,6 +16,6 @@ import qzl.com.model.test.HomeBean
 /*class HomeRequest(mContext:Context?,type:Int,offset:Int,handler: ResponseHandler<List<HomeItemBean>>): MRequest<List<HomeItemBean>>(mContext,type,
     URLProviderUtils.getHomeUrl(offset,20),handler,isShowProgress = false) {
 }*/
-class HomeRequest(mContext:Context?,type:Int,offset:Int,handler: ResponseHandler<qzl.com.model.test.HomeBean>): MRequest<qzl.com.model.test.HomeBean>(mContext,type,
+class HomeRequest(mContext:Context?,type:Int,offset:Int,handler: ResponseHandler<qzl.com.model.test.HomeBean>): MRequest<HomeBean>(mContext,type,
     "http://v.juhe.cn/toutiao/index?type=top&key=e8159dfaee4760ddbcc13f6bb648d9e2&offset=" + offset,handler,isShowProgress = false) {
 }

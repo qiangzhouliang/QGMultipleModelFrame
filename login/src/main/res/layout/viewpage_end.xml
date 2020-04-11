@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#30666666"
+        android:layout_gravity="right"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginRight="8dp"
+        android:padding="4dp"
+        android:visibility="invisible"
+        android:textColor="#666666"
+        android:text="滑动跳过  4" />
+</FrameLayout>

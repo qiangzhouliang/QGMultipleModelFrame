@@ -34,4 +34,33 @@ object Constant {
     //版本信息缓存map中key:版本信息
     @JvmField
     val VERSION_INFO = "info"
+    //缓存用户信息
+    @JvmField
+    val CACHE_USER = "userInfo"
+    //刷新用户信息标记 true 刷新 false 没有刷新
+    @JvmField
+    val isRefreshUserInfo = "isRefreshUserInfo"
+    @JvmField
+    val TOKEN = "Token"  //缓存token的key
+    @JvmField
+    val jwtToken = "jwtToken"  //缓存jwt令牌
+    @JvmField
+    val refreshToken = "refreshToken"  //缓存刷新令牌
+    @JvmField
+    val isAutoLogin = "isAutoLogin"  //是否记住密码
+    @JvmField
+    val isPhoneLogin = "isPhoneLogin"  //账号密码登录标识
+
+    /**
+     * tabLayout滑动时，是否需要重新刷新
+     */
+    const val IS_TAB_CONTENT = "isTabContent"
+
+    //新密码长度6-20，必须包含数字、字母、特殊字符！
+    @JvmField
+    val REGULAR_PASSWORD = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[~!@#\$%^&*()_+`\\-={}:\";'<>?,.\\/]).{6,20}\$"
+
+    //缓存登录用户名、用户Id、单位名称。
+    @JvmField
+    val LOGIN_COUNT = "loginCount"
 }

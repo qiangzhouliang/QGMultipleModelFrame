@@ -697,6 +697,7 @@ object StringHelper {
      * @param obj
      * @return
      */
+    @JvmStatic
     fun isEmptyString(obj: String?): Boolean {
         return obj == null || "" == obj || "null" == obj || "NULL" == obj || "undefined" == obj
     }

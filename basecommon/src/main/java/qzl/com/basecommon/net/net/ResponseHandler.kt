@@ -7,6 +7,6 @@ package qzl.com.basecommon.net.net
  * @time 2019-02-21 14:32
  */
 interface ResponseHandler<RESPONSE> {
-    fun onError(type:Int,msg:String?)
-    fun OnSuccess(type:Int,result:RESPONSE)
+    fun onError(type:Int?,msg:String?)
+    fun OnSuccess(type:Int?,result:RESPONSE)
 }

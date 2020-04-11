@@ -32,11 +32,11 @@
             android:padding="@dimen/dp_10"
             android:text="mvp使用"/>
     <TextView
-            android:id="@+id/net2"
+            android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_10"
-            android:text="网络请求封装二"/>
+            android:text="登录"/>
     <TextView
             android:id="@+id/fileuploadordownload"
             android:layout_width="match_parent"

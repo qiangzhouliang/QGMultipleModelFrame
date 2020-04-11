@@ -17,6 +17,7 @@ object FormatNum {
      * @param num
      * @return
      */
+    @JvmStatic
     fun format2(num: Double): String {
         val df = DecimalFormat("#.00")
         return df.format(num)
@@ -29,6 +30,7 @@ object FormatNum {
      * @param num
      * @return
      */
+    @JvmStatic
     fun m2Km(num: Any): String {
         return if (!StringHelper.isEmptyString(StringHelper.toString(num))) {
             try {
@@ -41,8 +43,8 @@ object FormatNum {
             ""
         }
     }
-
-    private fun getMtoKM(num: Double): String {
+    @JvmStatic
+    fun getMtoKM(num: Double): String {
         if (num >= 1000) {
             val bd = BigDecimal(Math.round(num / 1000 * 100) / 100.0)
             return if (bd.toPlainString().contains(".") && bd.toPlainString().length - bd.toPlainString().indexOf(".") > 2) {
@@ -61,6 +63,7 @@ object FormatNum {
      * @param time
      * @return
      */
+    @JvmStatic
     fun formatTimeStr(time: Any): String {
         return if (!StringHelper.isEmptyString(StringHelper.toString(time))) {
             try {
@@ -84,8 +87,8 @@ object FormatNum {
             ""
         }
     }
-
-    private fun timeToYMD(time: Int): String {
+    @JvmStatic
+    fun timeToYMD(time: Int): String {
         val d = time / (3600 * 24)
         //多少天
         val h = time % (3600 * 24) / 3600
@@ -111,6 +114,7 @@ object FormatNum {
      * @param time 时间 （mm)
      * @return 返回值 string
      */
+    @JvmStatic
     fun formatSpeed(num: Double, time: Double): Double {
         //return (Math.round(((num/1000)/(time/(1000 * 60 * 60)))*100)/100.0);
         val distense = num / 1000 * 100 / 100.0
@@ -128,6 +132,7 @@ object FormatNum {
      * @param douStr 需要转换的字符串
      * @return 转换后的返回值
      */
+    @JvmStatic
     fun doubleToInt(douStr: Any): Int {
         return if (!StringHelper.isEmptyString(StringHelper.toString(douStr))) {
             try {
@@ -154,6 +159,7 @@ object FormatNum {
      * @param douStr 需要转换的字符串
      * @return 转换后的返回值
      */
+    @JvmStatic
     fun doubleToIntStr(douStr: Any): String {
         return if (!StringHelper.isEmptyString(StringHelper.toString(douStr))) {
             try {
@@ -185,6 +191,7 @@ object FormatNum {
      * @author 强周亮
      * @time 2019-01-03 09:50
      */
+    @JvmStatic
     fun doubleToIntStrNoFormat(douStr: Any): String {
         return if (!StringHelper.isEmptyString(StringHelper.toString(douStr))) {
             try {
@@ -203,6 +210,7 @@ object FormatNum {
      * @author 强周亮
      * @time 2018-10-25 15:08
      */
+    @JvmStatic
     fun doubleStrToDouble(douStr: Any): Double {
 
         return if (!StringHelper.isEmptyString(StringHelper.toString(douStr))) {
@@ -222,6 +230,7 @@ object FormatNum {
      * @author 强周亮
      * @time 2019-01-04 14:12
      */
+    @JvmStatic
     fun percentage(a: Any, b: Any): String {
         val complate = doubleStrToDouble(a)
         val all = doubleStrToDouble(b)

@@ -11,7 +11,7 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import qzl.com.basecommon.base.BaseLargeImgActivity;
-import qzl.com.basecommon.common.ARouterPath;
+import qzl.com.basecommon.arouter.ARouterPath;
 import qzl.com.basecommon.ui.java.LoadingDialog;
 import qzl.com.fileuploadanddownload.intf.DownloadFileSetDataIntf;
 import qzl.com.fileuploadanddownload.intf.DownloadFileSetDataIntfUtil;

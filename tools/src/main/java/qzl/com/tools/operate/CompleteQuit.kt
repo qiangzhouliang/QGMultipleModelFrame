@@ -136,6 +136,7 @@ private constructor() : Application() {
          * @author 强周亮
          * @time 2019-05-22 10:29
          */
+        @JvmStatic
         fun getInstance(): CompleteQuit? {
             if (instance == null) {
                 instance = CompleteQuit()

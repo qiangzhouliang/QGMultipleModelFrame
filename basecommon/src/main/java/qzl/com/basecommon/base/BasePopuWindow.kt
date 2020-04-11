@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.PopupWindow.OnDismissListener
 import qzl.com.basecommon.common.Constant
@@ -67,12 +68,30 @@ open class BasePopuWindow : PopupWindow {
         super.showAsDropDown(anchor, xoff, yoff, gravity)
     }
 
-    fun showPopuWindowAsDrawView(popupWindow: PopupWindow, view: View) {
+    fun showPopuWindowAsDrawView(activity: Activity,popupWindow: PopupWindow, view: View) {
         val mLocation = IntArray(2)
-        view.getLocationInWindow(mLocation)
-        popupWindow.showAtLocation(view, Gravity.TOP, 0, mLocation[1] + view.height)
+        view.getLocationOnScreen(mLocation)
+        view.post(Runnable {
+            popupWindow.showAtLocation(activity.window.decorView, Gravity.TOP, 0, mLocation[1] + view.height)
+        })
+    }
+    /**
+     * @desc 设置高度 默认 LinearLayout.LayoutParams.WRAP_CONTENT
+     * @author 强周亮
+     * @time 2019-02-26 17:51
+     */
+    open fun setPopHeight():Int {
+        return LinearLayout.LayoutParams.WRAP_CONTENT
     }
 
+    /**
+     * @desc 设置宽度 默认 LinearLayout.LayoutParams.MATCH_PARENT
+     * @author 强周亮
+     * @time 2019-02-26 17:51
+     */
+    open fun setPopuWidth(): Int {
+        return LinearLayout.LayoutParams.MATCH_PARENT
+    }
     /**
      * @author 强周亮
      * @desc 监听popuwindow关闭后做的一些事
@@ -85,16 +104,13 @@ open class BasePopuWindow : PopupWindow {
     object PopuWindowCloseAtferUtil {
         private var mPopuWindowCloseAtfer: PopuWindowCloseAtfer? = null
 
+        @JvmStatic
         fun setPopuWindowCloseAtfer(popuWindowCloseAtfer: PopuWindowCloseAtfer) {
             mPopuWindowCloseAtfer = popuWindowCloseAtfer
         }
 
         fun doPopuWindowCloseAfter() {
-            if (mPopuWindowCloseAtfer != null) {
-                mPopuWindowCloseAtfer?.popuWindowCloseAfter()
-            } else {
-                LogUtils.i("类BasePopuWindow：popuWindow监听类mPopuWindowCloseAtfer没有初始化")
-            }
+            mPopuWindowCloseAtfer?.popuWindowCloseAfter()
         }
     }
 }

@@ -6,8 +6,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 import qzl.com.basecommon.base.BaseActivity
 import qzl.com.basecommon.base.BaseLargeImgActivity
-import qzl.com.basecommon.common.ARouterPath
+import qzl.com.basecommon.arouter.ARouterPath
+import qzl.com.basecommon.arouter.ARouterUtil
 import qzl.com.main.R
+import qzl.com.tools.utils.AreaCodeUtil
 
 class MainActivity : BaseActivity(), View.OnClickListener {
     override fun getLayoutId() = R.layout.activity_main
@@ -20,43 +22,43 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         video_player.setOnClickListener(this)
         load_large_image.setOnClickListener(this)
         mvp.setOnClickListener(this)
-        net2.setOnClickListener(this)
+        login.setOnClickListener(this)
         fileuploadordownload.setOnClickListener(this)
         home.setOnClickListener(this)
         chart.setOnClickListener(this)
     }
     override fun onClick(v: View) {
-        when(v.id){
+        when(v){
             //视频播放
-            R.id.video_player ->{
+            video_player ->{
                 ARouter.getInstance().build(ARouterPath.VIDEO_PLAYER)
                     .withString("videoTitle", "首页跳转")
                     .navigation()
             }
             //加载大图
-            R.id.load_large_image ->{
+            load_large_image ->{
                 startActivity<BaseLargeImgActivity>(
                     "imgUrl" to "https://img.gsdlcn.com/uploads/allimg/190120/1-1Z120161S9.jpg"
                 )
             }
-            R.id.mvp ->{
+            mvp ->{
                 startActivity<MvpActivity>()
             }
-            /*网络请求封装二*/
-            R.id.net2 ->{
-                startActivity<Net2Activity>()
+            /*登录页*/
+            login ->{
+                ARouterUtil.arouterToAct(this,ARouterPath.Login.LOGIN)
             }
             /*文件上传和下载*/
-            R.id.fileuploadordownload ->{
-                ARouter.getInstance().build(ARouterPath.FILE).navigation()
+            fileuploadordownload ->{
+                ARouterUtil.arouterToAct(this,ARouterPath.FILE)
             }
             /*首页*/
-            R.id.home ->{
+            home ->{
                 startActivity<HomeActivity>()
             }
             /*统计图表*/
-            R.id.chart ->{
-                ARouter.getInstance().build(ARouterPath.CHART).navigation()
+            chart ->{
+                ARouterUtil.arouterToAct(this,ARouterPath.CHART)
             }
         }
     }

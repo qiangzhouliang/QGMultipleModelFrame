@@ -17,7 +17,5 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MvpActivity"/>
-        <!--网络请求封装2-->
-        <activity android:name=".activity.Net2Activity"/>
     </application>
 </manifest>

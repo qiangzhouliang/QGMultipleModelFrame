@@ -98,7 +98,7 @@ class DialogPanel(context: Context, theme: Int) : Dialog(context, theme) {
             val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             dialog = DialogPanel(context, R.style.Dialog)
             val layout = inflater.inflate(R.layout.common_dialog_main_layout, null)
-            dialog?.addContentView(layout, ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT))
+            dialog?.addContentView(layout, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
             layout.title.text = title
             if (positiveButtonText != null) {
                 layout.positiveButton.text = positiveButtonText
@@ -113,7 +113,7 @@ class DialogPanel(context: Context, theme: Int) : Dialog(context, theme) {
             }
             if (negativeButtonText != null) {
                 layout.negativeButton.text = negativeButtonText
-                layout.negativeButton.setTextColor(context.resources.getColor(R.color.white))
+                layout.negativeButton.setTextColor(context.resources.getColor(R.color.black))
                 if (negativeButtonClickListener != null) {
                     (layout.findViewById<View>(R.id.negativeButton) as Button).setOnClickListener {
                         negativeButtonClickListener?.onClick(dialog, DialogInterface.BUTTON_NEGATIVE)
@@ -139,14 +139,15 @@ class DialogPanel(context: Context, theme: Int) : Dialog(context, theme) {
             } else if (customView != null) {
                 layout.content.removeAllViews()
                 layout.content.addView(
-                    customView, ViewGroup.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT
-                    )
+                    customView, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
                 )
             }
             dialog?.setContentView(layout)
             return dialog as DialogPanel
+        }
+        //关闭当天dialog
+        fun colseDialog() {
+            dialog?.dismiss()
         }
     }
 
@@ -165,6 +166,7 @@ class DialogPanel(context: Context, theme: Int) : Dialog(context, theme) {
          * @param navStr2
          * @param nav2Listener
          */
+        @JvmStatic
         fun dialogOperate(
             context: Context,
             message: String,
@@ -192,5 +194,4 @@ class DialogPanel(context: Context, theme: Int) : Dialog(context, theme) {
             builder.createDialog().show()
         }
     }
-
 }

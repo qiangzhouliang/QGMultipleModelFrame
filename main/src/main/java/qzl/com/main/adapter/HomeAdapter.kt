@@ -13,12 +13,12 @@ import qzl.com.main.mvp.widget.HomeItemView
  * @class QGMusicKotlin
  * @package qzl.com.qgmusickotlin.adapter
  */
-class HomeAdapter : BasListAdapter<qzl.com.model.test.Data, HomeItemView>() {
+class HomeAdapter : BasListAdapter<Data, HomeItemView>() {
     override fun getItemView(context: Context?): HomeItemView {
         return HomeItemView(context)
     }
 
-    override fun refreshView(itemView: HomeItemView, data: qzl.com.model.test.Data) {
+    override fun refreshView(itemView: HomeItemView, data: Data) {
         itemView.setData(data)
     }
 

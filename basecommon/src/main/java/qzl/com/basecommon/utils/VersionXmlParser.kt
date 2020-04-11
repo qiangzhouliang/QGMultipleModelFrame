@@ -2,7 +2,7 @@ package qzl.com.basecommon.utils
 
 import android.util.Xml
 import org.xmlpull.v1.XmlPullParser
-import qzl.com.basecommon.net.domain.VersionInfo
+import qzl.com.model.app_info.VersionInfo
 
 import java.io.InputStream
 
@@ -21,14 +21,15 @@ object VersionXmlParser {
         val info = VersionInfo()
         while (type != XmlPullParser.END_DOCUMENT) {
             when (type) {
-                XmlPullParser.START_TAG -> if ("version" == parser.name) {
-                    info.version = parser.nextText()
-                } else if ("isForceUpdate" == parser.name) {
-                    info.isForceUpdate = java.lang.Boolean.parseBoolean(parser.nextText())
-                } else if ("apkSize" == parser.name) {
-                    info.apkSize = parser.nextText()
-                } else if ("description" == parser.name) {
-                    info.description = parser.nextText()
+                XmlPullParser.START_TAG -> when (parser.name) {
+                    "version" -> { info.version = parser.nextText() }
+                    "forceUpdate" -> { info.forceUpdate = java.lang.Boolean.parseBoolean(parser.nextText()) }
+                    "apkSize" -> {
+                        info.apkSize = parser.nextText()
+                    }
+                    "description" -> {
+                        info.description = parser.nextText()
+                    }
                 }
                 else -> {
                 }

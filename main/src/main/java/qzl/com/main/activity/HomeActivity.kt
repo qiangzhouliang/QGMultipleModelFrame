@@ -6,9 +6,11 @@ import android.view.KeyEvent
 import android.widget.AdapterView
 import android.widget.LinearLayout
 import android.widget.SimpleAdapter
+import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.index.*
 import kotlinx.android.synthetic.main.left.*
 import kotlinx.android.synthetic.main.main.*
+import qzl.com.basecommon.arouter.ARouterPath
 import qzl.com.basecommon.base.BaseActivity
 import qzl.com.basecommon.ui.kotlin.DialogPanel
 import qzl.com.basecommon.ui.kotlin.HeadControlPanel
@@ -28,6 +30,7 @@ import utilclass.Tt
  * @class HomeActivity
  * @package qzl.com.main.activity
  */
+@Route(path = ARouterPath.Home.HOME_ACTIVITY)
 class HomeActivity : BaseActivity() {
     private var exitTime: Long = 0
     override fun getLayoutId(): Int { return R.layout.index }

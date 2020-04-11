@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<!--	公共样式-->
+	<color name="theme_start">#3FC5FD</color>
+	<color name="theme_start_alpha">#AA3FC5FD</color>
+	<color name="theme_end">#0AEB7E</color>
+	<color name="theme_end_alpha">#AA0AEB7E</color>
+	<color name="checkBox_color">#2EEFB9</color>
+	<color name="user_name_color">#ff0084d4</color>
+	<color name="app_name_color">#ff1782c6</color>
+	<color name="white_alpha">#ccffffff</color><!--白色 -->
+
+
+
 	<color name="colorPrimary">#008577</color>
 	<color name="colorPrimaryDark">#00574B</color>
 	<color name="colorAccent">#D81B60</color>
@@ -95,4 +107,5 @@
 	<!--<color name="home_event_count">#71e0fe</color>-->
 	<color name="home_event_count">#71e0fe</color>
 	<color name="grey_content">#8a8a8a</color>
+
 </resources>

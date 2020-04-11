@@ -3,17 +3,18 @@ package qzl.com.main.activity
 import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
 import com.itheima.player.model.bean.HomeItemBean
-import qzl.com.basecommon.common.ARouterPath
-import qzl.com.basecommon.net.base.BasListActivity
-import qzl.com.basecommon.net.base.BasListAdapter
 import qzl.com.basecommon.net.base.BasListPresenter
+import qzl.com.basecommon.arouter.ARouterPath
+import qzl.com.basecommon.base.BasListActivity
+import qzl.com.basecommon.net.base.BasListAdapter
 import qzl.com.main.R
 import qzl.com.main.adapter.MvpAdapter
 import qzl.com.main.mvp.presenter.impl.MvpPresenterImpl
 import qzl.com.main.mvp.widget.MvpItemView
+import qzl.com.model.common.PagePara
 
 
-class MvpActivity: BasListActivity<List<HomeItemBean>,HomeItemBean, MvpItemView>() {
+class MvpActivity: BasListActivity<List<HomeItemBean>, HomeItemBean, MvpItemView>() {
     override fun initView() {
         initHead(R.id.head_layout_list,"mvp使用样例", View.OnClickListener { finishWithAnimation() })
     }
@@ -36,8 +37,8 @@ class MvpActivity: BasListActivity<List<HomeItemBean>,HomeItemBean, MvpItemView>
         return MvpPresenterImpl(this,this)
     }
 
-    override fun getList(response: List<HomeItemBean>?): List<HomeItemBean>? {
-        return response
+    override fun getList(response: List<HomeItemBean>?): Pair<List<HomeItemBean>?, PagePara?> {
+        return Pair(response,null)
     }
 
     override fun onDestroy() {

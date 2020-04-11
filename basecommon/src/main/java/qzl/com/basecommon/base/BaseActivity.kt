@@ -1,5 +1,6 @@
 package qzl.com.basecommon.base
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -9,20 +10,25 @@ import android.graphics.Color
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
+import androidx.appcompat.app.AppCompatActivity
+import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper
+import com.alibaba.android.arouter.launcher.ARouter
 import org.jetbrains.anko.startActivity
 import qzl.com.basecommon.R
+import qzl.com.basecommon.common.SysAccount
 import qzl.com.basecommon.ui.kotlin.HeadControlPanel
 import qzl.com.basecommon.ui.kotlin.navigation.AppBackHandledFragment
 import qzl.com.basecommon.ui.kotlin.navigation.AppBackHandledInterface
+import qzl.com.model.user_info.UserInfo
 import qzl.com.tools.network.NetworkReceiver
 import qzl.com.tools.operate.CompleteQuit
 import qzl.com.tools.utils.SerializableMap
+
 
 /**
  * @author 强周亮(Qzl)
@@ -36,16 +42,26 @@ abstract class BaseActivity : AppCompatActivity(), AppBackHandledInterface {
     private val networkReceiver by lazy { NetworkReceiver() }
     private var imageButton: ImageView? = null
     private var mBackHandedFragment: AppBackHandledFragment? = null
+    var sysUserInfo: UserInfo? = null
 
     var windowScale = 0f
         internal set
 
     var mErrorView: View? = null//错误页面view
 
+    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         window.requestFeature(Window.FEATURE_NO_TITLE)
+        super.onCreate(savedInstanceState)
+        // 「必须在 Application 的 onCreate 方法中执行 BGASwipeBackHelper.init 来初始化滑动返回」
+        // 在 super.onCreate(savedInstanceState) 之前调用该方法
+        initSwipeBackFinish()
+
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        CompleteQuit.getInstance()?.pushActivity(this)
+        sysUserInfo = SysAccount.getUserInfo(this)
+        //去除默认的代码，可以减少页面重绘
+//        window.setBackgroundDrawable(null)
         //设置沉侵式状态栏
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val window = window
@@ -57,12 +73,57 @@ abstract class BaseActivity : AppCompatActivity(), AppBackHandledInterface {
             window.statusBarColor = Color.TRANSPARENT
         }
 
-        CompleteQuit.getInstance()?.pushActivity(this)
         setContentView(getLayoutId())
         initView()
-        initListener()
         initData()
+        initListener()
         initErrorPage()
+    }
+    var mSwipeBackHelper: BGASwipeBackHelper? = null
+    /**
+     * 初始化滑动返回。在 super.onCreate(savedInstanceState) 之前调用该方法
+     */
+    private fun initSwipeBackFinish() {
+        mSwipeBackHelper = BGASwipeBackHelper(this, object :BGASwipeBackHelper.Delegate{
+            /**
+             * 滑动返回执行完毕，销毁当前 Activity
+             */
+            override fun onSwipeBackLayoutExecuted() {
+                mSwipeBackHelper?.swipeBackward();
+            }
+            /**
+             * 正在滑动返回
+             * @param slideOffset 从 0 到 1
+             */
+            override fun onSwipeBackLayoutSlide(slideOffset: Float) {
+
+            }
+            /**
+             * 没达到滑动返回的阈值，取消滑动返回动作，回到默认状态
+             */
+            override fun onSwipeBackLayoutCancel() {
+
+            }
+
+            override fun isSupportSwipeBack(): Boolean {
+                return true
+            }
+
+        })
+        // 设置滑动返回是否可用。默认值为 true
+        mSwipeBackHelper?.setSwipeBackEnable(true)
+        // 设置是否仅仅跟踪左侧边缘的滑动返回。默认值为 true
+        mSwipeBackHelper?.setIsOnlyTrackingLeftEdge(true)
+        // 设置是否是微信滑动返回样式。默认值为 true
+        mSwipeBackHelper?.setIsWeChatStyle(true)
+        // 设置是否显示滑动返回的阴影效果。默认值为 true
+        mSwipeBackHelper?.setIsNeedShowShadow(true)
+        // 设置阴影区域的透明度是否根据滑动的距离渐变。默认值为 true
+        mSwipeBackHelper?.setIsShadowAlphaGradient(true)
+        // 设置触发释放后自动滑动返回的阈值，默认值为 0.3f
+        mSwipeBackHelper?.setSwipeBackThreshold(0.3f)
+        // 设置底部导航条是否悬浮在内容上，默认值为 false
+        mSwipeBackHelper?.setIsNavigationBarOverlap(false)
     }
     /**
      * 获取布局id
@@ -206,6 +267,17 @@ abstract class BaseActivity : AppCompatActivity(), AppBackHandledInterface {
 
     fun finishRightOut() {
         overridePendingTransition(R.anim.default_anim, R.anim.push_right_out)
+    }
+    /**
+     * @desc 路由跳转页面
+     * @author 强周亮
+     * @time 2019/11/7 15:30
+     */
+    fun startActivityArouter (routPath:String,flag:Boolean = false){
+        ARouter.getInstance().build(routPath).navigation(this)
+        if (flag){
+            finishWithAnimation()
+        }
     }
 
     /**

@@ -24,8 +24,8 @@ abstract class BasCommonPopuWindow(private val mContext: Context) : BasePopuWind
     fun setPopWindowContent(layout: Int) {
         pupView = LayoutInflater.from(mContext).inflate(layout, null)
         contentView = pupView
-        setPopuWidth()
-        setPopHeight()
+        width = setPopuWidth()
+        height = setPopHeight()
         isTouchable = true
         isFocusable = true
         isOutsideTouchable = true
@@ -39,9 +39,9 @@ abstract class BasCommonPopuWindow(private val mContext: Context) : BasePopuWind
             }
             false
         })
+        initComplate(this, pupView)
         //显示popuwindow
         showPopuwindow(this)
-        initComplate(this, pupView)
     }
 
     /**
@@ -51,27 +51,8 @@ abstract class BasCommonPopuWindow(private val mContext: Context) : BasePopuWind
      * @param popuWindow
      */
     protected abstract fun showPopuwindow(popuWindow: BasePopuWindow)
-
     /**
-     * @desc 设置高度 默认 LinearLayout.LayoutParams.WRAP_CONTENT
-     * @author 强周亮
-     * @time 2019-02-26 17:51
-     */
-    fun setPopHeight() {
-        height = LinearLayout.LayoutParams.WRAP_CONTENT
-    }
-
-    /**
-     * @desc 设置宽度 默认 LinearLayout.LayoutParams.MATCH_PARENT
-     * @author 强周亮
-     * @time 2019-02-26 17:51
-     */
-    fun setPopuWidth() {
-        width = LinearLayout.LayoutParams.MATCH_PARENT
-    }
-
-    /**
-     *
+     * 初始化完成
      * @param popupWindow
      * @param pupView 内容view
      */

@@ -6,7 +6,9 @@ import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
 import android.text.TextUtils
+import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper
 import com.alibaba.android.arouter.launcher.ARouter
+import org.xutils.x
 import qzl.com.tools.operate.java.ReadProperties
 import utilclass.Tt
 import java.util.*
@@ -19,21 +21,48 @@ import java.util.*
  * @class SysApplication
  */
 class SysApplication : Application() {
-
     override fun onCreate() {
         super.onCreate()
+        //判断签名信息是否一致，不一致则有可能被重新打包了
+        /*if (AppUtil.getSignature(this) != 1608383266) {
+            Tt.showShort("APP可能被重打包了，请联系系统管理员查看处理")
+            try {
+                Thread.sleep(1000)
+                CompleteQuit.getInstance()?.quit(this)
+            } catch (e: InterruptedException) {
+                e.printStackTrace()
+            }
+        }*/
+
         instance = this
         if (isUIProcess()) {
             //初始化弹窗控件
             Tt.init(this)
-            //初始化路由
             initARouter()
-            //未处理异常、运行时异常捕获
-            when (ReadProperties.getPropertyByStr("isOpenException")){
-                "true" -> ExceptionHandler.getInstance().init(applicationContext)
-            }
+            initXutils()
+
+            initErrorException()
+
+
+            //初始化滑动退出
+            BGASwipeBackHelper.init(this, null);
         }
     }
+
+    private fun initErrorException() {
+        //未处理异常、运行时异常捕获
+        if (ReadProperties.getPropertyByStr("isOpenException") == "true"){
+            ExceptionHandler.getInstance().init(applicationContext)
+        }
+    }
+
+
+
+    private fun initXutils() {
+        x.Ext.init(this)
+        x.Ext.setDebug(BuildConfig.DEBUG) // 是否输出debug日志, 开启debug会影响性能.
+    }
+
 
     /**
      * 初始化路由

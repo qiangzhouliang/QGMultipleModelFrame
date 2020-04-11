@@ -8,18 +8,18 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.os.Message
-import androidx.core.content.FileProvider
-import android.util.Log
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import com.google.gson.Gson
-import qzl.com.basecommon.net.domain.VersionInfo
 import qzl.com.basecommon.ui.java.LoadingDialog
 import qzl.com.basecommon.utils.VersionXmlParser
+import qzl.com.model.app_info.VersionInfo
 import qzl.com.tools.thread.ThreadPoolProxyFactory
 import qzl.com.tools.utils.AppInfoUtil
+import qzl.com.tools.utils.LogUtils
 import qzl.com.tools.utils.ScreenUtil
+import qzl.com.tools.utils.StringHelper
 import utilclass.NetworkUtil
-import utilclass.StringHelper
 import utilclass.Tt
 import java.io.*
 import java.lang.Thread.sleep
@@ -62,19 +62,6 @@ class CheckVersion(var activity: Activity, var isSyncHandle: Boolean = false //�
         mHandler = MyHandler(activity)
     }
 
-    /**
-     * 处理缓存后的版本信息
-     */
-    fun handleCacheVerInfo() {
-        info = Constant.VERSION_MAP[Constant.VERSION_INFO] as VersionInfo?
-        val versionStat =
-            if ("" == StringHelper.toString(Constant.VERSION_MAP[Constant.VERSION_STATE])) "0" else StringHelper.toString(
-                Constant.VERSION_MAP[Constant.VERSION_STATE]
-            )
-        val state = Integer.parseInt(versionStat)
-        handleByCheckState(state)
-    }
-
     fun handleByCheckState(state: Int) {
         when (state) {
             UPDATA_NONEED -> if (isSyncHandle) {
@@ -99,10 +86,10 @@ class CheckVersion(var activity: Activity, var isSyncHandle: Boolean = false //�
         try {
             val path = if ("0" == Constant.versionInfoFlag) {
                 //从配置文件查看版本信息
-                Constant.baseUrl.replace("/hzz/rest/", "/") + "version/version.xml"
+                Constant.baseUrl + "version/version.xml"
             } else {
                 //从数据库查看版本信息
-                Constant.baseUrl + "common/apkVersionCheck"
+                Constant.baseUrl + ConstantUrl.Auth.GET_APK_VERSION
             }
             val url = URL(path)
             val conn = url.openConnection() as HttpURLConnection
@@ -118,19 +105,19 @@ class CheckVersion(var activity: Activity, var isSyncHandle: Boolean = false //�
             } else {
                 getVersionInfo(`is`)
             }
-            if (info?.version == localVersion) {
-                Log.i("检查版本结果：", "版本号相同")
+            if (StringHelper.isEmptyString(info?.version) || info?.version == localVersion) {
+                LogUtils.i("检查版本结果：版本号相同")
                 val msg = Message()
                 msg.what = UPDATA_NONEED
                 mHandler?.sendMessage(msg)
             } else {
-                Log.i("检查版本结果：", "版本号不相同 ")
+                LogUtils.i("检查版本结果：版本号不相同")
                 val msg = Message()
                 msg.what = UPDATA_CLIENT
                 mHandler?.sendMessage(msg)
             }
         } catch (e: Exception) {
-            Log.i("检查版本结果：", "获取版本信息失败")
+            LogUtils.i("检查版本结果：获取版本信息失败")
             val msg = Message()
             msg.what = GET_UNDATAINFO_ERROR
             mHandler?.sendMessage(msg)
@@ -187,7 +174,7 @@ class CheckVersion(var activity: Activity, var isSyncHandle: Boolean = false //�
     }
 
     /**
-     * @desc 下载apk
+     * @desc
      * @author 强周亮
      * @time 2018-12-10 20:05
      */
@@ -207,17 +194,17 @@ class CheckVersion(var activity: Activity, var isSyncHandle: Boolean = false //�
             try {
                 val path: String
                 if ("0" == Constant.versiondownloadFlag) {
-                    //pc端下载
-                    path = Constant.pcUpdateApkUrl
+                    //接口中从ftp上下载
+                    path = Constant.baseUrl + ConstantUrl.File.FILE_DOWNLOAD_APK+"?fileUrl=${info?.fileUrl}&downloadOrUpdate=02"
                     val patchFile = getFileFromServer(path, pd)
-                    sleep(3000)
+                    sleep(2000)
                     installApk(patchFile)
                     pd.dismiss() //结束掉进度条对话框
                 } else {
-                    //接口中下载
-                    path = Constant.baseUrl.replace("/hzz/rest/", "/") + "version/hzz.apk"
+                    //接口配置文件中下载
+                    path = Constant.baseUrl + "version/lzshzz.apk"
                     val patchFile = getFileFromServer(path, pd)
-                    sleep(3000)
+                    sleep(2000)
                     installApk(patchFile)
                     pd.dismiss() //结束掉进度条对话框
                 }
@@ -253,9 +240,9 @@ class CheckVersion(var activity: Activity, var isSyncHandle: Boolean = false //�
                 dir.mkdir()
             }
         } else {
-            dir = activity!!.cacheDir
+            dir = activity.cacheDir
         }
-        val file = File(dir.absolutePath, "hzz.apk")
+        val file = File(dir.absolutePath, "lzshzz.apk")
         val fos = FileOutputStream(file)
         val bis = BufferedInputStream(`is`)
         try {
@@ -293,7 +280,7 @@ class CheckVersion(var activity: Activity, var isSyncHandle: Boolean = false //�
         //执行的数据类型
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             val contentUri =
-                activity?.applicationContext?.let { FileProvider.getUriForFile(it, "qzl.com.qgmultiplemodelframe", file) }
+                activity.applicationContext?.let { FileProvider.getUriForFile(it, "com.zdww.lzshzz.fileProvider", file) }
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             //添加这一句表示对目标应用临时授权该Uri所代表的文件
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -302,7 +289,7 @@ class CheckVersion(var activity: Activity, var isSyncHandle: Boolean = false //�
             intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive")
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         }
-        activity?.startActivity(intent)
+        activity.startActivity(intent)
         android.os.Process.killProcess(android.os.Process.myPid())
     }
 

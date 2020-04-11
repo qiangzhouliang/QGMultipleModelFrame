@@ -74,5 +74,6 @@ dependencies {
         implementation project(":videoplayer")
         implementation project(":fileuploadanddownload")
         implementation project(":mpandroidchart")
+        implementation project(":login")
     }
 }

@@ -5,7 +5,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
 import kotlinx.android.synthetic.main.activity_video_player_jiecao.*
 import qzl.com.basecommon.base.BaseActivity
-import qzl.com.basecommon.common.ARouterPath
+import qzl.com.basecommon.arouter.ARouterPath
 import qzl.com.basecommon.utils.GlideUtils
 import utilclass.StringHelper
 

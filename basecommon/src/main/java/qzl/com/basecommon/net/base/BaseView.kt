@@ -17,10 +17,5 @@ interface BaseView<RESPONSE> {
     /**
      * 初始化数据或者刷新数据成功
      */
-    fun loadSuccess(list: RESPONSE?)
-
-    /**
-     * 加载更多成功
-     */
-    fun loadMoreSuccess(list: RESPONSE?)
+    fun loadSuccess(result: RESPONSE?)
 }

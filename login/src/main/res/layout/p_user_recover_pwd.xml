@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/head_layout"
+        layout="@layout/head_control_panel" />
+
+    <TextView
+        style="@style/user_recover_pwd_text"
+        android:text="请输入用户名：" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/search_content_frame">
+        <EditText
+            android:id="@+id/user_recover_name"
+            style="@style/user_recover_pwd_edit"
+            android:background="@null"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:hint="请输入用户名"
+            android:clickable="true"
+            android:textSize="@dimen/text_size_14"/>
+    </LinearLayout>
+    <TextView
+        style="@style/user_recover_pwd_text"
+        android:text="请输入手机号：" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/search_content_frame">
+        <EditText
+            android:id="@+id/user_recover_telephone"
+            style="@style/user_recover_pwd_edit"
+            android:background="@null"
+            android:inputType="phone"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:hint="请输入手机号"
+            android:textSize="@dimen/text_size_14"/>
+    </LinearLayout>
+    <TextView
+        style="@style/user_recover_pwd_text"
+        android:text="请输入短信验证码：" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/user_recover_safe_code"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            style="@style/user_recover_pwd_edit"
+            android:layout_marginLeft="8dp"
+            android:inputType="number"
+            android:hint="短信验证码" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/user_recover_get_veri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/dp_100"
+                android:paddingLeft="@dimen/dp_10"
+                android:paddingRight="@dimen/dp_10"
+                android:paddingTop="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_12"
+                android:background="@drawable/login_btn_bg"
+                android:button="@null"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="获取验证码"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/text_size_14"/>
+        </FrameLayout>
+    </LinearLayout>
+    <Button
+        android:id="@+id/next_btn"
+        android:layout_marginTop="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="下一步"
+        android:textColor="@color/modify_pwd_txt_selector"
+        android:background="@drawable/title_bg" />
+
+</LinearLayout>

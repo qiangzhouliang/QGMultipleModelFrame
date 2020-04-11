@@ -60,9 +60,15 @@ dependencies {
     /*动态权限获取*/
     api deps.permissiongen
     api deps.gson
-    api deps.okhttp3
+    api deps.volley
+    api deps.android_async_http
     api deps.recyclerview
     api deps.cardview
     /*底部导航栏*/
     api deps.bottom_bar
+    api deps.bga_swipebacklayout
+//    校验插件
+    api deps.android_saripaar
+//    文件上传
+    api deps.xutils
 }

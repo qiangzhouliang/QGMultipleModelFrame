@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import qzl.com.basecommon.R;
-import qzl.com.basecommon.net.domain.VersionInfo;
+import qzl.com.model.app_info.VersionInfo;
 
 /**
  * @author 强周亮(Qzl)
@@ -58,7 +58,7 @@ public class LoadingDialog {
         View v = inflater.inflate(R.layout.version_dialog, null);// 得到加载view
         View confirmBtn = (View) v.findViewById(R.id.version_confirm_btn);//确认更新按钮
         confirmBtn.setOnClickListener(confirmClickListener);
-        if(!versionInfo.isForceUpdate()){
+        if(!versionInfo.getForceUpdate()){
             View centerLine = (View) v.findViewById(R.id.version_center_line);
             View cancaleBtn = (View) v.findViewById(R.id.version_cancle_btn);//取消更新按钮
             centerLine.setVisibility(View.VISIBLE);
