@@ -1,7 +1,0 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="qzl.com.basecommon">
-    <application>
-        <!--查看大图图片展示公共类-->
-        <activity android:name=".base.BaseLargeImgActivity"/>
-    </application>
-</manifest>
