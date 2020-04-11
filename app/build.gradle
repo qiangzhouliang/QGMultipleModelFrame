@@ -68,7 +68,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation deps.kotlin_stdlib
     implementation deps.anko
-    implementation project(":basecommon")
+    implementation project(':base_common')
     if (!isRunAlone) {
         implementation project(":main")
         implementation project(":videoplayer")

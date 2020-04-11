@@ -60,5 +60,5 @@ dependencies {
     implementation deps.appcompat
     implementation deps.constraint
     kapt deps.arouter_compiler
-    implementation project(":basecommon")
+    implementation project(':base_common')
 }

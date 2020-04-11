@@ -7,7 +7,6 @@ import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.item_home.view.*
 import qzl.com.basecommon.utils.GlideUtils
 import qzl.com.main.R
-import qzl.com.model.test.Data
 
 /**
  * @desc 首页条目view

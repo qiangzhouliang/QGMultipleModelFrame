@@ -31,7 +31,14 @@ object GlideUtils {
      */
     fun loadImgAnim(mContext: Context, iv: ImageView, imgUrl: String, rotate: Int = R.drawable.common_rotate_pro,errorImg:Int = R.drawable.no_img_1,isShowAnim:Boolean = true) {
         val options = RequestOptions().placeholder(rotate)
-        loadImgAnimCommom(mContext,iv,imgUrl,options,errorImg,isShowAnim)
+        loadImgAnimCommom(
+            mContext,
+            iv,
+            imgUrl,
+            options,
+            errorImg,
+            isShowAnim
+        )
     }
 
     /**
@@ -41,7 +48,13 @@ object GlideUtils {
      */
     fun loadImgBlurTrans(mContext: Context, iv: ImageView, imgUrl: String,radius:Int,sampling:Int,errorImg:Int = R.drawable.no_img_1) {
         val options = RequestOptions.bitmapTransform(BlurTransformation(radius,sampling))
-        loadImgAnimCommom(mContext,iv,imgUrl,options,errorImg)
+        loadImgAnimCommom(
+            mContext,
+            iv,
+            imgUrl,
+            options,
+            errorImg
+        )
     }
     /**
      * @desc 加载圆角图片
@@ -52,7 +65,13 @@ object GlideUtils {
         val options = RequestOptions.bitmapTransform(
             RoundedCornersTransformation(radius, margin, RoundedCornersTransformation.CornerType.ALL)
         )
-        loadImgAnimCommom(mContext,iv,imgUrl,options,errorImg)
+        loadImgAnimCommom(
+            mContext,
+            iv,
+            imgUrl,
+            options,
+            errorImg
+        )
     }
     /**
      * @desc 图片上添加遮盖
@@ -61,7 +80,13 @@ object GlideUtils {
      */
     fun loadImgMask(mContext: Context, iv: ImageView, imgUrl: String,maskId:Int,errorImg:Int = R.drawable.no_img_1) {
         val options = RequestOptions.bitmapTransform(MaskTransformation(maskId))
-        loadImgAnimCommom(mContext,iv,imgUrl,options,errorImg)
+        loadImgAnimCommom(
+            mContext,
+            iv,
+            imgUrl,
+            options,
+            errorImg
+        )
     }
     /**
      * @desc 图片灰度处理
@@ -70,7 +95,13 @@ object GlideUtils {
      */
     fun loadImgGrayscale(mContext: Context, iv: ImageView, imgUrl: String,errorImg:Int = R.drawable.no_img_1) {
         val options = RequestOptions.bitmapTransform(GrayscaleTransformation())
-        loadImgAnimCommom(mContext,iv,imgUrl,options,errorImg)
+        loadImgAnimCommom(
+            mContext,
+            iv,
+            imgUrl,
+            options,
+            errorImg
+        )
     }
     /**
      * @desc 加载圆形图片
@@ -79,7 +110,14 @@ object GlideUtils {
      */
     fun loadImgCropCircle(mContext: Context, iv: ImageView, imgUrl: String,errorImg:Int = R.drawable.no_img_1,isShowAnim:Boolean = true) {
         val options = RequestOptions.circleCropTransform()
-        loadImgAnimCommom(mContext,iv,imgUrl,options,errorImg,isShowAnim)
+        loadImgAnimCommom(
+            mContext,
+            iv,
+            imgUrl,
+            options,
+            errorImg,
+            isShowAnim
+        )
     }
     /**
      * @desc 加载图片，带有加载中动画

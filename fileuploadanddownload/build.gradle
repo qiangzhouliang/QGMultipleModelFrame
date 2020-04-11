@@ -50,5 +50,5 @@ dependencies {
     implementation deps.kotlin_stdlib
     implementation deps.anko
     kapt deps.arouter_compiler
-    implementation project(":basecommon")
+    implementation project(':base_common')
 }
