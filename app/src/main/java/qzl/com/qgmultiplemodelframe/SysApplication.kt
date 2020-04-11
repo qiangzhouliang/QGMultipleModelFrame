@@ -8,8 +8,12 @@ import androidx.multidex.MultiDex
 import android.text.TextUtils
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper
 import com.alibaba.android.arouter.launcher.ARouter
+import com.umeng.analytics.MobclickAgent
+import com.umeng.commonsdk.UMConfigure
 import org.xutils.x
-import qzl.com.tools.operate.java.ReadProperties
+import qzl.com.tools.operate.ReadProperties
+import qzl.com.tools.utils.AppUtil
+import qzl.com.tools.utils.MyLogUtils
 import utilclass.Tt
 import java.util.*
 
@@ -35,17 +39,39 @@ class SysApplication : Application() {
         }*/
 
         instance = this
+        //初始化读取配置文件信息
+        ReadProperties.setContext(this)
+//        初始化日志控件
+        MyLogUtils.init(this)
         if (isUIProcess()) {
             //初始化弹窗控件
             Tt.init(this)
             initARouter()
             initXutils()
-
             initErrorException()
-
+//            友盟初始化
+            initUM()
 
             //初始化滑动退出
             BGASwipeBackHelper.init(this, null);
+        }
+    }
+
+    private fun initUM() {
+        /**
+         * 注意: 即使您已经在AndroidManifest.xml中配置过appkey和channel值，也需要在App代码中调
+         * 用初始化接口（如需要使用AndroidManifest.xml中配置好的appkey和channel值，
+         * UMConfigure.init调用中appkey和channel参数请置为null）。
+         */
+        UMConfigure.init(this,UMConfigure.DEVICE_TYPE_PHONE,null)
+        // 选用AUTO页面采集模式
+        MobclickAgent.setPageCollectionMode(MobclickAgent.PageMode.AUTO)
+        if (AppUtil.isApkInDebug(this)) {
+            /**
+             * 设置组件化的Log开关
+             * 参数: boolean 默认为false，如需查看LOG设置为true
+             */
+            UMConfigure.setLogEnabled(true)
         }
     }
 

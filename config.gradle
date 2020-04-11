@@ -103,4 +103,9 @@ deps.bga_swipebacklayout =  'cn.bingoogolapple:bga-swipebacklayout:2.0.1'
 deps.android_saripaar = 'com.mobsandgeeks:android-saripaar:1.0.3'
 //使用文件上传
 deps.xutils = 'org.xutils:xutils:3.8.3'
+
+//集成友盟统计
+deps.umsdk_analytics = 'com.umeng.umsdk:analytics:8.0.0'
+deps.umsdk_common = 'com.umeng.umsdk:common:2.0.0'
+
 ext.deps = deps

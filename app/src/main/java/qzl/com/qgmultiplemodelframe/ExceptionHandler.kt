@@ -6,7 +6,7 @@ import android.content.Intent
 import android.os.Looper
 import qzl.com.tools.operate.CompleteQuit
 import qzl.com.tools.thread.ThreadPoolProxyFactory
-import qzl.com.tools.utils.LogUtils
+import qzl.com.tools.utils.MyLogUtils
 import java.io.PrintWriter
 import java.io.StringWriter
 
@@ -50,7 +50,7 @@ private constructor() : Thread.UncaughtExceptionHandler {
         val printWriter = PrintWriter(writer)
         e.printStackTrace(printWriter);
         val msg = writer.toString()
-        LogUtils.e("\r\nCurrentThread:" + Thread.currentThread() + "\r\nException:\r\n" + msg)
+        MyLogUtils.e("\r\nCurrentThread:" + Thread.currentThread() + "\r\nException:\r\n" + msg)
         ThreadPoolProxyFactory.normalThreadPoolProxy?.execute (Runnable {
             Looper.prepare()
             try {

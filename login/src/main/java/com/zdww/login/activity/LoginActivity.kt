@@ -214,7 +214,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Timer.TimeIntf, Base
 
     override fun onError(message: String?) {
         ThreadUtil.runOnMainThread(Runnable {
-            LogUtils.e(message?:"登录失败")
+            MyLogUtils.e(message?:"登录失败")
             Tt.showShort("登录失败")
         })
     }

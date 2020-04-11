@@ -71,4 +71,7 @@ dependencies {
     api deps.android_saripaar
 //    文件上传
     api deps.xutils
+    //集成友盟统计
+    api deps.umsdk_analytics
+    api deps.umsdk_common
 }

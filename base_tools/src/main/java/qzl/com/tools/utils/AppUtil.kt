@@ -149,4 +149,12 @@ object AppUtil {
         val bd = d as BitmapDrawable
         return bd.bitmap
     }
+
+    //判断当前应用是否是debug状态
+    @JvmStatic
+    @Synchronized
+    fun isApkInDebug(context: Context): Boolean{
+        return context.applicationInfo != null &&
+                context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
+    }
 }

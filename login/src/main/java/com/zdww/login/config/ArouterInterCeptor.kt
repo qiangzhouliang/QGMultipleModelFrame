@@ -6,7 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Interceptor
 import com.alibaba.android.arouter.facade.callback.InterceptorCallback
 import com.alibaba.android.arouter.facade.template.IInterceptor
 import com.zdww.login.R
-import qzl.com.tools.utils.LogUtils
+import qzl.com.tools.utils.MyLogUtils
 
 /**
  * @desc 路由跳转拦截器
@@ -25,6 +25,6 @@ class ArouterInterCeptor: IInterceptor {
 
     override fun init(context: Context?) {
         mContext = context
-        LogUtils.d("路由跳转拦截器初始化")
+        MyLogUtils.d("路由跳转拦截器初始化")
     }
 }

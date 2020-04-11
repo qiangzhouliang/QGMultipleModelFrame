@@ -8,7 +8,6 @@ import qzl.com.basecommon.net.net.BaseRequest
 import qzl.com.basecommon.net.net.MRequest
 import qzl.com.basecommon.net.net.ResponseHandler
 import qzl.com.model.login.CheckNumModel
-import qzl.com.tools.utils.LogUtils
 import utilclass.Tt
 
 /**

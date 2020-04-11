@@ -1,6 +1,6 @@
 package qzl.com.basecommon.common
 
-import qzl.com.tools.operate.java.ReadProperties
+import qzl.com.tools.operate.ReadProperties
 import java.util.*
 
 /**

@@ -15,8 +15,8 @@ import qzl.com.basecommon.ui.java.LoadingDialog
 import qzl.com.basecommon.utils.VersionXmlParser
 import qzl.com.model.app_info.VersionInfo
 import qzl.com.tools.thread.ThreadPoolProxyFactory
-import qzl.com.tools.utils.AppInfoUtil
-import qzl.com.tools.utils.LogUtils
+import qzl.com.tools.utils.AppUtil
+import qzl.com.tools.utils.MyLogUtils
 import qzl.com.tools.utils.ScreenUtil
 import qzl.com.tools.utils.StringHelper
 import utilclass.NetworkUtil
@@ -58,7 +58,7 @@ class CheckVersion(var activity: Activity, var isSyncHandle: Boolean = false //�
     private var mHandler: MyHandler? = null
 
     init {
-        this.localVersion = AppInfoUtil.getVersionName(activity)
+        this.localVersion = AppUtil.getVersionName(activity)
         mHandler = MyHandler(activity)
     }
 
@@ -106,18 +106,18 @@ class CheckVersion(var activity: Activity, var isSyncHandle: Boolean = false //�
                 getVersionInfo(`is`)
             }
             if (StringHelper.isEmptyString(info?.version) || info?.version == localVersion) {
-                LogUtils.i("检查版本结果：版本号相同")
+                MyLogUtils.i("检查版本结果：版本号相同")
                 val msg = Message()
                 msg.what = UPDATA_NONEED
                 mHandler?.sendMessage(msg)
             } else {
-                LogUtils.i("检查版本结果：版本号不相同")
+                MyLogUtils.i("检查版本结果：版本号不相同")
                 val msg = Message()
                 msg.what = UPDATA_CLIENT
                 mHandler?.sendMessage(msg)
             }
         } catch (e: Exception) {
-            LogUtils.i("检查版本结果：获取版本信息失败")
+            MyLogUtils.i("检查版本结果：获取版本信息失败")
             val msg = Message()
             msg.what = GET_UNDATAINFO_ERROR
             mHandler?.sendMessage(msg)

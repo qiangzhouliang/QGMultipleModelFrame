@@ -182,3 +182,14 @@
 #不混淆所有的model
 -keep class qzl.com.model.** {*;}
 
+# 友盟混淆配置
+-keep class com.umeng.** {*;}
+-keepclassmembers class * {
+   public <init> (org.json.JSONObject);
+}
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+

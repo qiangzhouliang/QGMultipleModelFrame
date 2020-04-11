@@ -20,7 +20,7 @@ import qzl.com.main.extensions.menuItems
 import qzl.com.main.util.FragmentUtil
 import qzl.com.main.view.java.DragLayout
 import qzl.com.tools.operate.CompleteQuit
-import qzl.com.tools.utils.AppInfoUtil
+import qzl.com.tools.utils.AppUtil
 import utilclass.Tt
 /**
  * @author 强周亮(Qzl)
@@ -37,7 +37,7 @@ class HomeActivity : BaseActivity() {
     override fun initView() {
         findViewById<HeadControlPanel>(R.id.head_layout).setMiddleTitle("首页")
         //软件版本信息
-        version.text = "v${AppInfoUtil.getVersionName(this)}"
+        version.text = "v${AppUtil.getVersionName(this)}"
     }
     override fun initListener() {
         dl.setDragListener(object : DragLayout.DragListener {

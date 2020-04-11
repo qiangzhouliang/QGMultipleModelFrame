@@ -8,7 +8,7 @@ import qzl.com.basecommon.net.net.BaseRequest
 import qzl.com.basecommon.net.net.MRequest
 import qzl.com.basecommon.net.net.ResponseHandler
 import qzl.com.model.login.CheckNumModel
-import qzl.com.tools.utils.LogUtils
+import qzl.com.tools.utils.MyLogUtils
 import utilclass.Tt
 
 /**
@@ -46,7 +46,7 @@ class CheckNumPresenterImpl(var mContext: Context?, var checkView: JiaoYanCheckN
      * 加载数据失败
      */
     override fun onError(type:Int?,msg: String?) {
-        LogUtils.e(msg?:"验证码发送失败")
+        MyLogUtils.e(msg?:"验证码发送失败")
         Tt.showShort("验证码发送失败")
     }
 

@@ -7,7 +7,7 @@ import com.netcompss.ffmpeg4android.ProgressCalculator
 import com.netcompss.loader.LoadJNI
 import qzl.com.tools.thread.ThreadPoolProxyFactory
 import qzl.com.tools.utils.AppUtil
-import qzl.com.tools.utils.LogUtils
+import qzl.com.tools.utils.MyLogUtils
 import java.io.File
 import java.lang.Thread.sleep
 
@@ -64,34 +64,34 @@ class VideoCompressor private constructor(private val mContext: Context) {
                 try {
                     compressByFFmpeg(context, inputFile, listener)
                 } catch (e: Exception) {
-                    LogUtils.e("compress exception:" + e.message)
+                    MyLogUtils.e("compress exception:" + e.message)
                 }
             }
             ThreadPoolProxyFactory.normalThreadPoolProxy!!.execute(runnable)
             getVideoDuration(inputFile)
             val proUpdateRunnable = Runnable {
                 val pc = ProgressCalculator(vkLogPath)
-                LogUtils.e("Progress update started")
+                MyLogUtils.e("Progress update started")
                 var progress = -1
                 try {
                     while (true) {
                         sleep(50)
                         progress = pc.calcProgress()
                         if (progress != 0 && progress < 100) {
-                            LogUtils.e("progress=$progress")
+                            MyLogUtils.e("progress=$progress")
                             listener.onProgress(progress)
                         } else if (progress >= 100) {
                         }
                     }
                 } catch (e: Exception) {
-                    LogUtils.e("threadmessage:" + e.message)
+                    MyLogUtils.e("threadmessage:" + e.message)
                 }
             }
             ThreadPoolProxyFactory.normalThreadPoolProxy?.execute(proUpdateRunnable)
         }
 
         private fun compressByFFmpeg(context: Context, inputFile: String, listener: VideoCompressListener) {
-            LogUtils.e("runTranscodingUsingLoader started...")
+            MyLogUtils.e("runTranscodingUsingLoader started...")
             vk = LoadJNI()
             var newFilename: String? = null
             try {
@@ -103,7 +103,7 @@ class VideoCompressor private constructor(private val mContext: Context) {
             } catch (e: CommandValidationException) {
                 commandValidationFailedFlag = true
             } catch (e: Throwable) {
-                LogUtils.e("vk run exeption.$e")
+                MyLogUtils.e("vk run exeption.$e")
             }
 
             var rc = if (commandValidationFailedFlag) {
@@ -112,7 +112,7 @@ class VideoCompressor private constructor(private val mContext: Context) {
                 GeneralUtils.getReturnCodeFromLog(vkLogPath)
             }
             val status = rc
-            LogUtils.e("compress rc=$rc")
+            MyLogUtils.e("compress rc=$rc")
             if ("Transcoding Status: Failed" == status) {
                 val strFailInfo = "Check: $vkLogPath for more information."
                 listener.onFail(strFailInfo)

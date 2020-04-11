@@ -153,7 +153,7 @@ public class Timer {
             if (sTimeIntf != null){
                 sTimeIntf.setIntervalTime(time);
             }else {
-                LogUtils.e("接口： sTimeIntf 未初始化");
+                MyLogUtils.e("接口： sTimeIntf 未初始化");
             }
         }
     }

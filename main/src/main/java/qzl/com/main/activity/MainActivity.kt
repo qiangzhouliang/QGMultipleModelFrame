@@ -9,7 +9,8 @@ import qzl.com.basecommon.base.BaseLargeImgActivity
 import qzl.com.basecommon.arouter.ARouterPath
 import qzl.com.basecommon.arouter.ARouterUtil
 import qzl.com.main.R
-import qzl.com.tools.utils.AreaCodeUtil
+import qzl.com.tools.operate.ReadProperties
+import utilclass.Tt
 
 class MainActivity : BaseActivity(), View.OnClickListener {
     override fun getLayoutId() = R.layout.activity_main
@@ -26,6 +27,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         fileuploadordownload.setOnClickListener(this)
         home.setOnClickListener(this)
         chart.setOnClickListener(this)
+        Tt.showShort(ReadProperties.getPropertyByStr("server.url"))
     }
     override fun onClick(v: View) {
         when(v){

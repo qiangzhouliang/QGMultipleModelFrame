@@ -8,6 +8,7 @@ buildscript {
         maven { url "https://jitpack.io" }
         jcenter()
         google()
+        maven { url 'https://dl.bintray.com/umsdk/release' }
     }
     dependencies {
         //编译插件
@@ -23,7 +24,7 @@ allprojects {
         maven { url "https://jitpack.io" }
         jcenter()
         google()
-
+        maven { url 'https://dl.bintray.com/umsdk/release' }
     }
 }
 subprojects {

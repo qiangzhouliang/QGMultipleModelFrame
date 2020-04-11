@@ -17,7 +17,7 @@ import qzl.com.fileuploadanddownload.intf.DownloadFileSetDataIntf;
 import qzl.com.fileuploadanddownload.intf.DownloadFileSetDataIntfUtil;
 import qzl.com.fileuploadanddownload.popuWindow.ExpandablePopupWindow;
 import qzl.com.tools.utils.FileUtil;
-import qzl.com.tools.utils.LogUtils;
+import qzl.com.tools.utils.MyLogUtils;
 import utilclass.Tt;
 
 import java.io.File;
@@ -88,7 +88,7 @@ public class DownloadFile {
     }
 
     private static void download(String filePath, String fileUrl, final Activity finalMActivity, String fileName) {
-        LogUtils.e("download "+fileUrl);
+        MyLogUtils.e("download "+fileUrl);
         File file = new File(filePath);
         if (!file.exists()){
             file.mkdir();
@@ -156,7 +156,7 @@ public class DownloadFile {
             intent.setClass(activity, BaseLargeImgActivity.class);
             activity.startActivity(intent);
         }else {
-            LogUtils.e("DownloadFile，mActivity 为null");
+            MyLogUtils.e("DownloadFile，mActivity 为null");
         }
     }
 }
