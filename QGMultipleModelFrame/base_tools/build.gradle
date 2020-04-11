@@ -1,0 +1,77 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+android {
+    compileSdkVersion deps.compile_sdk
+    defaultConfig {
+        minSdkVersion deps.min_sdk
+        targetSdkVersion deps.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api deps.appcompat
+    api deps.constraint
+    api deps.androidx_core
+    testImplementation deps.junit
+    androidTestImplementation deps.runner
+    androidTestImplementation deps.espresso_core
+    api files('libs/qzlUtil.jar')
+    api files('libs/nineoldandroids-2.4.0.jar')
+    api files('libs/xUtils-2.6.14.jar')
+    api project(path: ':ffmpeg4android')
+    api deps.arouter_api
+    api deps.android_async_http
+    api deps.kotlin_stdlib
+    api deps.anko
+    /*加载图片的插件*/
+    api deps.glide
+    kapt deps.glide_compiler
+    api deps.glide_transformations
+    /*动态权限获取*/
+    api deps.permissiongen
+    api deps.gson
+    api deps.volley
+    api deps.android_async_http
+    api deps.recyclerview
+    api deps.cardview
+    /*底部导航栏*/
+    api deps.bottom_bar
+    api deps.bga_swipebacklayout
+//    校验插件
+    api deps.android_saripaar
+//    文件上传
+    api deps.xutils
+    //集成友盟统计
+    api deps.umsdk_analytics
+    api deps.umsdk_common
+}

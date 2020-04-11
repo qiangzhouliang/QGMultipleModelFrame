@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="material_grid">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/margin_2x</item>
+        <item name="android:layout_marginTop">@dimen/margin_default</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:horizontalSpacing">@dimen/width_default_half</item>
+        <item name="android:numColumns">5</item>
+        <item name="android:paddingLeft">@dimen/padding_2x</item>
+        <item name="android:paddingRight">@dimen/padding_2x</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:verticalSpacing">@dimen/width_default_half</item>
+    </style>
+    <style name="popupWindowAnimation">
+        <item name="android:windowEnterAnimation">@anim/popshow_anim</item>
+        <item name="android:windowExitAnimation">@anim/pophidden_anim</item>
+    </style>
+    <!--popuwindow从下往上弹出-->
+    <style name="anim_menu_bottombar">
+        <item name="android:windowEnterAnimation">@anim/popshow_anim_down</item>
+        <item name="android:windowExitAnimation">@anim/pophidden_anim_down</item>
+    </style>
+    <!--popuwindow从右往左弹出-->
+    <style name="anim_menu_right_to_left">
+        <item name="android:windowEnterAnimation">@anim/popshow_anim_right</item>
+        <item name="android:windowExitAnimation">@anim/pophidden_anim_right</item>
+    </style>
+</resources>

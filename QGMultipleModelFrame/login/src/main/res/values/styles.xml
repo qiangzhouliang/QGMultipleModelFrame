@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--找回密码界面中输入框样式-->
+    <style name="user_recover_pwd_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginTop">14dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/dimgrey</item>
+    </style>
+
+    <style name="user_recover_pwd_edit">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/dimgrey</item>
+        <item name="android:background">@drawable/search_content_frame</item>
+    </style>
+    <style name="register_settings">
+        <item name="android:textSize">18.0sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="btn_settings">
+        <item name="android:textSize">18.0sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <!--修改密码界面提示文本-->
+    <style name="menu_mod_tip">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/cell_ordinary_m</item>
+    </style>
+    <!--修改密码界面中输入框样式-->
+    <style name="menu_modify_pwd">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:background">@drawable/search_content_frame</item>
+    </style>
+    <!--登录页网络判断弹出框-->
+    <style name="network_settings">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/darkgrey</item>
+    </style>
+</resources>

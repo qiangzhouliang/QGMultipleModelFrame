@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="qzl.com.qgmultiplemodelframe">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<!--    友盟统计需要获取的权限-->
+<!--    检测联网方式，在网络异常状态下避免数据发送，节省流量和电量。-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+<!--    获取WIFI mac地址，在平板设备或电视盒子上，无法通过IMEI标识设备，我们会将WIFI mac地址作为用户的唯一标识，以便正常提供统计分析服务。-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+<!--    获取用户设备的IMEI，通过IMEI对用户进行唯一标识，以便提供统计分析服务。-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <application
+        android:name=".SysApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/TranslucentTheme">
+        <!-- 友盟统计 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5e91a8d8570df39a7e000048"/>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="ceshi"/>
+
+        <provider
+                android:name="androidx.core.content.FileProvider"
+                android:authorities="qzl.com.qgmultiplemodelframe"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_paths" />
+        </provider>
+        <activity android:name=".HzzErrorReportActivity"
+                  android:label="信息提示页面"
+                  android:screenOrientation="portrait"
+                  android:excludeFromRecents="true"
+                  android:taskAffinity="qzl.com.task.ExceptionDisplay"
+                  android:process="qzl.com.process.ExceptionDisplay"
+                  android:configChanges="orientation|keyboardHidden">
+            <intent-filter>
+                <action android:name="qzl.com.action.NOTIFY_ERROR" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
