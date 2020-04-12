@@ -1,0 +1,19 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
+rootProject.name = 'apphzz'
+include(
+        'model',
+        'common',
+        'util',
+        'api',
+        'app',
+        'govern_center',
+        'govern_manage',
+        'service_ucenter_auth',
+        'service_ucenter',
+        'govern_gateway',
+        'service_file'
+)

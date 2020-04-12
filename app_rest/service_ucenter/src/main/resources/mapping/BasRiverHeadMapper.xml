@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--查询河长信息-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zdww.lzshzz.ucenter.mapper.BasRiverHeaderMapper">
+    <resultMap id="retMap" type="com.zdww.lzshzz.model.ucenter.BasRiverHead"></resultMap>
+    <resultMap id="retMap2" type="com.zdww.lzshzz.model.sys.SysDistrict"></resultMap>
+	<!--河流列表统计查询-->
+    <select id="getRiverHeadListS" resultMap="retMap">
+		SELECT b.*,f.file_url,f.file_new_name FROM bas_river_head b
+		LEFT JOIN bas_river_head_reach r ON b.RIVER_HEAD_ID = r.RIVER_HEAD_ID
+		LEFT JOIN bas_file_head f ON b.RIVER_HEAD_ID = f.bus_id
+		WHERE r.river_reach_id = '${request.riverReachId}'
+		<if test="request.searchName != null and request.searchName != ''">
+			AND b.NAME LIKE '%${request.searchName}%'
+		</if>
+		GROUP BY b.RIVER_HEAD_ID
+    </select>
+	<!--查询区划对应的河长数量统计-->
+    <select id="getRiverHeadCountByAreaCode" resultMap="retMap2">
+		SELECT s.*,COUNT(b.RIVER_HEAD_ID) cun
+		FROM sys_districts s
+		LEFT JOIN bas_river_head b ON
+		CASE s.RES_LEVEL
+		WHEN '2' THEN LEFT(AREA_CODE,4) = LEFT(RES_ID,4)
+		WHEN '3' THEN LEFT(AREA_CODE,6) = LEFT(RES_ID,6)
+		WHEN '4' THEN LEFT(AREA_CODE,9) = LEFT(RES_ID,9)
+		ELSE AREA_CODE = RES_ID
+		END
+		LEFT JOIN sys_account t ON b.ACCOUNT_ID = t.USER_ACCT_ID
+		WHERE b.HEAD_STATE = '1' AND b.state = '0' AND b.RIVER_LAKE_HEAD LIKE '%${request.riverLakeHead}%' AND t.USER_TYPE = '1' AND t.USER_STATE = '1'
+-- 		${@com.zdww.lzshzz.util.AreaCodeUtil@getAreaCode(request.areaCode)}
+		AND s.RES_PART_ID = '${request.areaCode}'
+		<if test="request.searchName != null and request.searchName != ''">
+			AND (b.NAME LIKE '%${request.searchName}%' OR b.LOGIN_NAME LIKE '%${request.searchName}%' OR b.LINK_TEL LIKE '%${request.searchName}%')
+		</if>
+		GROUP BY RES_ID
+    </select>
+
+	<!--查询区划下的河长信息-->
+	<select id="getRiverHeadListByAreaCode" resultMap="retMap">
+		SELECT h.*
+		FROM bas_river_head h LEFT JOIN sys_account t ON h.ACCOUNT_ID = t.USER_ACCT_ID
+		WHERE h.HEAD_STATE = '1'AND h.state = '0' AND h.RIVER_LAKE_HEAD LIKE '%${request.riverLakeHead}%' AND t.USER_TYPE = '1' AND t.USER_STATE = '1'
+		<if test="request.totalOrSelf == '01'">
+			AND h.AREA_CODE = '${request.areaCode}'
+		</if>
+
+		<if test="request.totalOrSelf == '02'">
+			AND h.AREA_CODE like '${@com.zdww.lzshzz.util.AreaCodeUtil@getAreaCode(request.areaCode)}%'
+		</if>
+
+		<if test="request.searchName != null and request.searchName != ''">
+			AND (h.LOGIN_NAME LIKE '%${request.searchName}%' OR h.NAME LIKE '%${request.searchName}%' OR h.LINK_TEL LIKE '%${request.searchName}%')
+		</if>
+
+		ORDER BY h.ADMIN_POST_SORT,h.ADMIN_POST,h.area_code
+	</select>
+
+</mapper>

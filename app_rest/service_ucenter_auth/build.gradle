@@ -1,0 +1,27 @@
+jar {
+    enabled = true
+}
+
+bootJar {
+    enabled = true
+}
+buildscript {
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+        maven { url 'https://repo.spring.io/milestone' }
+    }
+    dependencies {
+        classpath deps.spring_boot_gradle_plugin
+    }
+}
+dependencies {
+    implementation project(':api')
+    //安全认证
+    implementation deps.security
+    implementation deps.oauth2
+    implementation deps.mysql
+    implementation deps.starter_jdbc
+    implementation deps.druid
+    implementation deps.druid_starter
+}

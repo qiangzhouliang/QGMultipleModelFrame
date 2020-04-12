@@ -1,0 +1,12 @@
+#  mybatis和pageHelper配置
+mybatis:
+  type-aliases-package: com.zdww.lashzz.model
+  mapper-locations: classpath:mapping/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # mybatis打印sql
+pagehelper:
+  auto-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

@@ -1,0 +1,40 @@
+jar {
+    enabled = true
+}
+
+bootJar {
+    enabled = false
+}
+
+dependencies {
+    // security 引入之后会有安全验证
+    api deps.httpclient
+    //common-langs
+    api deps.common_langs
+    //org.springframework.security
+    api deps.spring_security_jwt
+    //com.alibaba.fastjson
+    api deps.fastjson
+    implementation deps.zip4j
+    api deps.guava
+
+    api deps.commons_codec
+    api deps.gson
+    // 极光推送
+    api deps.jpush_client
+    //pagehelper
+    api deps.pagehelper
+    api deps.data_jpa
+    api deps.swagger2
+    api deps.swagger_ui
+
+    //实现路由网关
+    api deps.zuul
+    //实现负载均衡
+    api deps.openfeign
+    //eureka客户端
+    api deps.eureka_client
+    api deps.okhttp3
+
+    api deps.redis
+}

@@ -1,0 +1,94 @@
+/**
+ *  全局统一配置文件
+ */
+ext.isRunAlone = false
+
+ext.deps = [:]; def deps = [:]
+//springboot
+def springBoot_version = '2.1.5.RELEASE'
+def spring_dependency_management_version = '1.0.7.RELEASE'
+deps.springBoot_version = "$springBoot_version"
+deps.spring_dependency_management_version = "$spring_dependency_management_version"
+deps.springboot_start_web = 'org.springframework.boot:spring-boot-starter-web'
+deps.springboot_start_test = 'org.springframework.boot:spring-boot-starter-test'
+deps.spring_boot_gradle_plugin = 'org.springframework.boot:spring-boot-gradle-plugin:2.0.0.RELEASE'
+//模板引擎
+deps.spring_boot_starter_thymeleaf = 'org.springframework.boot:spring-boot-starter-thymeleaf'
+//redis
+deps.redis = 'org.springframework.boot:spring-boot-starter-data-redis'
+//jpa
+deps.data_jpa = 'org.springframework.boot:spring-boot-starter-data-jpa'
+//pagehelper
+deps.pagehelper = 'com.github.pagehelper:pagehelper-spring-boot-starter:1.2.4'
+
+/* kotlin 插件 */
+def kotlin_version = '1.3.61'
+deps.kotlin_versiion = "$kotlin_version"
+deps.kotlin_stdlib = 'org.jetbrains.kotlin:kotlin-stdlib'
+//jackson_module_kotlin
+def jackson_module_kotlin_version = '2.9.2'
+deps.jackson_module_kotlin = "com.fasterxml.jackson.module:jackson-module-kotlin:$jackson_module_kotlin_version"
+
+deps.lombok = 'org.projectlombok:lombok:1.18.2'
+//httpclient
+deps.httpclient = 'org.apache.httpcomponents:httpclient:4.5.3'
+//common-langs
+deps.common_langs = 'org.apache.commons:commons-lang3:3.6'
+//org.springframework.security
+deps.spring_security_jwt = 'org.springframework.security:spring-security-jwt:1.0.8.RELEASE'
+//com.alibaba.fastjson
+deps.fastjson = 'com.alibaba:fastjson:1.2.60'
+// zip<!-- https://mvnrepository.com/artifact/net.lingala.zip4j/zip4j -->
+deps.zip4j = 'net.lingala.zip4j:zip4j:1.3.1'
+
+// https://mvnrepository.com/artifact/com.google.guava/guava
+deps.guava = 'com.google.guava:guava:24.0-jre'
+
+//swagger2
+deps.swagger2 = 'io.springfox:springfox-swagger2:2.9.2'
+deps.swagger_ui = 'io.springfox:springfox-swagger-ui:2.9.2'
+
+//eureka 配置
+deps.eureka_server = 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+deps.eureka_client = 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+deps.openfeign = 'org.springframework.cloud:spring-cloud-starter-openfeign'
+//熔断
+deps.hystrix = 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
+deps.zuul = 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
+
+//security
+deps.security = 'org.springframework.cloud:spring-cloud-starter-security'
+deps.oauth2 = 'org.springframework.cloud:spring-cloud-starter-oauth2'
+
+//okhttp3
+deps.okhttp3 = 'com.squareup.okhttp3:okhttp:3.9.1'
+
+//mysql
+deps.mysql = 'mysql:mysql-connector-java:8.0.11'
+
+//start jdbc
+deps.starter_jdbc = 'org.springframework.boot:spring-boot-starter-jdbc'
+
+//druid
+deps.druid = 'com.alibaba:druid:1.1.10'
+deps.druid_starter = 'com.alibaba:druid-spring-boot-starter:1.1.10'
+
+//hibernate
+deps.hibernate_core = 'org.hibernate:hibernate-core:5.0.12.Final'
+
+
+// https://mvnrepository.com/artifact/commons-codec/commons-codec
+deps.commons_codec = 'commons-codec:commons-codec:1.10'
+
+deps.gson = 'com.google.code.gson:gson:2.8.5'
+
+//极光推送
+deps.jpush_client = 'cn.jpush.api:jpush-client:3.3.7'
+
+// mybatis
+deps.mybatis_spring_boot = 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
+
+//文件上传的jar包
+deps.commons_net = 'commons-net:commons-net:3.1'
+
+ext.deps = deps

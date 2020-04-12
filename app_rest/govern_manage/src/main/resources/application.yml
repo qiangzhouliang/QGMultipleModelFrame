@@ -1,0 +1,10 @@
+server:
+  port: 40001
+spring:
+  application:
+    name: govern-manage
+  profiles:
+    active: common,eureka,ribbon,mybatis_pageHelper  # 引入公共插件
+feign:
+  hystrix:
+    enabled: true # Dalston SR1（待定）之后的版本默认关闭hystrix对feign的支持，如果想要使用fallback功能这里必须启用

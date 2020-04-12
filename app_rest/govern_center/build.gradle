@@ -1,0 +1,19 @@
+jar {
+    enabled = true
+}
+bootJar {
+    enabled = true
+}
+buildscript {
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+        maven { url 'https://repo.spring.io/milestone' }
+    }
+    dependencies {
+        classpath deps.spring_boot_gradle_plugin
+    }
+}
+dependencies {
+    implementation deps.eureka_server
+}

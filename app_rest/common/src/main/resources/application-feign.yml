@@ -1,0 +1,4 @@
+#  feign配置
+feign:
+  httpclient:
+    enabled: true

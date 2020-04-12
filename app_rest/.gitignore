@@ -1,0 +1,15 @@
+HELP.md
+.gradle
+build
+gradlew
+out
+gradle
+*.bat
+*.properties
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zdww.lzshzz.app.mapper.DemoMapper">
+    <resultMap id="retMap" type="com.zdww.lzshzz.model.ucenter.SysAccount">
+        <id column="USER_ACCT_ID" property="userAcctId"></id>
+        <result column="LOGIN_ACCOUNT" property="loginAccount"/>
+    </resultMap>
+    <select id="findSysAccount" resultType="com.zdww.lzshzz.model.ucenter.SysAccount" parameterType="String"
+            resultMap="retMap">
+        select * from sys_account where USER_ACCT_ID = #{userAcctId}
+    </select>
+    <select id="findAllSysAccount" resultType="com.zdww.lzshzz.model.ucenter.SysAccount" parameterType="String"
+            resultMap="retMap">
+        select * from sys_account
+    </select>
+</mapper>

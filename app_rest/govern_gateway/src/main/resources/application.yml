@@ -1,0 +1,56 @@
+server:
+  port: ${PORT:20101}
+  servlet:
+    context-path: /api
+spring:
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+  application:
+    name: lzshzz_govern-gateway
+  resources:
+    static-locations: classpath:/static/
+  profiles:
+    active: common,eureka,ribbon  # 引入公共插件
+  redis:
+    host: ${REDIS_HOST:localhost} #10.18.100.205
+    port: ${REDIS_PORT:6379}
+    timeout: 5000 #连接超时 毫秒
+    jedis:
+      pool:
+        maxActive: 3
+        maxIdle: 3
+        minIdle: 1
+        maxWait: -1 #连接池最大等行时间 -1没有限制
+zuul:
+  set-content-length: true
+  routes:
+    app: #路由名称，应用
+      path: /app/**
+      serviceId: app #微服务名称，网关会从eureka中获取该服务名称下的服务实例的地址
+      # 例子：将请求转发到http://localhost:31200/course
+      #url: http://www.baidu.com #也可指定url，此url也可以是外网地址\
+      strip-prefix: false #true：代理转发时去掉前缀，false:代理转发时不去掉前缀
+      sensitiveHeaders:  #默认zuul会屏蔽cookie，cookie不会传到下游服务，这里设置为空则取消默认的黑名单，如果设置了具体的头信息则不会传到下游服务
+      #   ignoredHeaders: 默认为空表示不过虑任何头
+    service_auth_ucenter: #路由名称，登录认证中心
+      path: /auth/**
+      serviceId: lzshzz-service-ucenter-auth #微服务名称，网关会从eureka中获取该服务名称下的服务实例的地址
+      strip-prefix: false #true：代理转发时去掉前缀，false:代理转发时不去掉前缀
+      sensitiveHeaders:  #默认zuul会屏蔽cookie，cookie不会传到下游服务，这里设置为空则取消默认的黑名单，如果设置了具体的头信息则不会传到下游服务
+    service_ucenter: #路由名称，用户中心，获取用户信息
+      path: /ucenter/**
+      serviceId: service-ucenter #微服务名称，网关会从eureka中获取该服务名称下的服务实例的地址
+      strip-prefix: false #true：代理转发时去掉前缀，false:代理转发时不去掉前缀
+      sensitiveHeaders:  #默认zuul会屏蔽cookie，cookie不会传到下游服务，这里设置为空则取消默认的黑名单，如果设置了具体的头信息则不会传到下游服务
+    service_info_manager: #路由名称
+      path: /infoManager/**
+      serviceId: lzshzz-service-info-manager
+      strip-prefix: false
+      sensitiveHeaders:
+    service_file: #路由名称
+      path: /file/**
+      serviceId: lzshzz-service-file
+      strip-prefix: false
+      sensitiveHeaders:
