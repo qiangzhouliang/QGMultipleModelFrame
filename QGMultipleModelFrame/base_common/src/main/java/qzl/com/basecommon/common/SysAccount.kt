@@ -16,7 +16,13 @@ import utilclass.StringHelper
  * @package com.zdww.basecommon.common
  */
 object SysAccount {
-   private var userInfo: UserInfo? = null
+    @JvmField
+   var userInfo: UserInfo? = null
+    fun init(context: Context){
+        if (userInfo == null){
+            userInfo = getUserInfo(context)
+        }
+    }
     //保存用户信息
     @JvmStatic
     fun setUserInfo(context: Context?, userInfo: String) {
@@ -31,7 +37,7 @@ object SysAccount {
 
     //获取用户信息
     @JvmStatic
-    fun getUserInfo(context: Context?): UserInfo? {
+    private fun getUserInfo(context: Context?): UserInfo? {
         when {
             userInfo == null || PrefUtils.getBoolean(context,Constant.isRefreshUserInfo,false) -> {
                 val userInfos = PrefUtils.getString(context, Constant.CACHE_USER, "")

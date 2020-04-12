@@ -41,7 +41,7 @@ object LoginActivityExt {
             //0 表示用账号密码登录
             map["phoneLoginFlag"] = "0"
             if (isUserCachePass){
-                map["userMd5"] = SysAccount.getUserInfo(this)?.loginPassword?:""
+                map["userMd5"] = SysAccount.userInfo?.loginPassword?:""
             } else {
                 map["userMd5"] =
                     MD5().getMD5ofStr(login_user_password.text.toString().trim { it <= ' ' })

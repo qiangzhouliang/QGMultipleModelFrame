@@ -96,11 +96,11 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Timer.TimeIntf, Base
             }
         })
         login_remember_pass?.setOnCheckedChangeListener { buttonView, isChecked -> PrefUtils.setBoolean(this@LoginActivity, Constant.isAutoLogin, isChecked) }
-        login_user_name?.setText(SysAccount.getUserInfo(this)?.loginAccount)
+        login_user_name?.setText(SysAccount.userInfo?.loginAccount)
         when {
             PrefUtils.getBoolean(this, Constant.isAutoLogin, true) -> {
                 login_remember_pass?.isChecked = true
-                var loginPassword = SysAccount.getUserInfo(this)?.loginPassword
+                var loginPassword = SysAccount.userInfo?.loginPassword
                 if (loginPassword?.length?:0 >= 32){
                     loginPassword = loginPassword?.substring(0,12)
                 }

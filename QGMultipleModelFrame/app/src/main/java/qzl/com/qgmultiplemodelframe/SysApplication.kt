@@ -11,6 +11,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.umeng.analytics.MobclickAgent
 import com.umeng.commonsdk.UMConfigure
 import org.xutils.x
+import qzl.com.basecommon.common.SysAccount
 import qzl.com.tools.operate.ReadProperties
 import qzl.com.tools.utils.AppUtil
 import qzl.com.tools.utils.MyLogUtils
@@ -53,7 +54,9 @@ class SysApplication : Application() {
             initUM()
 
             //初始化滑动退出
-            BGASwipeBackHelper.init(this, null);
+            BGASwipeBackHelper.init(this, null)
+            //初始化用户信息
+            SysAccount.init(this)
         }
     }
 

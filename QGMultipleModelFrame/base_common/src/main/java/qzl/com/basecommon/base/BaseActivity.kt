@@ -42,7 +42,6 @@ abstract class BaseActivity : AppCompatActivity(), AppBackHandledInterface {
     private val networkReceiver by lazy { NetworkReceiver() }
     private var imageButton: ImageView? = null
     private var mBackHandedFragment: AppBackHandledFragment? = null
-    var sysUserInfo: UserInfo? = null
 
     var windowScale = 0f
         internal set
@@ -59,7 +58,6 @@ abstract class BaseActivity : AppCompatActivity(), AppBackHandledInterface {
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         CompleteQuit.getInstance()?.pushActivity(this)
-        sysUserInfo = SysAccount.getUserInfo(this)
         //去除默认的代码，可以减少页面重绘
 //        window.setBackgroundDrawable(null)
         //设置沉侵式状态栏

@@ -104,7 +104,7 @@ class SplashActivity: BaseActivity(), BaseView<LoginModel> {
                 val versionState = Integer.parseInt(StringHelper.toString(Constant.VERSION_MAP[Constant.VERSION_STATE]))
                 //登陆缓存信息初始化，如果自动登陆并且没有新版本跳转河长制移动平台
 //                val cacheMap = LoginCache.getCacheAll(this)
-                val userInfo = SysAccount.getUserInfo(this)
+                val userInfo = SysAccount.userInfo
                 when {
                     userInfo != null -> {
                         when {
@@ -112,12 +112,12 @@ class SplashActivity: BaseActivity(), BaseView<LoginModel> {
                                 //检查有没有其他设备登录
 //                                LoadDataAsync(this@UserGuideActivity, loadDataSetting, false).execute()
                                 val map = HashMap<String, String?>()
-                                map["user"] = SysAccount.getUserInfo(this)?.loginAccount?:""
+                                map["user"] = SysAccount.userInfo?.loginAccount?:""
                                 val phoneLoginFlag = PrefUtils.getString(this, Constant.isPhoneLogin, "0")
                                 map["phoneLoginFlag"] = phoneLoginFlag
                                 map["userMd5"] = when (phoneLoginFlag) {
-                                    "1" ->  SysAccount.getUserInfo(this)?.userTele?:""
-                                    else -> SysAccount.getUserInfo(this)?.loginPassword?:""
+                                    "1" ->  SysAccount.userInfo?.userTele?:""
+                                    else -> SysAccount.userInfo?.loginPassword?:""
                                 }
                                 map["deviceId"] = DeviceUtils.getUniqueId(applicationContext)
                                 map["loginType"] = getString(R.string.android_login)

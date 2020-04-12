@@ -18,7 +18,6 @@ import utilclass.PrefUtils
  * @time 2019-02-01 10:19
  */
 abstract class BaseFragment: androidx.fragment.app.Fragment(),AnkoLogger {
-    var sysUserInfo: UserInfo? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
@@ -28,7 +27,6 @@ abstract class BaseFragment: androidx.fragment.app.Fragment(),AnkoLogger {
      * fragment初始化
      */
     open protected fun init() {
-        sysUserInfo = SysAccount.getUserInfo(context)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

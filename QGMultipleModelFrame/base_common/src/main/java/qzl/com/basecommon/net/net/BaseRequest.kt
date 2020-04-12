@@ -34,9 +34,9 @@ class BaseRequest<RESPONSE>(val type:Int = 0) {
         //添加请求token
         params.add(BasicNameValuePair("uid", PrefUtils.getString(mRequest.mContext, Constant.TOKEN,"")))
         //用户账号ID
-        params.add(BasicNameValuePair("userAcctId", SysAccount.getUserInfo(mRequest.mContext)?.userAcctId?:""))
+        params.add(BasicNameValuePair("userAcctId", SysAccount.userInfo?.userAcctId?:""))
         //登录用户账号
-        params.add(BasicNameValuePair("loginAccount", SysAccount.getUserInfo(mRequest.mContext)?.loginAccount?:""))
+        params.add(BasicNameValuePair("loginAccount", SysAccount.userInfo?.loginAccount?:""))
         params.add(BasicNameValuePair("driveType", "android"))
         val param = URLEncodedUtils.format(params, "UTF-8")
         requestUrl = "$requestUrl?$param"
@@ -62,9 +62,9 @@ class BaseRequest<RESPONSE>(val type:Int = 0) {
         //添加请求token
         mRequest.reqMap!!["uid"] = PrefUtils.getString(mRequest.mContext, Constant.TOKEN,"")
         //用户账号ID
-        mRequest.reqMap!!["userAcctId"] = SysAccount.getUserInfo(mRequest.mContext)?.userAcctId?:""
+        mRequest.reqMap!!["userAcctId"] = SysAccount.userInfo?.userAcctId?:""
         //登录用户账号
-        mRequest.reqMap!!["loginAccount"] = SysAccount.getUserInfo(mRequest.mContext)?.loginAccount?:""
+        mRequest.reqMap!!["loginAccount"] = SysAccount.userInfo?.loginAccount?:""
         mRequest.reqMap!!["driveType"] = "android"
         mRequest.url = requestUrl
         NetManageVolley.manage.sendRequestPost(mRequest,mRequest.reqMap)

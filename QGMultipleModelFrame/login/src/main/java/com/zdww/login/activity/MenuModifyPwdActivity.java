@@ -116,7 +116,7 @@ public class MenuModifyPwdActivity extends BaseActivity implements Validator.Val
             map.put("oldPwd",telPhone);
         }else {
             map.put("phoneLoginFlag","0");
-            map.put("userName", SysAccount.getUserInfo(this).getLoginAccount());
+            map.put("userName", SysAccount.userInfo.getLoginAccount());
             map.put("oldPwd", new MD5().getMD5ofStr(curPwd));
         }
         changePwdPresenter.loadDatas(map);
