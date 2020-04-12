@@ -73,7 +73,7 @@ dependencies {
         implementation project(":main")
         implementation project(":videoplayer")
         implementation project(":fileuploadanddownload")
-        implementation project(":mpandroidchart")
+        implementation project(":lib_mpandroidchart")
         implementation project(":login")
     }
 }

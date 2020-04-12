@@ -48,7 +48,7 @@ dependencies {
     api files('libs/qzlUtil.jar')
     api files('libs/nineoldandroids-2.4.0.jar')
     api files('libs/xUtils-2.6.14.jar')
-    api project(path: ':ffmpeg4android')
+    api project(path: ':lib_ffmpeg4android')
     api deps.arouter_api
     api deps.android_async_http
     api deps.kotlin_stdlib

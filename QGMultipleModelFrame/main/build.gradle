@@ -51,4 +51,5 @@ dependencies {
     implementation deps.anko
     kapt deps.arouter_compiler
     implementation project(':base_common')
+    implementation project(":lib_fileselectlibrary")
 }

@@ -11,12 +11,14 @@ object Constant {
     val CACHE_DIR = "hzz"
     var baseUrl = ReadProperties.getPropertyByStr("server.url")
     var pageSize = ReadProperties.getPropertyByInt("list.pagesize")   //分页大小
-    /**
-     * pc端apk下载地址
-     */
-    var pcUpdateApkUrl = ReadProperties.getPropertyByStr("pcupdateapk.url")
     var versionInfoFlag = ReadProperties.getPropertyByStr("version.info.config")
     var versiondownloadFlag = ReadProperties.getPropertyByStr("version.download.config")
+
+    //获取显示图片 press为1 则为压缩图片
+    @JvmStatic
+    fun getShowImgPress(fileName:String,press: String = "1"):String{
+        return baseUrl+ConstantUrl.File.FILE_SHOW+"?press=${press}&fileName=${fileName}"
+    }
     /**
      * 参数加密字符串
      */

@@ -1,9 +1,13 @@
 package qzl.com.main.activity
 
+import android.content.Intent
 import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
+import com.study.fileselectlibrary.LocalFileActivity
+import com.study.fileselectlibrary.bean.FileItem
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.startActivityForResult
 import qzl.com.basecommon.base.BaseActivity
 import qzl.com.basecommon.base.BaseLargeImgActivity
 import qzl.com.basecommon.arouter.ARouterPath
@@ -11,6 +15,7 @@ import qzl.com.basecommon.arouter.ARouterUtil
 import qzl.com.main.R
 import qzl.com.tools.operate.ReadProperties
 import utilclass.Tt
+import java.util.ArrayList
 
 class MainActivity : BaseActivity(), View.OnClickListener {
     override fun getLayoutId() = R.layout.activity_main
@@ -27,7 +32,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         fileuploadordownload.setOnClickListener(this)
         home.setOnClickListener(this)
         chart.setOnClickListener(this)
-        Tt.showShort(ReadProperties.getPropertyByStr("server.url"))
+        select_file.setOnClickListener(this)
     }
     override fun onClick(v: View) {
         when(v){
@@ -62,6 +67,24 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             chart ->{
                 ARouterUtil.arouterToAct(this,ARouterPath.CHART)
             }
+            /*仿qq文件选择*/
+            select_file ->{
+                startActivityForResult<LocalFileActivity>(100,"max" to 4,
+                    "file" to  ArrayList<FileItem>()
+                )
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 100 && resultCode == 200 && data != null) { //文件
+            val resultFileList: ArrayList<FileItem> = data.getParcelableArrayListExtra("file")
+            val filePath = arrayListOf<String>()
+            resultFileList.forEach {
+                filePath.add(it.path)
+            }
+            Tt.showShort(filePath.toArray().toString())
         }
     }
 }

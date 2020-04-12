@@ -54,3 +54,5 @@ class JiaoZiVideoPlayerActivity: BaseActivity() {
 实现了文件的上传下载
 ## 2.5 引入了图表统计模块
 可以实现漂亮的图表统计功能
+## 2.6 实现了仿QQ文件选择功能
+可以选择手机中的文件

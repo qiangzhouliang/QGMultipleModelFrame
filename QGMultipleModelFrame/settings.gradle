@@ -1,3 +1,3 @@
-include ':app', ':base_tools', ':base_common', ':videoplayer', ':main', ':fileuploadanddownload', ':mpandroidchart', ':ffmpeg4android'
+include ':app', ':base_tools', ':base_common', ':videoplayer', ':main', ':fileuploadanddownload', ':lib_mpandroidchart', ':lib_ffmpeg4android', ':lib_mndialog', ':lib_fileselectlibrary'
 include ':base_model'
 include ':login'
