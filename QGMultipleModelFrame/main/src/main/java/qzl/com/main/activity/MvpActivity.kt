@@ -16,7 +16,7 @@ import qzl.com.model.common.PagePara
 
 class MvpActivity: BasListActivity<List<HomeItemBean>, HomeItemBean, MvpItemView>() {
     override fun initView() {
-        initHead(R.id.head_layout_list,"mvp使用样例", View.OnClickListener { finishWithAnimation() })
+        initHead(R.id.head_layout,"mvp使用样例", View.OnClickListener { finishWithAnimation() })
     }
     override fun initListener() {
         super.initListener()
