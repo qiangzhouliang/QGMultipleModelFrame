@@ -22,6 +22,7 @@ import com.zdww.login.presenter.GetUserInfoPresenterImpl
 import com.zdww.login.presenter.LoginPresenterImpl
 import com.zdww.login.view.CheckNumView
 import kotlinx.android.synthetic.main.p_login.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
 import qzl.com.basecommon.arouter.ARouterPath
 import qzl.com.basecommon.base.BaseActivity
@@ -95,6 +96,10 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Timer.TimeIntf, Base
                 }
             }
         })
+        //隐私政策
+        login_private?.setOnCheckedChangeListener { buttonView, isChecked ->
+            PrefUtils.setBoolean(this@LoginActivity, Constant.isPrivate, isChecked)
+        }
         login_remember_pass?.setOnCheckedChangeListener { buttonView, isChecked -> PrefUtils.setBoolean(this@LoginActivity, Constant.isAutoLogin, isChecked) }
         login_user_name?.setText(SysAccount.userInfo?.loginAccount)
         when {
@@ -108,6 +113,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Timer.TimeIntf, Base
             }
             else -> login_remember_pass?.isChecked = false
         }
+        login_private.isChecked = PrefUtils.getBoolean(this, Constant.isPrivate, false)
     }
     override fun initListener() {
         Timer.TimeIntfUtil.setTimeIntf(this)
@@ -116,6 +122,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Timer.TimeIntf, Base
         login_phone_num?.setOnClickListener(this)
         tv_get_check_num?.setOnClickListener(this)
         iv_user_tip.setOnClickListener(this)
+        tv_private.setOnClickListener(this)
         login_user_password.addTextChangedListener(object :TextWatcher{
             override fun afterTextChanged(s: Editable?) {}
 
@@ -178,6 +185,10 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Timer.TimeIntf, Base
                     View.VISIBLE -> tv_user_tip.visibility = View.GONE
                     View.GONE -> tv_user_tip.visibility = View.VISIBLE
                 }
+            }
+            // 隐私政策
+            R.id.tv_private -> {
+                startActivity<YssmActivity>()
             }
         }
     }

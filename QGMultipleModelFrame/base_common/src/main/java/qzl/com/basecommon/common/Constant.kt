@@ -51,6 +51,8 @@ object Constant {
     @JvmField
     val isAutoLogin = "isAutoLogin"  //是否记住密码
     @JvmField
+    val isPrivate = "isPrivate"  //是否同意隐私政策
+    @JvmField
     val isPhoneLogin = "isPhoneLogin"  //账号密码登录标识
 
     /**

@@ -38,6 +38,10 @@ val HomeActivity.menuItems: List<Map<String, Any>>
         item["menu_text"] = "技术支持"
         item["menu_ico"] = R.drawable.menu_help
         data.add(item)
+        item = HashMap()
+        item["menu_text"] = "隐私声明"
+        item["menu_ico"] = R.drawable.menu_help
+        data.add(item)
         return data
     }
 

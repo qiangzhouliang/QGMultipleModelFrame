@@ -20,6 +20,8 @@ object ARouterPath {
             const val LOGIN = "/login/loginActivity"
             //修改密码
             const val CHANGE_PASSWORD = "/login/changePassword"
+            //隐私政策
+            const val PRIVATE = "/login/private"
         }
     }
     class Home {

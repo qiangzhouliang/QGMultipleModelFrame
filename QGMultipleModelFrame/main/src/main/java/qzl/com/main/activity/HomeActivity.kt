@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.index.*
 import kotlinx.android.synthetic.main.left.*
 import kotlinx.android.synthetic.main.main.*
 import qzl.com.basecommon.arouter.ARouterPath
+import qzl.com.basecommon.arouter.ARouterUtil
 import qzl.com.basecommon.base.BaseActivity
 import qzl.com.basecommon.ui.kotlin.DialogPanel
 import qzl.com.basecommon.ui.kotlin.HeadControlPanel
@@ -69,6 +70,11 @@ class HomeActivity : BaseActivity() {
                 }
                 4 -> {
                     //系统帮助
+                    Tt.showShort("系统帮助")
+                }
+                5 -> {
+                    //隐私声明
+                    ARouterUtil.arouterToAct(this,ARouterPath.Login.PRIVATE)
                     Tt.showShort("系统帮助")
                 }
             }

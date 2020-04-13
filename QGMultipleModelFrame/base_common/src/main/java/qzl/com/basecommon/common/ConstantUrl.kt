@@ -26,7 +26,9 @@ object ConstantUrl {
         @JvmField
         val DELETE_REDIS = "auth/deleteRedis"                         // 删除redis信息
         @JvmField
-        val GET_USER_INFO = "auth/getUserInfo"                         // 删除redis信息
+        val GET_USER_INFO = "auth/getUserInfo"                         // 获取用户信息
+        @JvmField
+        val GET_YSZC = "auth/getYszc"                         // 获取隐私政策
     }
 
     /* ------------用户中心 -----------------------start------------------------*/

@@ -113,6 +113,31 @@
                     android:textColor="@color/gray"
                     android:textSize="@dimen/text_size_14" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_10">
+
+                <CheckBox
+                    android:id="@+id/login_private"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/check_box_selector"
+                    android:drawablePadding="5dp"
+                    android:text="阅读并同意"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/text_size_12" />
+                <TextView
+                    android:id="@+id/tv_private"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:textColor="@color/cell_ordinary_m"
+                    android:textSize="@dimen/text_size_12"
+                    android:text="&lt;&lt;隐私声明>>"/>
+            </LinearLayout>
 
         </LinearLayout>
 

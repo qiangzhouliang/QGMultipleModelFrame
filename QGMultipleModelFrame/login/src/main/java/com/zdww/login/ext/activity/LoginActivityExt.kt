@@ -28,6 +28,10 @@ var map = HashMap<String, String?>()
 object LoginActivityExt {
     //登录方法
     fun LoginActivity.login() {
+        if (!login_private.isChecked){
+            Tt.showShort("请先同意用户隐私声明！")
+            return
+        }
         map["user"] = StringHelper.toString(login_user_name.text.toString()).trim { it <= ' ' }
         map["deviceId"] = DeviceUtils.getUniqueId(applicationContext)
         map["loginType"] = getString(R.string.android_login)
@@ -88,6 +92,10 @@ object LoginActivityExt {
         val iconCheckBox = resources.getDrawable(R.drawable.check_box_selector)
         iconCheckBox.setBounds(0, 0, 50, 50)
         login_remember_pass.setCompoundDrawables(iconCheckBox, null, null, null)
+
+        val iconCheckBoxPrivate = resources.getDrawable(R.drawable.check_box_selector)
+        iconCheckBoxPrivate.setBounds(0, 0, 50, 50)
+        login_private.setCompoundDrawables(iconCheckBoxPrivate, null, null, null)
     }
 
     //请求到登录结果后的处理

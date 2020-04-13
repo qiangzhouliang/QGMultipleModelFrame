@@ -19,6 +19,8 @@
         <activity android:name="com.zdww.login.activity.UserRecoverPwdActivity" />
         <!-- 修改密码-->
         <activity android:name="com.zdww.login.activity.MenuModifyPwdActivity" />
+<!--        获取隐私政策-->
+        <activity android:name=".activity.YssmActivity" />
     </application>
 
 </manifest>
