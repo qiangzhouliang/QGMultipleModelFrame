@@ -37,6 +37,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         home.setOnClickListener(this)
         chart.setOnClickListener(this)
         select_file.setOnClickListener(this)
+        permission.setOnClickListener(this)
     }
     override fun onClick(v: View) {
         when(v){
