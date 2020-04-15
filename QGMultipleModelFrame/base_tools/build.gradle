@@ -58,7 +58,7 @@ dependencies {
     kapt deps.glide_compiler
     api deps.glide_transformations
     /*动态权限获取*/
-    api deps.permissiongen
+    api deps.easypermissions
     api deps.gson
     api deps.volley
     api deps.android_async_http

@@ -6,7 +6,7 @@ ext.isRunAlone = false
 ext.deps = [:]; def deps = [:]
 /* SDK 版本 */
 deps.min_sdk = 18
-deps.target_sdk = 19
+deps.target_sdk = 28
 deps.compile_sdk = 28
 
 /* Gradle 插件 */
@@ -47,8 +47,8 @@ deps.picasso = 'com.squareup.picasso:picasso:2.5.2'
 deps.arouter_api = 'com.alibaba:arouter-api:1.4.1'
 deps.arouter_compiler = 'com.alibaba:arouter-compiler:1.2.2'
 
-/* 权限请求组件 */
-deps.permissiongen = 'com.lovedise:permissiongen:0.0.6'
+/* 权限请求组件 androidX */
+deps.easypermissions = 'pub.devrel:easypermissions:3.0.0'
 //deps.easypermissions = 'pub.devrel:easypermissions:0.3.1'
 //* 下拉刷新组件 */
 deps.SmartRefreshLayout = 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-20'

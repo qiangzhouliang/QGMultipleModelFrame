@@ -4,7 +4,6 @@ import android.Manifest
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.os.Handler
 import android.view.KeyEvent
 import android.view.View
@@ -16,9 +15,6 @@ import com.zdww.login.R
 import com.zdww.login.adapter.NavigationPageAdapter
 import com.zdww.login.presenter.AutoLoginPresenterImpl
 import kotlinx.android.synthetic.main.p_splach.*
-import kr.co.namee.permissiongen.PermissionFail
-import kr.co.namee.permissiongen.PermissionGen
-import kr.co.namee.permissiongen.PermissionSuccess
 import org.jetbrains.anko.imageBitmap
 import qzl.com.basecommon.base.BaseActivity
 import qzl.com.basecommon.common.CheckVersion
@@ -83,12 +79,27 @@ class SplashActivity: BaseActivity(), BaseView<LoginModel> {
         requestPermission()
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        PermissionGen.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+
+    /**
+     * @desc 跳转到登录页面
+     * @author 强周亮(Qzl)
+     * @time 2018-09-21 15:52
+     */
+    private fun goToLogin() {
+        startActivityAndFFinish<LoginActivity>()
+        finishWithAnimation()
     }
-    //获取到权限后
-    @PermissionSuccess(requestCode = REQUEST_PERMISSION_CODE)
-    fun doSomething() {
+    companion object {
+        private const val REQUEST_PERMISSION_CODE = 100
+        private val permissions = arrayListOf<String>(
+            Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.ACCESS_FINE_LOCATION)
+    }
+
+    fun requestPermission(){
         count = 4//检查有没有其他设备登录
         //登陆缓存信息初始化，如果自动登陆并且没有新版本跳转河长制移动平台
         when {
@@ -137,41 +148,6 @@ class SplashActivity: BaseActivity(), BaseView<LoginModel> {
                 }
             }
         }
-    }
-
-    // 没有获取到权限
-    @PermissionFail(requestCode = REQUEST_PERMISSION_CODE)
-    fun doFailSomething() {
-        Tt.showShort("提示：要给权限才能运行哦!")
-    }
-    /**
-     * @desc 跳转到登录页面
-     * @author 强周亮(Qzl)
-     * @time 2018-09-21 15:52
-     */
-    private fun goToLogin() {
-        startActivityAndFFinish<LoginActivity>()
-        finishWithAnimation()
-    }
-    companion object {
-        private const val REQUEST_PERMISSION_CODE = 100
-        private val permissions = arrayListOf<String>(
-            Manifest.permission.CAMERA,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.RECORD_AUDIO,
-            Manifest.permission.ACCESS_FINE_LOCATION)
-    }
-
-    fun requestPermission(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) { // 前台服务权限
-            permissions.add(Manifest.permission.FOREGROUND_SERVICE)
-        }
-
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) { // 后台定位权限
-            permissions.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-        }*/
-        PermissionGen.needPermission(this, REQUEST_PERMISSION_CODE,permissions.toTypedArray() )
     }
     /**
      * @desc 检查新版本

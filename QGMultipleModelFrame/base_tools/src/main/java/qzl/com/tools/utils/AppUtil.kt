@@ -1,10 +1,14 @@
 package qzl.com.tools.utils
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
+import android.os.Build
 import android.os.Environment
 import java.io.File
 
@@ -156,5 +160,31 @@ object AppUtil {
     fun isApkInDebug(context: Context): Boolean{
         return context.applicationInfo != null &&
                 context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
+    }
+
+    /**
+     * 跳转至权限设置页面
+     */
+    fun getAppDetailSettingIntent(activity: Activity?, requestCode: Int) {
+        val localIntent = Intent()
+        if (Build.VERSION.SDK_INT >= 9) {
+            localIntent.action = "android.settings.APPLICATION_DETAILS_SETTINGS"
+            localIntent.data = Uri.fromParts(
+                "package",
+                activity?.packageName,
+                null
+            )
+        } else if (Build.VERSION.SDK_INT <= 8) {
+            localIntent.action = Intent.ACTION_VIEW
+            localIntent.setClassName(
+                "com.android.settings",
+                "com.android.settings.InstalledAppDetails"
+            )
+            localIntent.putExtra(
+                "com.android.settings.ApplicationPkgName",
+                activity?.packageName
+            )
+        }
+        activity?.startActivityForResult(localIntent, requestCode)
     }
 }

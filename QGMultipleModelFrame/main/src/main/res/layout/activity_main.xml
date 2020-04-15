@@ -55,4 +55,10 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_10"
         android:text="仿qq文件选择"/>
+    <TextView
+        android:id="@+id/permission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10"
+        android:text="动态权限申请"/>
 </LinearLayout>

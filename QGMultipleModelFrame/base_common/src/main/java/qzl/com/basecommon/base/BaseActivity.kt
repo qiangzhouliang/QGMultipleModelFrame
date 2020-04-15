@@ -19,8 +19,10 @@ import androidx.appcompat.app.AppCompatActivity
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper
 import com.alibaba.android.arouter.launcher.ARouter
 import org.jetbrains.anko.startActivity
+import pub.devrel.easypermissions.EasyPermissions
 import qzl.com.basecommon.R
 import qzl.com.basecommon.common.SysAccount
+import qzl.com.basecommon.permissions.RequestPermissionUtil
 import qzl.com.basecommon.ui.kotlin.HeadControlPanel
 import qzl.com.basecommon.ui.kotlin.navigation.AppBackHandledFragment
 import qzl.com.basecommon.ui.kotlin.navigation.AppBackHandledInterface
@@ -356,6 +358,42 @@ abstract class BaseActivity : AppCompatActivity(), AppBackHandledInterface {
                 e.printStackTrace()
             }
             return statusHeight
+        }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RequestPermissionUtil.requestCode) {
+            RequestPermissionUtil.PermissionListenerUtil().success(requestCode, null)
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == RequestPermissionUtil.requestCode) {
+            EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, object :
+                EasyPermissions.PermissionCallbacks {
+                override fun onRequestPermissionsResult(i: Int,strings: Array<String>,ints: IntArray) {
+                }
+                override fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
+                    if (permissions.size == perms.size) {
+                        RequestPermissionUtil.PermissionListenerUtil().success(requestCode, perms as MutableList<String>)
+                    }
+                }
+
+                override fun onPermissionsDenied(requestCode: Int,perms: List<String>) {
+                    /**
+                     * 若是在权限弹窗中，用户勾选了'NEVER ASK AGAIN.'或者'不在提示'，且拒绝权限。
+                     * 这时候，需要跳转到设置界面去，让用户手动开启。
+                     */
+                    if (EasyPermissions.somePermissionPermanentlyDenied(this@BaseActivity, perms)) {
+                        RequestPermissionUtil.PermissionListenerUtil()
+                            .cancel(true, requestCode, perms as MutableList<String>)
+                    } else {
+                        RequestPermissionUtil.PermissionListenerUtil()
+                            .cancel(false, requestCode, perms as MutableList<String>)
+                    }
+                }
+            })
         }
     }
 }
