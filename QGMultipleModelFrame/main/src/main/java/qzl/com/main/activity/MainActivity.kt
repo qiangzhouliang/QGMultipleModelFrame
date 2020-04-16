@@ -1,6 +1,5 @@
 package qzl.com.main.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
@@ -17,7 +16,6 @@ import qzl.com.basecommon.permissions.ConstantPermission
 import qzl.com.basecommon.permissions.RequestPermissionUtil
 import qzl.com.basecommon.permissions.RequestPermissionUtil.requestPermission
 import qzl.com.main.R
-import qzl.com.tools.operate.ReadProperties
 import utilclass.Tt
 import java.util.ArrayList
 

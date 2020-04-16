@@ -123,17 +123,6 @@ class DialogPanel(context: Context, theme: Int) : Dialog(context, theme) {
                 layout.negativeButton.visibility = View.GONE
             }
 
-            if (negativeButtonText2 != null) {
-                layout.negativeButton2.text = negativeButtonText2
-                layout.negativeButton2.setTextColor(context.resources.getColor(R.color.white))
-                if (negativeButtonClickListener2 != null) {
-                    layout.negativeButton2.setOnClickListener {
-                        negativeButtonClickListener2?.onClick(dialog, DialogInterface.BUTTON_NEGATIVE)
-                    }
-                }
-            } else {
-                layout.negativeButton2.visibility = View.GONE
-            }
             if (message != null) {
                 layout.message.text = message
             } else if (customView != null) {
