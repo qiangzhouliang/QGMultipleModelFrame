@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.ActivityManager
 import android.app.Application
 import android.content.Context
-import androidx.multidex.MultiDex
+//import androidx.multidex.MultiDex
 import android.text.TextUtils
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper
 import com.alibaba.android.arouter.launcher.ARouter
@@ -129,7 +129,7 @@ class SysApplication : Application() {
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
-        MultiDex.install(base)
+//        MultiDex.install(base)
     }
 
     companion object {

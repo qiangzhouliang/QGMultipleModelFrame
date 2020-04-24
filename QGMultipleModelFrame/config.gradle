@@ -5,7 +5,7 @@ ext.isRunAlone = false
 
 ext.deps = [:]; def deps = [:]
 /* SDK 版本 */
-deps.min_sdk = 18
+deps.min_sdk = 21
 deps.target_sdk = 28
 deps.compile_sdk = 28
 
