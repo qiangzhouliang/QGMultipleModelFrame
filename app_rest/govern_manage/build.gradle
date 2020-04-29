@@ -23,7 +23,7 @@ dependencies {
     implementation deps.okhttp3
     //熔断机制
     implementation deps.hystrix
-    implementation(project(':common')) {
+    implementation(project(':base_common')) {
         //排出依赖包
         exclude group: 'com.github.pagehelper', module: 'pagehelper-spring-boot-starter'
     }

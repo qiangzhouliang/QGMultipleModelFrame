@@ -5,9 +5,9 @@ pluginManagement {
 }
 rootProject.name = 'app-rest'
 include(
-        'model',
-        'common',
-        'util',
+        'base_model',
+        'base_common',
+        'base_util',
         'api',
         'app',
         'govern_center',

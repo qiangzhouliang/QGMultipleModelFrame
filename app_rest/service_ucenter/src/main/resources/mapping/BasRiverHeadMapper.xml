@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--查询河长信息-->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zdww.lzshzz.ucenter.mapper.BasRiverHeaderMapper">
-    <resultMap id="retMap" type="com.zdww.lzshzz.model.ucenter.BasRiverHead"></resultMap>
-    <resultMap id="retMap2" type="com.zdww.lzshzz.model.sys.SysDistrict"></resultMap>
+<mapper namespace="com.qzl.lzshzz.ucenter.mapper.BasRiverHeaderMapper">
+    <resultMap id="retMap" type="com.qzl.lzshzz.model.ucenter.BasRiverHead"></resultMap>
+    <resultMap id="retMap2" type="com.qzl.lzshzz.model.sys.SysDistrict"></resultMap>
 	<!--河流列表统计查询-->
     <select id="getRiverHeadListS" resultMap="retMap">
 		SELECT b.*,f.file_url,f.file_new_name FROM bas_river_head b
@@ -28,7 +28,7 @@
 		END
 		LEFT JOIN sys_account t ON b.ACCOUNT_ID = t.USER_ACCT_ID
 		WHERE b.HEAD_STATE = '1' AND b.state = '0' AND b.RIVER_LAKE_HEAD LIKE '%${request.riverLakeHead}%' AND t.USER_TYPE = '1' AND t.USER_STATE = '1'
--- 		${@com.zdww.lzshzz.util.AreaCodeUtil@getAreaCode(request.areaCode)}
+-- 		${@com.qzl.lzshzz.util.AreaCodeUtil@getAreaCode(request.areaCode)}
 		AND s.RES_PART_ID = '${request.areaCode}'
 		<if test="request.searchName != null and request.searchName != ''">
 			AND (b.NAME LIKE '%${request.searchName}%' OR b.LOGIN_NAME LIKE '%${request.searchName}%' OR b.LINK_TEL LIKE '%${request.searchName}%')
@@ -46,7 +46,7 @@
 		</if>
 
 		<if test="request.totalOrSelf == '02'">
-			AND h.AREA_CODE like '${@com.zdww.lzshzz.util.AreaCodeUtil@getAreaCode(request.areaCode)}%'
+			AND h.AREA_CODE like '${@com.qzl.lzshzz.util.AreaCodeUtil@getAreaCode(request.areaCode)}%'
 		</if>
 
 		<if test="request.searchName != null and request.searchName != ''">

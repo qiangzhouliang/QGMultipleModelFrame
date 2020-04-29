@@ -1,0 +1,16 @@
+jar {
+    enabled = true
+}
+
+bootJar {
+    enabled = false
+}
+dependencies {
+    api project(':base_util')
+    annotationProcessor deps.lombok
+    compileOnly deps.lombok
+    testAnnotationProcessor deps.lombok
+    testCompileOnly deps.lombok
+//    implementation deps.swagger2
+//    implementation deps.swagger_ui
+}

@@ -32,7 +32,7 @@ eureka:
     ip-address: ${IP_ADDRESS:10.18.28.69}
     instance-id: ${spring.application.name}:${server.port} #指定实例id
 mybatis:
-  type-aliases-package: com.zdww.lashzz.model
+  type-aliases-package: com.qzl.lashzz.model
   mapper-locations: classpath:mapping/*.xml
   configuration:
     map-underscore-to-camel-case: true

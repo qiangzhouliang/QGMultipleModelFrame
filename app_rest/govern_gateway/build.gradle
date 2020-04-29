@@ -16,7 +16,7 @@ buildscript {
     }
 }
 dependencies {
-    implementation(project(':common')) {
+    implementation(project(':base_common')) {
         //排出依赖包
         exclude group: 'com.github.pagehelper', module: 'pagehelper-spring-boot-starter'
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-data-jpa'
