@@ -37,4 +37,5 @@ dependencies {
     api deps.okhttp3
 
     api deps.redis
+    api deps.jasypt
 }

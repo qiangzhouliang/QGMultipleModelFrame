@@ -23,4 +23,5 @@ object Constants {
      * 文件类型(文档)
      */
     const val FILE_TYPE = "3"
+    const val JASYPT_ENCRYPTOR_PASSWORD = "Ab0hU6KRzycTBiOPfa4Hgxmq1lSj8LJt-LZSHZZ"
 }

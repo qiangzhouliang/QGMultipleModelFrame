@@ -1,16 +1,20 @@
-package com.zdww.lzshzz.util;
+package com.zdww.lzshzz.util
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import com.sun.glass.ui.Application
+import org.jasypt.encryption.StringEncryptor
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.junit4.SpringRunner
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class UtilApplicationTests {
+@RunWith(SpringRunner::class)
+@SpringBootTest(classes = [Application::class])
+class UtilApplicationTests {
 
+    //加密
     @Test
-    public void contextLoads() {
+    fun getPassword() {
     }
 
 }

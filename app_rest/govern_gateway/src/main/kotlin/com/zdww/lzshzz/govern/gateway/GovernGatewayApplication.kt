@@ -3,6 +3,7 @@ package com.zdww.lzshzz.govern.gateway
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy
+import org.springframework.context.annotation.ComponentScan
 
 /**
  * @author 强周亮
@@ -12,6 +13,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy
  */
 @SpringBootApplication
 @EnableZuulProxy //此工程是一个zuul网关
+@ComponentScan("com.zdww.lzshzz")//扫描实体类
 class GovernGatewayApplication
 
 fun main(args: Array<String>) {

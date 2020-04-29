@@ -59,6 +59,8 @@ deps.zuul = 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
 //security
 deps.security = 'org.springframework.cloud:spring-cloud-starter-security'
 deps.oauth2 = 'org.springframework.cloud:spring-cloud-starter-oauth2'
+// 数据库加解密
+deps.jasypt = 'com.github.ulisesbocchio:jasypt-spring-boot-starter:2.0.0'
 
 //okhttp3
 deps.okhttp3 = 'com.squareup.okhttp3:okhttp:3.9.1'
