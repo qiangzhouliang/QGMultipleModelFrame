@@ -19,6 +19,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/TranslucentTheme">
+        <!--解决不能适配全面屏的问题-->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1"/>
+        <!--        适配华为刘海屏-->
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true"/>
         <!-- 友盟统计 -->
         <meta-data
             android:name="UMENG_APPKEY"
