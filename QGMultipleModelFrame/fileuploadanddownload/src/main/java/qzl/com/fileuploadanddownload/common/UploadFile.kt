@@ -3,6 +3,8 @@ package qzl.com.fileuploadanddownload.common
 import android.app.Dialog
 import android.content.Context
 import com.google.gson.Gson
+import com.qzl.prefutils.PrefUtils
+import com.qzl.toast.MyToast
 import org.xutils.common.Callback
 import org.xutils.common.util.KeyValue
 import org.xutils.http.RequestParams
@@ -17,8 +19,6 @@ import qzl.com.tools.img.BitmapUtil
 import qzl.com.tools.utils.MyLogUtils
 import qzl.com.tools.video.VideoCompressListener
 import qzl.com.tools.video.VideoCompressor
-import utilclass.PrefUtils
-import utilclass.Tt
 import java.io.File
 
 /**
@@ -97,7 +97,7 @@ object UploadFile {
      * @time 2019/12/18 9:52
      */
     private fun upload(params: RequestParams, context: Context, busId: String, table: String, fileType: String, fileSource: String) {
-        params.addQueryStringParameter("uid", PrefUtils.getString(context, Constant.TOKEN, ""))
+        params.addQueryStringParameter("uid", PrefUtils.getString(Constant.TOKEN, ""))
         params.addQueryStringParameter("busId", busId)
         params.addQueryStringParameter("table", table)
         params.addQueryStringParameter("areaCode", SysAccount.userInfo?.areaCode)
@@ -108,7 +108,7 @@ object UploadFile {
         params.addQueryStringParameter("loginAccount", SysAccount.userInfo?.loginAccount)
         params.addQueryStringParameter("driveType", "android")
         params.isMultipart = true
-        params.addHeader("Authorization", "Bearer " + PrefUtils.getString(context, Constant.jwtToken, ""))
+        params.addHeader("Authorization", "Bearer " + PrefUtils.getString(Constant.jwtToken, ""))
         x.http().post(params, object : Callback.CommonCallback<String> {
             override fun onFinished() {
                 MyLogUtils.e("文件上传完成")
@@ -128,7 +128,7 @@ object UploadFile {
             }
 
             override fun onError(ex: Throwable?, isOnCallback: Boolean) {
-                Tt.showShort("文件上传出错")
+                MyToast.showShort("文件上传出错")
                 progressDialog?.dismiss()
             }
         })

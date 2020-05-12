@@ -1,7 +1,6 @@
 package qzl.com.tools.utils
 
 
-import utilclass.StringHelper.isEmptyObject
 import java.io.UnsupportedEncodingException
 import java.util.*
 import java.util.regex.Pattern
@@ -701,17 +700,4 @@ object StringHelper {
     fun isEmptyString(obj: String?): Boolean {
         return obj == null || "" == obj || "null" == obj || "NULL" == obj || "undefined" == obj
     }
-
-    fun nvl(obj: Any, unit: String): String {
-        return if (isEmptyObject(obj)) {
-            ""
-        } else StringHelper.toString(obj) + StringHelper.toString(unit)
-    }
-
-    fun nvl(obj: Any, unit: String, defvalue: String): String {
-        return if (isEmptyObject(obj)) {
-            defvalue
-        } else StringHelper.toString(obj) + StringHelper.toString(unit)
-    }
-
 }

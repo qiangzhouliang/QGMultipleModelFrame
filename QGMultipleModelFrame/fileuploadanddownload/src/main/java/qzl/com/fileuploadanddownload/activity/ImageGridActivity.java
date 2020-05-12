@@ -13,17 +13,20 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import qzl.com.basecommon.base.BaseActivity;
-import qzl.com.fileuploadanddownload.common.AlbumHelper;
-import qzl.com.fileuploadanddownload.common.Bimp;
-import qzl.com.fileuploadanddownload.R;
-import qzl.com.fileuploadanddownload.adapter.ImageGridAdapter;
-import qzl.com.fileuploadanddownload.bean.ImageItem;
-import utilclass.Tt;
+
+import com.qzl.toast.MyToast;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+
+import qzl.com.basecommon.base.BaseActivity;
+import qzl.com.fileuploadanddownload.R;
+import qzl.com.fileuploadanddownload.adapter.ImageGridAdapter;
+import qzl.com.fileuploadanddownload.bean.ImageItem;
+import qzl.com.fileuploadanddownload.common.AlbumHelper;
+import qzl.com.fileuploadanddownload.common.Bimp;
 
 public class ImageGridActivity extends BaseActivity {
 	public static final String EXTRA_IMAGE_LIST = "imageList";
@@ -142,7 +145,7 @@ public class ImageGridActivity extends BaseActivity {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 				case 0:
-					Tt.showShort("最多选择"+maxNum+"张图片");
+					MyToast.showShort("最多选择"+maxNum+"张图片");
 					break;
 
 				default:

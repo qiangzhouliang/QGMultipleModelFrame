@@ -1,11 +1,11 @@
 package qzl.com.basecommon.net.net
+import com.qzl.prefutils.PrefUtils
 import cz.msebera.android.httpclient.NameValuePair
 import cz.msebera.android.httpclient.client.utils.URLEncodedUtils
 import cz.msebera.android.httpclient.message.BasicNameValuePair
 import qzl.com.basecommon.common.Constant
 import qzl.com.basecommon.common.Constant.baseUrl
 import qzl.com.basecommon.common.SysAccount
-import utilclass.PrefUtils
 
 /**
  * @desc 请求公共方法类
@@ -32,7 +32,7 @@ class BaseRequest<RESPONSE>(val type:Int = 0) {
             }
         }
         //添加请求token
-        params.add(BasicNameValuePair("uid", PrefUtils.getString(mRequest.mContext, Constant.TOKEN,"")))
+        params.add(BasicNameValuePair("uid", PrefUtils.getString(Constant.TOKEN,"")))
         //用户账号ID
         params.add(BasicNameValuePair("userAcctId", SysAccount.userInfo?.userAcctId?:""))
         //登录用户账号
@@ -60,7 +60,7 @@ class BaseRequest<RESPONSE>(val type:Int = 0) {
         }
 
         //添加请求token
-        mRequest.reqMap!!["uid"] = PrefUtils.getString(mRequest.mContext, Constant.TOKEN,"")
+        mRequest.reqMap!!["uid"] = PrefUtils.getString(Constant.TOKEN,"")
         //用户账号ID
         mRequest.reqMap!!["userAcctId"] = SysAccount.userInfo?.userAcctId?:""
         //登录用户账号

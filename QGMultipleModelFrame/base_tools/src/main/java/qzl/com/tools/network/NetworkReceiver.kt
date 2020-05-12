@@ -5,7 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
-import utilclass.Tt
+import com.qzl.toast.MyToast
 
 /**
  * @author 强周亮(Qzl)
@@ -22,7 +22,7 @@ class NetworkReceiver : BroadcastReceiver() {
         if (action == ConnectivityManager.CONNECTIVITY_ACTION) {
             val mNetWorkState = NetworkUtil.getNetworkState(context)
             if (mNetWorkState == NetworkUtil.NETWORN_NONE) {
-                Tt.showShort("网络连接已断开")
+                MyToast.showShort("网络连接已断开")
                 val b = AlertDialog.Builder(context)
                     .setTitle("没有可用的网络")
                     .setMessage("是否对网络进行设置？")
@@ -35,7 +35,7 @@ class NetworkReceiver : BroadcastReceiver() {
                     }
                 }.setNeutralButton("取消") { dialog, whichButton -> dialog.cancel() }.show()
             } else {
-                Tt.showShort("网络已连接")
+                MyToast.showShort("网络已连接")
             }
         }
     }

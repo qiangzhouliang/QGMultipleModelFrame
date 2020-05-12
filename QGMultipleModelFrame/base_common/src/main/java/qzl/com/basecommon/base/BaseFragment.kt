@@ -5,11 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.qzl.prefutils.PrefUtils
 import org.jetbrains.anko.AnkoLogger
 import qzl.com.basecommon.common.Constant
-import qzl.com.basecommon.common.SysAccount
-import qzl.com.model.user_info.UserInfo
-import utilclass.PrefUtils
 
 /**
  * @desc 所有fragment的基类
@@ -47,10 +45,9 @@ abstract class BaseFragment: androidx.fragment.app.Fragment(),AnkoLogger {
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
         //判断是否需要重新加载数据
-        if (isVisibleToUser && context != null && PrefUtils.getBoolean(context,
-                Constant.IS_TAB_CONTENT,false)){
+        if (isVisibleToUser && context != null && PrefUtils.getBoolean(Constant.IS_TAB_CONTENT,false)!!){
             initData()
-            PrefUtils.setBoolean(activity,Constant.IS_TAB_CONTENT,false)
+            PrefUtils.setBoolean(Constant.IS_TAB_CONTENT,false)
         }
     }
     /**

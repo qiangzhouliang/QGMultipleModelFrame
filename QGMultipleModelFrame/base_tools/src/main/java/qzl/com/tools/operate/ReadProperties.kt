@@ -1,15 +1,15 @@
 package qzl.com.tools.operate
 
 import android.content.Context
+import com.qzl.toast.MyToast
 import qzl.com.tools.utils.AppUtil.isApkInDebug
-import utilclass.Tt
 import java.util.*
 
 object ReadProperties {
     private var defaultProperty: Properties? = null
     fun setContext(context: Context?) {
         if (context == null) {
-            Tt.showLong("请先初始化配置文件读取类！！！")
+            MyToast.showLong("请先初始化配置文件读取类！！！")
             return
         }
         if (isApkInDebug(context)) {

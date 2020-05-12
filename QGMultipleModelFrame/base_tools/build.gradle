@@ -45,9 +45,7 @@ dependencies {
     testImplementation deps.junit
     androidTestImplementation deps.runner
     androidTestImplementation deps.espresso_core
-    api files('libs/qzlUtil.jar')
     api files('libs/nineoldandroids-2.4.0.jar')
-    api files('libs/xUtils-2.6.14.jar')
     api project(path: ':lib_ffmpeg4android')
     api deps.arouter_api
     api deps.android_async_http
@@ -74,4 +72,6 @@ dependencies {
     //集成友盟统计
     api deps.umsdk_analytics
     api deps.umsdk_common
+    api deps.MyToast
+    api deps.PrefUtil
 }

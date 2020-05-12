@@ -8,6 +8,8 @@ import android.content.Context
 import android.text.TextUtils
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper
 import com.alibaba.android.arouter.launcher.ARouter
+import com.qzl.prefutils.PrefUtils
+import com.qzl.toast.MyToast
 import com.umeng.analytics.MobclickAgent
 import com.umeng.commonsdk.UMConfigure
 import org.xutils.x
@@ -15,7 +17,6 @@ import qzl.com.basecommon.common.SysAccount
 import qzl.com.tools.operate.ReadProperties
 import qzl.com.tools.utils.AppUtil
 import qzl.com.tools.utils.MyLogUtils
-import utilclass.Tt
 import java.util.*
 
 /**
@@ -46,7 +47,9 @@ class SysApplication : Application() {
         MyLogUtils.init(this)
         if (isUIProcess()) {
             //初始化弹窗控件
-            Tt.init(this)
+            MyToast.init(this)
+            //SharedPreferences初始化
+            PrefUtils.init(this)
             initARouter()
             initXutils()
             initErrorException()
@@ -74,7 +77,7 @@ class SysApplication : Application() {
              * 设置组件化的Log开关
              * 参数: boolean 默认为false，如需查看LOG设置为true
              */
-            UMConfigure.setLogEnabled(true)
+            UMConfigure.setLogEnabled(false)
         }
     }
 

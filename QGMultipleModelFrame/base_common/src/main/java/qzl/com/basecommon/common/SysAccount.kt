@@ -3,9 +3,9 @@ package qzl.com.basecommon.common
 
 import android.content.Context
 import com.google.gson.Gson
+import com.qzl.prefutils.PrefUtils
 import qzl.com.model.user_info.UserInfo
-import utilclass.PrefUtils
-import utilclass.StringHelper
+import qzl.com.tools.utils.StringHelper
 
 /**
  * @author 强周亮(qiangzhouliang)
@@ -29,24 +29,24 @@ object SysAccount {
         // 获取到的数据需要解密，jwt_token中的三部分内容是通过.来连接的，使用的时候讲中间内容部分用base64解码皆可以得到想要的值
 //        println("userInfo  "+JWTUtils.decoded(jwtToken1))
         //保存一个用户信息刷新的标记位
-        PrefUtils.setBoolean(context, Constant.isRefreshUserInfo, true)
+        PrefUtils.setBoolean(Constant.isRefreshUserInfo, true)
         //缓存用户信息
 //        PrefUtils.setString(context, Constant.CACHE_USER, JWTUtils.decoded(jwtToken1))
-        PrefUtils.setString(context, Constant.CACHE_USER, userInfo)
+        PrefUtils.setString(Constant.CACHE_USER, userInfo)
     }
 
     //获取用户信息
     @JvmStatic
     private fun getUserInfo(context: Context?): UserInfo? {
         when {
-            userInfo == null || PrefUtils.getBoolean(context,Constant.isRefreshUserInfo,false) -> {
-                val userInfos = PrefUtils.getString(context, Constant.CACHE_USER, "")
+            userInfo == null || PrefUtils.getBoolean(Constant.isRefreshUserInfo,false)!! -> {
+                val userInfos = PrefUtils.getString(Constant.CACHE_USER, "")
                 if (StringHelper.isEmptyString(userInfos)){
                     userInfo == null
                 } else {
                     try {
                         userInfo = Gson().fromJson(userInfos, UserInfo::class.java)
-                        PrefUtils.setBoolean(context, Constant.isRefreshUserInfo, false)
+                        PrefUtils.setBoolean(Constant.isRefreshUserInfo, false)
                     } catch ( e:Exception){
                         e.printStackTrace()
                     }

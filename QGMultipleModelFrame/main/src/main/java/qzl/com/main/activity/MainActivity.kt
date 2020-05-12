@@ -3,6 +3,8 @@ package qzl.com.main.activity
 import android.content.Intent
 import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
+import com.qzl.prefutils.PrefUtils
+import com.qzl.toast.MyToast
 import com.study.fileselectlibrary.LocalFileActivity
 import com.study.fileselectlibrary.bean.FileItem
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,7 +18,6 @@ import qzl.com.basecommon.permissions.ConstantPermission
 import qzl.com.basecommon.permissions.RequestPermissionUtil
 import qzl.com.basecommon.permissions.RequestPermissionUtil.requestPermission
 import qzl.com.main.R
-import utilclass.Tt
 import java.util.ArrayList
 
 class MainActivity : BaseActivity(), View.OnClickListener {
@@ -82,11 +83,11 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                     java.lang.String.format(ConstantPermission.getLocationContent, "我要巡河", "以便在地图中描绘巡河路径！"),
                     object : RequestPermissionUtil.PermissionListener {
                         override fun cancel(code: Int, perms: MutableList<String>) {
-                            Tt.showShort("拒绝")
+                            MyToast.showShort("拒绝")
                         }
 
                         override fun success(code: Int, perms: MutableList<String>?) {
-                            Tt.showShort("通过")
+                            MyToast.showShort("通过")
                         }
                     })
             }
@@ -101,7 +102,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             resultFileList.forEach {
                 filePath.add(it.path)
             }
-            Tt.showShort(filePath.toArray().toString())
+            MyToast.showShort(filePath.toArray().toString())
         }
     }
 }

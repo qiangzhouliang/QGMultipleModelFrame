@@ -5,12 +5,12 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.qzl.prefutils.PrefUtils
+import com.qzl.toast.MyToast
 import org.json.JSONObject
 import qzl.com.basecommon.common.Constant
 import qzl.com.basecommon.ui.java.LoadingDialog
 import qzl.com.tools.utils.ThreadUtil
-import utilclass.PrefUtils
-import utilclass.Tt
 
 /**
  * @desc 发送网络请求的类 volley
@@ -141,7 +141,7 @@ class NetManageVolley private constructor(){
      */
     private fun closePopu(isShowTt:Boolean = false,title:String = "加载出错") {
         if (isShowTt){
-            Tt.showShort(title)
+            MyToast.showShort(title)
         }
         progressDialog?.dismiss()
         progressDialog = null
@@ -150,7 +150,7 @@ class NetManageVolley private constructor(){
     //设置请求头
     private fun <RESPONSE> setHeaders(req: MRequest<RESPONSE>): HashMap<String, String> {
         return hashMapOf(
-            "Authorization" to "Bearer ${PrefUtils.getString(req.mContext, Constant.jwtToken, "")}",
+            "Authorization" to "Bearer ${PrefUtils.getString(Constant.jwtToken, "")}",
             "Content-Type" to "application/json; charset=utf-8"
         )
     }

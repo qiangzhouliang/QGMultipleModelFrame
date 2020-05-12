@@ -15,6 +15,7 @@ import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
 import com.mobsandgeeks.saripaar.annotation.Password;
 import com.mobsandgeeks.saripaar.annotation.Regex;
 import com.mobsandgeeks.saripaar.annotation.Required;
+import com.qzl.toast.MyToast;
 import com.zdww.login.R;
 import com.zdww.login.presenter.ChangePwdPresenterImpl;
 
@@ -30,7 +31,6 @@ import qzl.com.basecommon.net.base.BaseView;
 import qzl.com.model.common.CommonModel;
 import qzl.com.tools.operate.CompleteQuit;
 import qzl.com.tools.utils.MD5;
-import utilclass.Tt;
 
 /**
  * @author 强周亮(qiangzhouliang)
@@ -142,12 +142,12 @@ public class MenuModifyPwdActivity extends BaseActivity implements Validator.Val
 
     @Override
     public void onError(@Nullable String message) {
-        Tt.showShort("修改密码失败，请重新修改");
+        MyToast.showShort("修改密码失败，请重新修改");
     }
 
     @Override
     public void loadSuccess(@Nullable CommonModel result) {
-        Tt.showShort(result.getMessage());
+        MyToast.showShort(result.getMessage());
         if (result.getSuccess()){
             Intent intent = new Intent(this,LoginActivity.class);
             startActivity(intent);

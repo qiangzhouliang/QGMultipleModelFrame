@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import kotlinx.android.synthetic.main.common_dialog_main_layout.view.*
 import qzl.com.basecommon.R
-import utilclass.StringHelper
+import qzl.com.tools.utils.StringHelper
 
 /**
  * @author 强周亮(Qzl)

@@ -1,6 +1,7 @@
 package com.zdww.login.activity
 
 import android.view.View
+import com.qzl.toast.MyToast
 import com.zdww.login.R
 import com.zdww.login.presenter.CheckNumPresenterImpl
 import com.zdww.login.presenter.GetCheckedNumPresenterImpl
@@ -14,7 +15,6 @@ import qzl.com.tools.utils.NumUtil
 import qzl.com.tools.utils.StringHelper
 import qzl.com.tools.utils.ThreadUtil
 import qzl.com.tools.utils.Timer
-import utilclass.Tt
 
 /**
  * @author 强周亮(Qzl)
@@ -66,19 +66,19 @@ class UserRecoverPwdActivity : BaseActivity(), View.OnClickListener, Timer.TimeI
                     map["tel"] =  user_recover_telephone.text.toString().trim { it <= ' ' }
                     getCheckNumPresenter.loadDatas(map)
                 }
-                else -> Tt.showShort("请输入用户名或电话号码")
+                else -> MyToast.showShort("请输入用户名或电话号码")
             }
             R.id.next_btn -> when {
                 StringHelper.isEmptyString(userName) && StringHelper.isEmptyString(userTelephone) -> {
-                    Tt.showShort("请输入用户名或电话号码")
+                    MyToast.showShort("请输入用户名或电话号码")
                     return
                 }
                 StringHelper.isEmptyString(user_recover_safe_code.text.toString()) -> {
-                    Tt.showShort("验证码不能为空")
+                    MyToast.showShort("验证码不能为空")
                     return
                 }
                 countDown <= 0 -> {
-                    Tt.showShort("验证码已过期，请重新获取!")
+                    MyToast.showShort("验证码已过期，请重新获取!")
                     return
                 }
                 else -> {
@@ -116,9 +116,9 @@ class UserRecoverPwdActivity : BaseActivity(), View.OnClickListener, Timer.TimeI
         if (list?.success == true){
             user_recover_get_veri.isEnabled = false
             Timer().checkNumTimer(list.yxq)
-            Tt.showShort(list.message)
+            MyToast.showShort(list.message)
         } else {
-            Tt.showShort(list?.message)
+            MyToast.showShort(list?.message)
         }
     }
     //校验验证吗后的结果
@@ -131,7 +131,7 @@ class UserRecoverPwdActivity : BaseActivity(), View.OnClickListener, Timer.TimeI
             )
             finishWithAnimation()
         } else {
-            Tt.showShort(list?.message)
+            MyToast.showShort(list?.message)
         }
     }
     override fun onDestroy() {

@@ -3,6 +3,8 @@ package com.zdww.login.ext.activity
 import android.text.InputType
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import com.qzl.prefutils.PrefUtils
+import com.qzl.toast.MyToast
 import com.zdww.login.R
 import com.zdww.login.activity.LoginActivity
 import kotlinx.android.synthetic.main.p_login.*
@@ -13,8 +15,6 @@ import qzl.com.model.login.LoginModel
 import qzl.com.tools.utils.DeviceUtils
 import qzl.com.tools.utils.MD5
 import qzl.com.tools.utils.StringHelper
-import utilclass.PrefUtils
-import utilclass.Tt
 
 /**
  * @desc 登录activity扩展
@@ -29,7 +29,7 @@ object LoginActivityExt {
     //登录方法
     fun LoginActivity.login() {
         if (!login_private.isChecked){
-            Tt.showShort("请先同意用户隐私声明！")
+            MyToast.showShort("请先同意用户隐私声明！")
             return
         }
         map["user"] = StringHelper.toString(login_user_name.text.toString()).trim { it <= ' ' }
@@ -101,20 +101,20 @@ object LoginActivityExt {
     //请求到登录结果后的处理
     fun LoginActivity.analysisResult(list: LoginModel?) = if (list?.success == true){
         // 存储token信息
-        PrefUtils.setString(this, Constant.TOKEN,list.data.token)
+        PrefUtils.setString(Constant.TOKEN,list.data.token)
         //存储jwtToken
         val jwtToken1 = list.data.jwtToken
-        PrefUtils.setString(this,Constant.jwtToken,jwtToken1)
+        PrefUtils.setString(Constant.jwtToken,jwtToken1)
         //存储刷新token
-        PrefUtils.setString(this,Constant.refreshToken,list.data.refreshToken)
+        PrefUtils.setString(Constant.refreshToken,list.data.refreshToken)
         //缓存是否记住密码
-        PrefUtils.setBoolean(this,Constant.isAutoLogin,login_remember_pass.isChecked)
+        PrefUtils.setBoolean(Constant.isAutoLogin,login_remember_pass.isChecked)
         //缓存账号密码登录 还是账号电话号码登录
         when (ll_get_check_parent?.visibility) {
             View.VISIBLE -> //1 表示用用户名手机号登陆
-                PrefUtils.setString(this,Constant.isPhoneLogin,"1")
+                PrefUtils.setString(Constant.isPhoneLogin,"1")
             else -> //0 表示用账号密码登录
-                PrefUtils.setString(this,Constant.isPhoneLogin,"0")
+                PrefUtils.setString(Constant.isPhoneLogin,"0")
         }
         //表示登录成功
         getUserInfoPres.loadDatas(map)
@@ -122,8 +122,8 @@ object LoginActivityExt {
         //表示是设备id更新不成功导致的问题，这边目前不做处理
         when (list?.code) {
             23012 -> startActivityArouter(ARouterPath.Home.HOME_ACTIVITY,true)
-            10004 -> Tt.showShort(list.checkTip)
-            else -> Tt.showShort(list?.message)
+            10004 -> MyToast.showShort(list.checkTip)
+            else -> MyToast.showShort(list?.message)
         }
     }
 }

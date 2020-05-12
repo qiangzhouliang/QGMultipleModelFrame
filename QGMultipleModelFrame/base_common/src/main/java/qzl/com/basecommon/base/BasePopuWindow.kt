@@ -10,7 +10,6 @@ import android.widget.PopupWindow
 import android.widget.PopupWindow.OnDismissListener
 import qzl.com.basecommon.common.Constant
 import qzl.com.tools.utils.ScreenUtil
-import utilclass.LogUtils
 
 /**
  * @author Qzl

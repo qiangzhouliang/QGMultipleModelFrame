@@ -7,7 +7,6 @@ import android.view.View
 import kotlinx.android.synthetic.main.p_splach.*
 import qzl.com.basecommon.base.BaseActivity
 import qzl.com.main.R
-import utilclass.Tt
 
 
 class SplashActivity: BaseActivity(),ViewPropertyAnimatorListener {

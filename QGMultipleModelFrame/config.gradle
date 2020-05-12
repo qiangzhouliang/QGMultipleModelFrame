@@ -109,4 +109,9 @@ deps.xutils = 'org.xutils:xutils:3.8.3'
 deps.umsdk_analytics = 'com.umeng.umsdk:analytics:8.0.0'
 deps.umsdk_common = 'com.umeng.umsdk:common:2.0.0'
 
+//toast封装
+deps.MyToast = 'com.github.qiangzhouliang:MyToast:1.0.2'
+//SharedPreferences
+deps.PrefUtil = 'com.github.qiangzhouliang:PrefUtil:1.0.2'
+
 ext.deps = deps

@@ -1,6 +1,8 @@
 package com.zdww.login.presenter
 
 import com.google.gson.Gson
+import com.qzl.prefutils.PrefUtils
+import com.qzl.toast.MyToast
 import com.zdww.login.activity.LoginActivity
 import qzl.com.basecommon.arouter.ARouterPath
 import qzl.com.basecommon.common.Constant
@@ -12,8 +14,6 @@ import qzl.com.basecommon.net.net.MRequest
 import qzl.com.basecommon.net.net.ResponseHandler
 import qzl.com.model.login.GetUserInfoModel
 import qzl.com.tools.utils.DeviceUtils
-import utilclass.PrefUtils
-import utilclass.Tt
 
 /**
  * @author 强周亮(qiangzhouliang)
@@ -28,8 +28,8 @@ class GetUserInfoPresenterImpl(var mContext: LoginActivity?) : BasPresenter,
             //保存用户信息
             SysAccount.setUserInfo(mContext,Gson().toJson(result.data))
             //记录登陆次数
-            var count = PrefUtils.getInt(mContext, Constant.LOGIN_COUNT, 0)
-            PrefUtils.setInt(mContext, Constant.LOGIN_COUNT, ++count)
+            var count = PrefUtils.getInt(Constant.LOGIN_COUNT, 0)
+            PrefUtils.setInt(Constant.LOGIN_COUNT, ++count)
 
             //极光推送  为每台移动设备设置别名，实现点对点推送
             val deviceId = DeviceUtils.getUniqueId(mContext)
@@ -39,7 +39,7 @@ class GetUserInfoPresenterImpl(var mContext: LoginActivity?) : BasPresenter,
         } else {
             //表示是设备id更新不成功导致的问题，这边目前不做处理
             if (result.code != 23012) {
-                Tt.showShort(result.message)
+                MyToast.showShort(result.message)
             } else {
                 mContext?.startActivityArouter(ARouterPath.Home.HOME_ACTIVITY,true)
             }
@@ -65,6 +65,6 @@ class GetUserInfoPresenterImpl(var mContext: LoginActivity?) : BasPresenter,
      * 加载数据失败
      */
     override fun onError(type:Int?,msg: String?) {
-        Tt.showShort("获取数据失败，请重新登录")
+        MyToast.showShort("获取数据失败，请重新登录")
     }
 }

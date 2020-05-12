@@ -1,6 +1,7 @@
 package com.zdww.login.presenter
 
 import android.content.Context
+import com.qzl.toast.MyToast
 import com.zdww.login.view.CheckNumView
 import qzl.com.basecommon.common.ConstantUrl
 import qzl.com.basecommon.net.base.BasPresenter
@@ -8,7 +9,6 @@ import qzl.com.basecommon.net.net.BaseRequest
 import qzl.com.basecommon.net.net.MRequest
 import qzl.com.basecommon.net.net.ResponseHandler
 import qzl.com.model.login.CheckNumModel
-import utilclass.Tt
 
 /**
  * @author 强周亮(qiangzhouliang)
@@ -45,7 +45,7 @@ class GetCheckedNumPresenterImpl(var mContext: Context?, var checkView: CheckNum
      * 加载数据失败
      */
     override fun onError(type:Int?,msg: String?) {
-        Tt.showShort("验证码发送失败")
+        MyToast.showShort("验证码发送失败")
     }
 
 }

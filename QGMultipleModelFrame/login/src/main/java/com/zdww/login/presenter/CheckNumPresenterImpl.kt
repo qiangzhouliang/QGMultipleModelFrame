@@ -1,6 +1,7 @@
 package com.zdww.login.presenter
 
 import android.content.Context
+import com.qzl.toast.MyToast
 import com.zdww.login.view.JiaoYanCheckNumView
 import qzl.com.basecommon.common.ConstantUrl
 import qzl.com.basecommon.net.base.BasPresenter
@@ -9,7 +10,6 @@ import qzl.com.basecommon.net.net.MRequest
 import qzl.com.basecommon.net.net.ResponseHandler
 import qzl.com.model.login.CheckNumModel
 import qzl.com.tools.utils.MyLogUtils
-import utilclass.Tt
 
 /**
  * @author 强周亮(qiangzhouliang)
@@ -47,7 +47,7 @@ class CheckNumPresenterImpl(var mContext: Context?, var checkView: JiaoYanCheckN
      */
     override fun onError(type:Int?,msg: String?) {
         MyLogUtils.e(msg?:"验证码发送失败")
-        Tt.showShort("验证码发送失败")
+        MyToast.showShort("验证码发送失败")
     }
 
 }

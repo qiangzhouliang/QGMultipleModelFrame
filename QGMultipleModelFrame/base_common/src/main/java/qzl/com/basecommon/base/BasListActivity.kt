@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.qzl.toast.MyToast
 import kotlinx.android.synthetic.main.common_search_screen.*
 import kotlinx.android.synthetic.main.fragment_list.*
 import qzl.com.basecommon.R
@@ -14,7 +15,6 @@ import qzl.com.basecommon.net.base.BasListAdapter
 import qzl.com.basecommon.net.base.BasListPresenter
 import qzl.com.basecommon.net.base.BaseListView
 import qzl.com.model.common.PagePara
-import utilclass.Tt
 
 /**
  * @desc 具有所有下拉刷新和上拉加载更多的activity基类
@@ -38,7 +38,7 @@ abstract class BasListActivity<RESPONSE,ITEMBEAN,ITEMVIEW:View> : BaseActivity()
     }
     override fun onError(message: String?) {
         runOnUiThread {
-            Tt.showShort("获取数据失败")
+            MyToast.showShort("获取数据失败")
             recycleView.visibility = View.VISIBLE
             //隐藏刷新控件
             refreshLayout.isRefreshing = false

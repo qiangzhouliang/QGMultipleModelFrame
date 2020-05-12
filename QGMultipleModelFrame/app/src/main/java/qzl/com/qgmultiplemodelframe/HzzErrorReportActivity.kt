@@ -2,9 +2,9 @@ package qzl.com.qgmultiplemodelframe
 import android.content.Intent
 import android.view.KeyEvent
 import android.view.View
+import com.qzl.toast.MyToast
 import kotlinx.android.synthetic.main.activity_error.*
 import qzl.com.basecommon.base.BaseActivity
-import utilclass.Tt
 
 /**
  * @author 强周亮
@@ -20,7 +20,7 @@ class HzzErrorReportActivity : BaseActivity() {
     }
 
     override fun initView() {
-        Tt.init(this)
+        MyToast.init(this)
         init()
     }
 
@@ -31,7 +31,7 @@ class HzzErrorReportActivity : BaseActivity() {
             restart()
         }
         error_report_send_btn.setOnClickListener {
-            Tt.showShort("上报")
+            MyToast.showShort("上报")
         }
     }
 

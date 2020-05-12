@@ -5,6 +5,8 @@ import android.os.Environment
 import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
 import com.maning.mndialoglibrary.MProgressBarDialog
+import com.qzl.prefutils.PrefUtils
+import com.qzl.toast.MyToast
 import org.jetbrains.anko.startActivity
 import org.xutils.common.Callback
 import org.xutils.http.RequestParams
@@ -19,8 +21,6 @@ import qzl.com.fileuploadanddownload.R
 import qzl.com.tools.thread.ThreadPoolProxyFactory
 import qzl.com.tools.utils.FileUtil.openFile
 import qzl.com.tools.utils.MyLogUtils
-import utilclass.PrefUtils
-import utilclass.Tt
 import java.io.File
 import java.util.*
 
@@ -91,7 +91,7 @@ object DownloadFile {
                 if (isOpenFile) {
                     openFile(finalMActivity!!, mFilePath!!)
                 } else {
-                    Tt.showLong("文件已在" + mFilePath + "目录下存在")
+                    MyToast.showLong("文件已在" + mFilePath + "目录下存在")
                 }
                 return
             }
@@ -101,8 +101,8 @@ object DownloadFile {
         requestParams.saveFilePath = filePath + fileName
         requestParams.addQueryStringParameter("fileUrl", url)
         requestParams.addQueryStringParameter("fileName", fileName)
-        requestParams.addQueryStringParameter("uid", PrefUtils.getString(finalMActivity, Constant.TOKEN, ""))
-        requestParams.addHeader("Authorization", "Bearer " + PrefUtils.getString(finalMActivity, Constant.jwtToken, ""))
+        requestParams.addQueryStringParameter("uid", PrefUtils.getString(Constant.TOKEN, ""))
+        requestParams.addHeader("Authorization", "Bearer " + PrefUtils.getString(Constant.jwtToken, ""))
         // 下载完成后自动为文件命名
         requestParams.isAutoRename = true
         MyLogUtils.e("download ${requestParams.uri}")
@@ -121,7 +121,7 @@ object DownloadFile {
             }
 
             override fun onError(ex: Throwable, isOnCallback: Boolean) {
-                Tt.showLong("下载失败")
+                MyToast.showLong("下载失败")
                 mProgressBarDialog?.dismiss()
             }
 

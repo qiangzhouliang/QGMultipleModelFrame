@@ -11,6 +11,8 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.qzl.prefutils.PrefUtils
+import com.qzl.toast.MyToast
 import com.zdww.login.R
 import com.zdww.login.ext.activity.LoginActivityExt.analysisResult
 import com.zdww.login.ext.activity.LoginActivityExt.initIcon
@@ -37,8 +39,6 @@ import qzl.com.tools.network.NetworkUtil
 import qzl.com.tools.operate.CompleteQuit
 import qzl.com.tools.thread.ThreadPoolProxyFactory
 import qzl.com.tools.utils.*
-import utilclass.PrefUtils
-import utilclass.Tt
 
 @Route(path = ARouterPath.Login.LOGIN)
 class LoginActivity : BaseActivity(), View.OnClickListener, Timer.TimeIntf, BaseView<LoginModel>,CheckNumView<CheckNumModel> {
@@ -77,10 +77,10 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Timer.TimeIntf, Base
                 when (state) {
                     0 -> when {
                         ll_get_check_parent?.visibility == View.VISIBLE -> if (StringHelper.isEmptyString(login_check?.text.toString())) {
-                            Tt.showShort("验证码不能为空")
+                            MyToast.showShort("验证码不能为空")
                         } else {
                             when {
-                                countDown <= 0 -> Tt.showShort("验证码已过期，请重新获取！")
+                                countDown <= 0 -> MyToast.showShort("验证码已过期，请重新获取！")
                                 else -> {
                                     //登录
                                     login()
@@ -98,12 +98,12 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Timer.TimeIntf, Base
         })
         //隐私政策
         login_private?.setOnCheckedChangeListener { buttonView, isChecked ->
-            PrefUtils.setBoolean(this@LoginActivity, Constant.isPrivate, isChecked)
+            PrefUtils.setBoolean(Constant.isPrivate, isChecked)
         }
-        login_remember_pass?.setOnCheckedChangeListener { buttonView, isChecked -> PrefUtils.setBoolean(this@LoginActivity, Constant.isAutoLogin, isChecked) }
+        login_remember_pass?.setOnCheckedChangeListener { buttonView, isChecked -> PrefUtils.setBoolean(Constant.isAutoLogin, isChecked) }
         login_user_name?.setText(SysAccount.userInfo?.loginAccount)
         when {
-            PrefUtils.getBoolean(this, Constant.isAutoLogin, true) -> {
+            PrefUtils.getBoolean(Constant.isAutoLogin, true)!! -> {
                 login_remember_pass?.isChecked = true
                 var loginPassword = SysAccount.userInfo?.loginPassword
                 if (loginPassword?.length?:0 >= 32){
@@ -113,7 +113,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Timer.TimeIntf, Base
             }
             else -> login_remember_pass?.isChecked = false
         }
-        login_private.isChecked = PrefUtils.getBoolean(this, Constant.isPrivate, false)
+        login_private.isChecked = PrefUtils.getBoolean(Constant.isPrivate, false)!!
     }
     override fun initListener() {
         Timer.TimeIntfUtil.setTimeIntf(this)
@@ -177,7 +177,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Timer.TimeIntf, Base
                         map["tel"] = StringHelper.toString(login_user_password.text.toString()).trim { it <= ' ' }
                         getCheckNumPresenter.loadDatas(map)
                     }
-                    else -> Tt.showShort("请填写电话号码！")
+                    else -> MyToast.showShort("请填写电话号码！")
                 }
             //登录用户名提示信息显示影藏
             R.id.iv_user_tip -> {
@@ -226,17 +226,17 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Timer.TimeIntf, Base
     override fun onError(message: String?) {
         ThreadUtil.runOnMainThread(Runnable {
             MyLogUtils.e(message?:"登录失败")
-            Tt.showShort("登录失败")
+            MyToast.showShort("登录失败")
         })
     }
 
     //获取验证码成功后请求到的数据
     override fun onSuccess(list: CheckNumModel?) {
         if (list?.success == true){
-            Tt.showShort("验证码发送成功,请注意查收！")
+            MyToast.showShort("验证码发送成功,请注意查收！")
             Timer().checkNumTimer(list.yxq)
         } else {
-            Tt.showShort(list?.message)
+            MyToast.showShort(list?.message)
         }
     }
 

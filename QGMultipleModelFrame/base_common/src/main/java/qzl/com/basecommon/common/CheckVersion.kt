@@ -11,16 +11,16 @@ import android.os.Message
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.google.gson.Gson
+import com.qzl.toast.MyToast
 import qzl.com.basecommon.ui.java.LoadingDialog
 import qzl.com.basecommon.utils.VersionXmlParser
 import qzl.com.model.app_info.VersionInfo
+import qzl.com.tools.network.NetworkUtil
 import qzl.com.tools.thread.ThreadPoolProxyFactory
 import qzl.com.tools.utils.AppUtil
 import qzl.com.tools.utils.MyLogUtils
 import qzl.com.tools.utils.ScreenUtil
 import qzl.com.tools.utils.StringHelper
-import utilclass.NetworkUtil
-import utilclass.Tt
 import java.io.*
 import java.lang.Thread.sleep
 import java.net.HttpURLConnection
@@ -303,7 +303,7 @@ class CheckVersion(var activity: Activity, var isSyncHandle: Boolean = false //�
 
     override fun setHandleMessage(msg: Message) {
         if (msg.what == DOWN_ERROR) {
-            Tt.showShort("下载新版本失败!")
+            MyToast.showShort("下载新版本失败!")
             return
         }
 

@@ -11,6 +11,8 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
+import com.qzl.prefutils.PrefUtils
+import com.qzl.toast.MyToast
 import com.zdww.login.R
 import com.zdww.login.adapter.NavigationPageAdapter
 import com.zdww.login.presenter.AutoLoginPresenterImpl
@@ -27,8 +29,6 @@ import qzl.com.tools.operate.CompleteQuit
 import qzl.com.tools.thread.ThreadPoolProxyFactory
 import qzl.com.tools.utils.DeviceUtils
 import qzl.com.tools.utils.StringHelper
-import utilclass.PrefUtils
-import utilclass.Tt
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.set
@@ -61,7 +61,7 @@ class SplashActivity: BaseActivity(), BaseView<LoginModel> {
     override fun getLayoutId(): Int { return R.layout.p_splach }
 
     override fun initData() {
-        if (PrefUtils.getInt(this, Constant.LOGIN_COUNT, 0) >= 3){
+        if (PrefUtils.getInt(Constant.LOGIN_COUNT, 0) >= 3){
             ind_layout.visibility = View.GONE
             finishViewPager = true;
             Handler().postDelayed({ checkVesion() }, 1000)
@@ -119,12 +119,12 @@ class SplashActivity: BaseActivity(), BaseView<LoginModel> {
                 when {
                     userInfo != null -> {
                         when {
-                            PrefUtils.getBoolean(this,Constant.isAutoLogin,false) && versionState == 0 -> {
+                            PrefUtils.getBoolean(Constant.isAutoLogin,false)!! && versionState == 0 -> {
                                 //检查有没有其他设备登录
 //                                LoadDataAsync(this@UserGuideActivity, loadDataSetting, false).execute()
                                 val map = HashMap<String, String?>()
                                 map["user"] = SysAccount.userInfo?.loginAccount?:""
-                                val phoneLoginFlag = PrefUtils.getString(this, Constant.isPhoneLogin, "0")
+                                val phoneLoginFlag = PrefUtils.getString(Constant.isPhoneLogin, "0")
                                 map["phoneLoginFlag"] = phoneLoginFlag
                                 map["userMd5"] = when (phoneLoginFlag) {
                                     "1" ->  SysAccount.userInfo?.userTele?:""
@@ -134,10 +134,10 @@ class SplashActivity: BaseActivity(), BaseView<LoginModel> {
                                 map["loginType"] = getString(R.string.android_login)
                                 presenter.loadDatas(map)
                                 //记录登陆次数
-                                var count = PrefUtils.getInt(this, Constant.LOGIN_COUNT, 0)
-                                PrefUtils.setInt(this, Constant.LOGIN_COUNT, ++count)
+                                var count = PrefUtils.getInt(Constant.LOGIN_COUNT, 0)
+                                PrefUtils.setInt(Constant.LOGIN_COUNT, ++count)
                                 //跳转到首页
-                                Tt.showShort("跳转到首页")
+                                MyToast.showShort("跳转到首页")
 //                                startActivityArouter(ARouterPath.homeActivity)
                                 return
                             }
@@ -295,7 +295,7 @@ class SplashActivity: BaseActivity(), BaseView<LoginModel> {
         }
     }
     override fun onError(message: String?) {
-        Tt.showShort("登录信息有误，请重新登录")
+        MyToast.showShort("登录信息有误，请重新登录")
         goToLogin()
     }
 
@@ -306,7 +306,7 @@ class SplashActivity: BaseActivity(), BaseView<LoginModel> {
             //不是因为设备id保存出错的，跳到登录页
             if (result?.code != 23012) {
                 goToLogin()
-                Tt.showShort(result?.message)
+                MyToast.showShort(result?.message)
             }
         }
     }

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
+import com.qzl.toast.MyToast
 import org.jetbrains.anko.startActivity
 import qzl.com.basecommon.base.BaseLargeImgActivity
 import qzl.com.basecommon.common.Constant
@@ -23,7 +24,6 @@ import qzl.com.fileuploadanddownload.presenter.DeleteFilePresenterImpl
 import qzl.com.model.common.CommonModel
 import qzl.com.model.file_operate.FileList
 import qzl.com.tools.utils.StringHelper
-import utilclass.Tt
 import java.io.File
 
 /**
@@ -156,11 +156,11 @@ class EventReportImageAdapter(private val activity: Activity, private var mDatas
     //删除文件
     val deleteFileListener = object : BaseView<CommonModel> {
         override fun onError(message: String?) {
-            Tt.showShort("删除文件失败")
+            MyToast.showShort("删除文件失败")
         }
 
         override fun loadSuccess(result: CommonModel?) {
-            Tt.showShort(result?.message)
+            MyToast.showShort(result?.message)
             if (result?.success == true){
                 mDatas?.removeAt(curPosition)
                 notifyDataSetChanged()

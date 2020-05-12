@@ -7,6 +7,7 @@ import android.widget.AdapterView
 import android.widget.LinearLayout
 import android.widget.SimpleAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.qzl.toast.MyToast
 import kotlinx.android.synthetic.main.index.*
 import kotlinx.android.synthetic.main.left.*
 import kotlinx.android.synthetic.main.main.*
@@ -22,7 +23,6 @@ import qzl.com.main.util.FragmentUtil
 import qzl.com.main.view.java.DragLayout
 import qzl.com.tools.operate.CompleteQuit
 import qzl.com.tools.utils.AppUtil
-import utilclass.Tt
 /**
  * @author 强周亮(Qzl)
  * @desc 首页
@@ -51,10 +51,10 @@ class HomeActivity : BaseActivity() {
         })
         menu_listview.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             when (position) {
-                0 -> { Tt.showShort("我的信息") }
+                0 -> { MyToast.showShort("我的信息") }
                 1 -> {
                     //修改密码
-                    Tt.showShort("修改密码")
+                    MyToast.showShort("修改密码")
                 }
                 2 -> {
                     //检查更新
@@ -70,12 +70,12 @@ class HomeActivity : BaseActivity() {
                 }
                 4 -> {
                     //系统帮助
-                    Tt.showShort("系统帮助")
+                    MyToast.showShort("系统帮助")
                 }
                 5 -> {
                     //隐私声明
                     ARouterUtil.arouterToAct(this,ARouterPath.Login.PRIVATE)
-                    Tt.showShort("系统帮助")
+                    MyToast.showShort("系统帮助")
                 }
             }
         }
@@ -86,7 +86,7 @@ class HomeActivity : BaseActivity() {
         menu_logout.setOnClickListener {
             DialogPanel.dialogOperate(this, getString(R.string.exit_info), getString(R.string.tip),
                 "确定", DialogInterface.OnClickListener { dialog, which ->
-                    Tt.showShort("确定")
+                    MyToast.showShort("确定")
                     dialog.dismiss()
                     finishWithAnimation()
                 },
@@ -117,7 +117,7 @@ class HomeActivity : BaseActivity() {
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_DOWN) {
             if (System.currentTimeMillis() - exitTime > 2000) {
-                Tt.showShort(getString(R.string.exit_info))
+                MyToast.showShort(getString(R.string.exit_info))
                 exitTime = System.currentTimeMillis()
             } else {
                 CompleteQuit.getInstance()!!.exitAll(true)
