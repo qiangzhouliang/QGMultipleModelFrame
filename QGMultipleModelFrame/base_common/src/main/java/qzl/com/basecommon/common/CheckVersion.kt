@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.google.gson.Gson
 import com.qzl.toast.MyToast
+import qzl.com.basecommon.R
 import qzl.com.basecommon.permissions.ConstantPermission
 import qzl.com.basecommon.permissions.RequestPermissionUtil
 import qzl.com.basecommon.ui.java.LoadingDialog
@@ -192,8 +193,8 @@ class CheckVersion(var activity: Activity, var isSyncHandle: Boolean = false //�
         val pd: ProgressDialog
         //进度条对话框
         pd = ProgressDialog(activity)
-        pd.setView(null)
         pd.setCancelable(false)
+        pd.setProgressDrawable(activity.resources.getDrawable(R.drawable.progressbar))
         //返回键不可关闭
         pd.setCanceledOnTouchOutside(false)
         //边界外不可点击关闭
