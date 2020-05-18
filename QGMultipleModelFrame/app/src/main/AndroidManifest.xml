@@ -18,7 +18,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/TranslucentTheme">
+        android:theme="@style/TranslucentTheme"
+        android:usesCleartextTraffic="true">
         <!--解决不能适配全面屏的问题-->
         <meta-data
             android:name="android.max_aspect"

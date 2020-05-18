@@ -114,4 +114,7 @@ deps.MyToast = 'com.github.qiangzhouliang:MyToast:1.0.2'
 //SharedPreferences
 deps.PrefUtil = 'com.github.qiangzhouliang:PrefUtil:1.0.2'
 
+//日志管理-解决android9 以上问题
+deps.commons_logging = 'commons-logging:commons-logging:1.2'
+
 ext.deps = deps

@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 android {
+    useLibrary 'org.apache.http.legacy'
     compileSdkVersion deps.compile_sdk
     defaultConfig {
         applicationId "qzl.com.qgmultiplemodelframe"

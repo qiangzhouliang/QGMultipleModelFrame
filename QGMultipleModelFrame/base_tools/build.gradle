@@ -74,4 +74,5 @@ dependencies {
     api deps.umsdk_common
     api deps.MyToast
     api deps.PrefUtil
+    api deps.commons_logging
 }
