@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.google.gson.Gson
 import com.qzl.toast.MyToast
+import qzl.com.basecommon.permissions.ConstantPermission
+import qzl.com.basecommon.permissions.RequestPermissionUtil
 import qzl.com.basecommon.ui.java.LoadingDialog
 import qzl.com.basecommon.utils.VersionXmlParser
 import qzl.com.model.app_info.VersionInfo
@@ -155,7 +157,15 @@ class CheckVersion(var activity: Activity, var isSyncHandle: Boolean = false //�
         dialog = LoadingDialog.initVersionDialog(activity, info,
             {
                 dialog?.dismiss()
-                downLoadApk()
+                RequestPermissionUtil.requestPermission(activity, ConstantPermission.writeSdPermiss,
+                    String.format(ConstantPermission.writeSdContent, "更新下载", "更新下载")
+                    , object : RequestPermissionUtil.PermissionListener {
+                        override fun cancel(code: Int, perms: MutableList<String>) {}
+
+                        override fun success(code: Int, perms: MutableList<String>?) {
+                            downLoadApk()
+                        }
+                    })
             }, {
                 dialog?.dismiss()
                 if (checkVersionCustomHandle != null && NetworkUtil.getNetworkState(activity) != 0) {

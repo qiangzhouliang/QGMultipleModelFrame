@@ -64,6 +64,9 @@ android.applicationVariants.all { variant ->
             delete(fileTree(dir: variant.mergeAssets.outputDir, includes: ['debug.properties']))
         }
     }
+    variant.outputs.all {
+        outputFileName = "qgFrame_${variant.buildType.name}.apk"
+    }
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
