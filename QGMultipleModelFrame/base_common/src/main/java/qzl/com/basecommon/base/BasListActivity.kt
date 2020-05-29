@@ -31,6 +31,8 @@ abstract class BasListActivity<RESPONSE,ITEMBEAN,ITEMVIEW:View> : BaseActivity()
     //适配器懒加载初始化
     val adapter by lazy { getSpecAdapter() }
     var isAddItemDecoration = true
+    //记录当前加载的是那一页数据
+    var pageNo = 0
     //请求参数
     private val map = HashMap<String, String?>()
     override fun getLayoutId(): Int {
@@ -92,8 +94,12 @@ abstract class BasListActivity<RESPONSE,ITEMBEAN,ITEMVIEW:View> : BaseActivity()
                     val lastPosition = layoutManager.findLastVisibleItemPosition()
                     if (lastPosition == adapter.itemCount - 1 && adapter.getItemViewType(lastPosition) == adapter.TYPE_AUTO_MORE){
                         //最后一条已经显示了
-                        map["pageNum"] = adapter.paraPara?.pageNo?.plus(1).toString()
-                        presenter.loadMore(map)
+                        if (pageNo == adapter.paraPara?.pageNo) {
+                            //最后一条已经显示了
+                            map["pageNum"] = adapter.paraPara?.pageNo?.plus(1).toString()
+                            presenter.loadMore(map)
+                            pageNo = adapter.paraPara?.pageNo?.plus(1)!!
+                        }
                     }
                 }
             }
@@ -113,6 +119,7 @@ abstract class BasListActivity<RESPONSE,ITEMBEAN,ITEMVIEW:View> : BaseActivity()
      * @time 2019/11/24 0:32
      */
     fun getInitData(maps:HashMap<String,String?>,isShowProgres:Boolean = true) {
+        pageNo = 0
         maps["pageNum"] = "0"
         maps["pageSize"] = Constant.pageSize.toString()
         presenter.loadDatas(maps,isShowProgres)

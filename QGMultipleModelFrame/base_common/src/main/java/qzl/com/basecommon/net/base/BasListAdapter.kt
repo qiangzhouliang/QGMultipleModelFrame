@@ -85,9 +85,9 @@ abstract class BasListAdapter <ITEMBEAN,ITEMVIEW:View>: RecyclerView.Adapter<Bas
                 //表示没有查询到数据
                 TYPE_NO_DATA
             }
-            position > paraPara?.total!! -> {
+           /* position > paraPara?.total!! -> {
                 TYPE_FOOTER
-            }
+            }*/
             position == list.size -> {
                 if (list.size >= paraPara?.total?:0){
                     TYPE_FOOTER
@@ -129,11 +129,13 @@ abstract class BasListAdapter <ITEMBEAN,ITEMVIEW:View>: RecyclerView.Adapter<Bas
         if (holder.itemView is NoDataView || holder.itemView is FooterViewNoNextPage) return
 
         //如果是最后一条，就不需要刷新了
-        if (list.size >= paraPara?.total?:0 || list.isEmpty()) {
+        /*if (list.size >= paraPara?.total?:0 || list.isEmpty()) {
             if (position == list.size) return
         } else {
-            if (position >= list.size - 1) return
-        }
+            if (position >= list.size) return
+        }*/
+
+        if (position >= list.size) return
         //条目数据
         val data = list[position]
         //条目view
